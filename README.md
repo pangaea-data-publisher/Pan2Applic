@@ -15,4 +15,4 @@ Export formats supported by Pan2Applic are
 
 Pan2Applic output formats 1-3 are tab-delimited text-files with the extension *.txt. The DOI as a reference to the source of the data will be included in the output dataset. The user is requested to quote all references related to the original data when publishing new products resulting from a PANGAEA or CD download and processing with Pan2Applic. PANGAEA export files and Pan2Applic processed files can be opened by any editor or spreadsheet software.
 
-Contact Rainer Sieger (rsieger@pangaea.de). The software is provided as freeware without warranty by the Alfred Wegener Institute for Polar and Marine Research (AWI).
+Contact: Rainer Sieger (rsieger@pangaea.de). The software is provided as freeware without warranty by the Alfred Wegener Institute, Helmholtz Center for Polar and Marine Research, Bremerhaven.
