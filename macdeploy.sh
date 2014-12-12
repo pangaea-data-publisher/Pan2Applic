@@ -4,7 +4,7 @@ echo Pan2Applic
 
 echo - macdeployqt 
 
-cd ~/Development/aforge/pan2applic
+cd ~/Development/GitHub/Pan2Applic
 
 rm -R '../../Distribution/Pan2Applic/Pan2Applic.app'
 cp -R './Pan2Applic-build-Desktop_Qt_5_3_2_LLDB-Release/Pan2Applic.app' '../../Distribution/Pan2Applic/Pan2Applic.app'
