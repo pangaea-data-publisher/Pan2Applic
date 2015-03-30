@@ -139,6 +139,9 @@ int MainWindow::createGoogleEarthImportFile( QStringList& sl_MetadataList, const
             {
                 s_Campaign = sl_DataMetadataList.at( 0 ).section( "\t", _CAMPAIGNLABELPOS, _CAMPAIGNLABELPOS );
 
+                if ( i_NumOfOpenKMLFolders == 2 )
+                    i_NumOfOpenKMLFolders -= closeKMLFolder( fkml, 4 );
+
                 if ( i_NumOfOpenKMLFolders == 1 )
                     i_NumOfOpenKMLFolders -= closeKMLFolder( fkml, 2 );
 
@@ -171,6 +174,12 @@ int MainWindow::createGoogleEarthImportFile( QStringList& sl_MetadataList, const
                 if ( f_IconSize > 0. )
                     err = writeKMLEntry( fkml, sl_DataMetadataList, b_displayEventLabel, b_displayDescription, f_IconSize, i_IconColor, URL, j );
             }
+
+            if ( i_NumOfOpenKMLFolders == 2 )
+                i_NumOfOpenKMLFolders -= closeKMLFolder( fkml, 4 );
+
+            if ( ( sl_DataMetadataList.count() > 1 ) && ( i_TracklineWidth > 0 ) )
+                writeKMLTrack( fkml, sl_DataMetadataList, i_TracklineWidth, i_TracklineColor, i_Start, sl_DataMetadataList.count() );
         }
 
         stopProgress = incFileProgress( i_NumOfFiles, i );
@@ -179,9 +188,6 @@ int MainWindow::createGoogleEarthImportFile( QStringList& sl_MetadataList, const
 //-----------------------------------------------------------------------------------------------------------------------
 
     resetFileProgress( i_NumOfFiles );
-
-    if ( i_NumOfOpenKMLFolders == 2 )
-        i_NumOfOpenKMLFolders -= closeKMLFolder( fkml, 4 );
 
     if ( i_NumOfOpenKMLFolders == 1 )
         i_NumOfOpenKMLFolders -= closeKMLFolder( fkml, 2 );

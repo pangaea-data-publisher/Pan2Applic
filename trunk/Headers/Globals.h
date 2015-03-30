@@ -17,7 +17,7 @@
     const QString _PROGRAMDOI_                           = "doi:10.1594/PANGAEA.288115";
     const QString _PROGRAMREADME_                        = "http://wiki.pangaea.de/wiki/Pan2Applic";
 
-    const QString _VERSION_                              = "4.5";  // Version number, 2014-10-01
+    const QString _VERSION_                              = "4.6";  // Version number, 2015-03-30
     const QChar   _PSEPARATOR_                           = '|';
 
     const int _MAX_NUM_OF_PARAMETERS                     = 1000;
