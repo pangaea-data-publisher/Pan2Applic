@@ -189,6 +189,9 @@ int MainWindow::createGoogleEarthImportFile( QStringList& sl_MetadataList, const
 
     resetFileProgress( i_NumOfFiles );
 
+    if ( i_NumOfOpenKMLFolders == 2 )
+        i_NumOfOpenKMLFolders -= closeKMLFolder( fkml, 4 );
+
     if ( i_NumOfOpenKMLFolders == 1 )
         i_NumOfOpenKMLFolders -= closeKMLFolder( fkml, 2 );
 
