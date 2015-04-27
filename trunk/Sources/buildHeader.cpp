@@ -243,7 +243,7 @@ QString MainWindow::buildODVHeaderItem( const QString& s_Parameter, const bool b
     if ( s_HeaderItem.toLower() == "device" )
         return( tr( "Device:METAVAR:TEXT:32" ) );
 
-    if ( s_HeaderItem.toLower() == "elevation" )
+    if ( ( s_HeaderItem.toLower() == "elevation" ) || ( s_HeaderItem.toLower() == "elevation of event" ) )
         return( tr( "Bot. Depth [m]" ) );
 
     if ( s_HeaderItem.toLower() == "elevation of event [m]" )
@@ -267,16 +267,10 @@ QString MainWindow::buildODVHeaderItem( const QString& s_Parameter, const bool b
     if ( s_HeaderItem.toLower() == "date/time (yearly average)" )
         return( tr( "yyyy-mm-ddThh:mm:ss.sss" ) );
 
-    if ( s_HeaderItem.toLower() == "latitude" )
+    if ( ( s_HeaderItem.toLower() == "latitude" ) || ( s_HeaderItem.toLower() == "latitude of event" ) || ( s_HeaderItem.toLower() == "lat" ) )
         return( tr( "Latitude [degress_north]" ) );
 
-    if ( s_HeaderItem.toLower() == "longitude" )
-        return( tr( "Longitude [degress_east]" ) );
-
-    if ( s_HeaderItem.toLower() == "lat" )
-        return( tr( "Latitude [degress_north]" ) );
-
-    if ( s_HeaderItem.toLower() == "lon" )
+    if ( ( s_HeaderItem.toLower() == "longitude" ) || ( s_HeaderItem.toLower() == "longitude of event" ) || ( s_HeaderItem.toLower() == "lon" ) )
         return( tr( "Longitude [degress_east]" ) );
 
     if ( s_HeaderItem.toLower() == "origin of values" )

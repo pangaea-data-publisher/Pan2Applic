@@ -166,7 +166,14 @@ int MainWindow::analyzeDataset( const QString& s_FilenameIn, const int i_CodecIn
         {
             sd_Parameter = buildParameter( sld_ParameterList.at( j ) );
 
-            if ( sd_Parameter.endsWith( "Geocode" ) == true )
+            if ( ( sd_Parameter.startsWith( "DATE/TIME|Date/Time|" ) == true )
+                 || ( sd_Parameter.startsWith( "LATITUDE|Latitude|" ) == true )
+                 || ( sd_Parameter.startsWith( "LONGITUDE|Longitude|" ) == true )
+                 || ( sd_Parameter.startsWith( "DEPTH, water [m]|Depth water [m]|" ) == true )
+                 || ( sd_Parameter.startsWith( "Date/Time of event|Date/Time|" ) == true )
+                 || ( sd_Parameter.startsWith( "Latitude of event|Latitude|" ) == true )
+                 || ( sd_Parameter.startsWith( "Longitude of event|Longitude|" ) == true )
+                 || ( sd_Parameter.endsWith( "Geocode" ) == true ) )
                 i_Environment += getEnvironment( sd_Parameter.section( _PSEPARATOR_, 0, 0 ), i_EnvArray );
         }
 
