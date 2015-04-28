@@ -11,6 +11,40 @@
 // **********************************************************************************************
 // **********************************************************************************************
 // **********************************************************************************************
+// 2015-05-28
+
+bool MainWindow::isGeocode( const QString s_Parameter )
+{
+    if ( s_Parameter.startsWith( "DATE/TIME|Date/Time|" ) == true )
+        return( true );
+
+    if ( s_Parameter.startsWith( "LATITUDE|Latitude|" ) == true )
+        return( true );
+
+    if ( s_Parameter.startsWith( "LONGITUDE|Longitude|" ) == true )
+        return( true );
+
+    if ( s_Parameter.startsWith( "DEPTH, water [m]|Depth water [m]|" ) == true )
+        return( true );
+
+    if ( s_Parameter.startsWith( "Date/Time of event|Date/Time|" ) == true )
+        return( true );
+
+    if ( s_Parameter.startsWith( "Latitude of event|Latitude|" ) == true )
+        return( true );
+
+    if ( s_Parameter.startsWith( "Longitude of event|Longitude|" ) == true )
+        return( true );
+
+    if ( s_Parameter.endsWith( "Geocode" ) == true )
+        return( true );
+
+    return( false );
+}
+
+// **********************************************************************************************
+// **********************************************************************************************
+// **********************************************************************************************
 
 int MainWindow::getEnvironment( const int i_EnvArray[] )
 {

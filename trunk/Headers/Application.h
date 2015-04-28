@@ -165,6 +165,7 @@ public:
     int         getEnvironment( const QString& Parameter, int EnvArray[] );
     QString     getEnvironmentName( const int Env );
     QString     getEnvironmentShortName( const int Env );
+    bool        isGeocode( const QString Parameter );
 
     int         getGeocodePosition( const QStringList& ParameterList, const int Env );
     int         getGearIDPosition( const QStringList& ParameterList );
