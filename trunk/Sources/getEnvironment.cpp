@@ -14,7 +14,28 @@
 // 2015-05-28
 
 bool MainWindow::isGeocode( const QString s_Parameter )
-{
+{   // | = _PSEPARATOR_
+
+/*
+    +	1           DEPTH, sediment/rock        Depth           m
+    +	1599        DATE/TIME                   Date/Time
+    +	1600        LATITUDE                    Latitude
+    +	1601        LONGITUDE                   Longitude
+    +	1619        DEPTH, water                Depth water     m
+    +	2205        AGE                         Age             kyr BP
+    +	2920        DISTANCE                    Distance        cm
+    +	4607        ALTITUDE                    Altitude        m
+    +	56349       HEIGHT above ground         Height          m
+    +	5059        DEPTH, ice/snow             Depth ice/snow  m
+    +	6262        ORDINAL NUMBER              No
+    +	8128        ELEVATION                   Elevation       m a.s.l.
+    +	25539       SECTION, height             Section         m
+    +	26097       POINT DISTANCE from start   Dist            m
+*/
+
+    if ( s_Parameter.startsWith( "DEPTH, sediment/rock [m]|Depth [m]|" ) == true )
+        return( true );
+
     if ( s_Parameter.startsWith( "DATE/TIME|Date/Time|" ) == true )
         return( true );
 
@@ -25,6 +46,36 @@ bool MainWindow::isGeocode( const QString s_Parameter )
         return( true );
 
     if ( s_Parameter.startsWith( "DEPTH, water [m]|Depth water [m]|" ) == true )
+        return( true );
+
+    if ( s_Parameter.startsWith( "AGE [kyr BP]| [Age kyr BP]|" ) == true )
+        return( true );
+
+    if ( s_Parameter.startsWith( "DISTANCE [cm]|Distance [cm]|" ) == true )
+        return( true );
+
+    if ( s_Parameter.startsWith( "ALTITUDE [m]|Altitude [m]|" ) == true )
+        return( true );
+
+    if ( s_Parameter.startsWith( "HEIGHT above ground [m]|Height [m]|" ) == true )
+        return( true );
+
+    if ( s_Parameter.startsWith( "DEPTH, ice/snow [m]|Depth ice/snow [m]|" ) == true )
+        return( true );
+
+    if ( s_Parameter.startsWith( "HEIGHT above ground [m]|Height [m]|" ) == true )
+        return( true );
+
+    if ( s_Parameter.startsWith( "ORDINAL NUMBER []|No []|" ) == true )
+        return( true );
+
+    if ( s_Parameter.startsWith( "ELEVATION [m a.s.l.]|Elevation [m a.s.l.]|" ) == true )
+        return( true );
+
+    if ( s_Parameter.startsWith( "SECTION, height [m]|Section [m]|" ) == true )
+        return( true );
+
+    if ( s_Parameter.startsWith( "POINT DISTANCE from start [m]|Dist [m]|" ) == true )
         return( true );
 
     if ( s_Parameter.startsWith( "Date/Time of event|Date/Time|" ) == true )
