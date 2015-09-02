@@ -353,12 +353,17 @@ int MainWindow::writeKMLTrack( QFile& fkml, const QStringList& sl_MetadataList, 
 
         for ( int i=i_Start; i<i_End; i++ )
         {
-            float f_Elevation = sl_MetadataList.at( i ).section( "\t", _ELEVATIONPOS, _ELEVATIONPOS ).toFloat();
+            double d_Latitude  = sl_MetadataList.at( i ).section( "\t", _LATITUDEPOS, _LATITUDEPOS ).toDouble();
+            double d_Longitude = sl_MetadataList.at( i ).section( "\t", _LONGITUDEPOS, _LONGITUDEPOS ).toDouble();
+            double d_Elevation  = sl_MetadataList.at( i ).section( "\t", _ELEVATIONPOS, _ELEVATIONPOS ).toDouble();
 
-            if ( f_Elevation < 0 )
-                f_Elevation = 0.0;
+            if ( d_Elevation < 0 )
+                d_Elevation = 0.0;
 
-            tkml << "          " << sl_MetadataList.at( i ).section( "\t", _LONGITUDEPOS, _LONGITUDEPOS ) << "," << sl_MetadataList.at( i ).section( "\t", _LATITUDEPOS, _LATITUDEPOS ) << "," << f_Elevation << endl;
+            if ( d_Longitude > 180 )
+                d_Longitude -= 360;
+
+            tkml << "          " << QString( "%1,%2,%3" ).arg( d_Longitude, 0, 'f', 5 ).arg( d_Latitude, 0, 'f', 5 ).arg( d_Elevation, 0, 'f', 1 ) << endl;
         }
 
         tkml << "        </coordinates>" << endl;
@@ -375,24 +380,32 @@ int MainWindow::writeKMLTrack( QFile& fkml, const QStringList& sl_MetadataList, 
 
 int MainWindow::writeKMLEntry( QFile& fkml, const QStringList& sl_MetadataList, const bool b_displayEventLabel, const bool b_displayDescription, const float f_IconSize, const int i_IconColor, structURL URL[], const int i )
 {
-    QString s_CampaignLabel = sl_MetadataList.at( i ).section( "\t", _CAMPAIGNLABELPOS, _CAMPAIGNLABELPOS );  // Campaign
-    QString s_EventLabel    = sl_MetadataList.at( i ).section( "\t", _EVENTLABELPOS, _EVENTLABELPOS );        // Event label
-    QString s_GearName      = sl_MetadataList.at( i ).section( "\t", _GEARNAMEPOS, _GEARNAMEPOS );            // Gear name
-    QString s_Date          = sl_MetadataList.at( i ).section( "\t", _DATEPOS, _DATEPOS );                    // Date
-    QString s_Time          = sl_MetadataList.at( i ).section( "\t", _TIMEPOS, _TIMEPOS );                    // Time
-    QString s_DateTime      = sl_MetadataList.at( i ).section( "\t", _DATETIMEPOS, _DATETIMEPOS );            // Date/Time
-    QString s_DateTimeStart = sl_MetadataList.at( i ).section( "\t", _DATETIMESTARTPOS, _DATETIMESTARTPOS );  // Date/Time start
-    QString s_Latitude      = sl_MetadataList.at( i ).section( "\t", _LATITUDEPOS, _LATITUDEPOS );            // Latitude
-    QString s_Longitude     = sl_MetadataList.at( i ).section( "\t", _LONGITUDEPOS, _LONGITUDEPOS );          // Longitude
-    QString s_Elevation     = sl_MetadataList.at( i ).section( "\t", _ELEVATIONPOS, _ELEVATIONPOS );          // Elevation
-    QString s_AreaName      = sl_MetadataList.at( i ).section( "\t", _AREANAMEPOS, _AREANAMEPOS );            // Area
-    QString s_DOI           = sl_MetadataList.at( i ).section( "\t", _DOIPOS, _DOIPOS );                      // DOI
-    QString s_Citation      = sl_MetadataList.at( i ).section( "\t", _CITATIONPOS, _CITATIONPOS );            // Citation
+    double d_Latitude      = sl_MetadataList.at( i ).section( "\t", _LATITUDEPOS, _LATITUDEPOS ).toDouble();   // Latitude
+    double d_Longitude     = sl_MetadataList.at( i ).section( "\t", _LONGITUDEPOS, _LONGITUDEPOS ).toDouble(); // Longitude
+    double d_Elevation     = sl_MetadataList.at( i ).section( "\t", _ELEVATIONPOS, _ELEVATIONPOS ).toDouble(); // Elevation
+
+    QString s_CampaignLabel = sl_MetadataList.at( i ).section( "\t", _CAMPAIGNLABELPOS, _CAMPAIGNLABELPOS );   // Campaign
+    QString s_EventLabel    = sl_MetadataList.at( i ).section( "\t", _EVENTLABELPOS, _EVENTLABELPOS );         // Event label
+    QString s_GearName      = sl_MetadataList.at( i ).section( "\t", _GEARNAMEPOS, _GEARNAMEPOS );             // Gear name
+    QString s_Date          = sl_MetadataList.at( i ).section( "\t", _DATEPOS, _DATEPOS );                     // Date
+    QString s_Time          = sl_MetadataList.at( i ).section( "\t", _TIMEPOS, _TIMEPOS );                     // Time
+    QString s_DateTime      = sl_MetadataList.at( i ).section( "\t", _DATETIMEPOS, _DATETIMEPOS );             // Date/Time
+    QString s_DateTimeStart = sl_MetadataList.at( i ).section( "\t", _DATETIMESTARTPOS, _DATETIMESTARTPOS );   // Date/Time start
+    QString s_AreaName      = sl_MetadataList.at( i ).section( "\t", _AREANAMEPOS, _AREANAMEPOS );             // Area
+    QString s_DOI           = sl_MetadataList.at( i ).section( "\t", _DOIPOS, _DOIPOS );                       // DOI
+    QString s_Citation      = sl_MetadataList.at( i ).section( "\t", _CITATIONPOS, _CITATIONPOS );             // Citation
 
 // **********************************************************************************************
 
     if ( s_Time == s_Date )
         s_Time = "xxx";
+
+    if ( d_Longitude > 180 )
+        d_Longitude -= 360;
+
+    QString s_Longitude = QString( "%1" ).arg( d_Longitude, 0, 'f', 5 );
+    QString s_Latitude  = QString( "%1" ).arg( d_Latitude, 0, 'f', 5 );
+    QString s_Elevation = QString( "%1" ).arg( d_Elevation, 0, 'f', 1 );
 
 // **********************************************************************************************
 
