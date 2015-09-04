@@ -87,7 +87,7 @@ bool MainWindow::isGeocode( const QString s_Parameter )
     if ( s_Parameter.startsWith( "Longitude of event|Longitude|" ) == true )
         return( true );
 
-    if ( s_Parameter.endsWith( "Geocode" ) == true )
+    if ( s_Parameter.contains( "GEOCODE" ) == true )
         return( true );
 
     return( false );

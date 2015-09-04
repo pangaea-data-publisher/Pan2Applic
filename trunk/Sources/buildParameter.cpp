@@ -111,10 +111,10 @@ QString MainWindow::buildParameter( const QString& s_ParameterStr )
         s_Parameter = s_ParameterName + _PSEPARATOR_ + s_ShortName + _PSEPARATOR_;
     }
 
-    if ( sd_Parameter.contains( "PI:") == true ) // PI not used here
+    if ( ( sd_Parameter.contains( "GEOCODE" ) == false ) && ( sd_Parameter.contains( "PI:") == true ) ) // PI not used here
         ++i;
 
-    if ( sd_Parameter.contains( "METHOD:") == true )
+    if ( ( sd_Parameter.contains( "GEOCODE" ) == false ) && ( sd_Parameter.contains( "METHOD:") == true ) )
     {
         ++i;
         QString sd_Method = sd_Parameter.section( "\t" , i, i );
@@ -124,13 +124,13 @@ QString MainWindow::buildParameter( const QString& s_ParameterStr )
     }
     else
     {
-        if ( ( sd_Parameter.endsWith( "Geocode" ) == false ) && ( sd_Parameter.endsWith( "eMetadata" ) == false ) )
+        if ( ( sd_Parameter.contains( "GEOCODE" ) == false ) && ( sd_Parameter.endsWith( "eMetadata" ) == false ) )
             s_Parameter.append( tr( "not given" ) );
     }
 
     s_Parameter.append( _PSEPARATOR_ );
 
-    if ( sd_Parameter.contains( "COMMENT:") == true )
+    if ( ( sd_Parameter.contains( "GEOCODE" ) == false ) && ( sd_Parameter.contains( "COMMENT:") == true ) )
     {
         ++i;
         sd_Parameter.replace( "COMMENT: ", "" );
@@ -138,7 +138,7 @@ QString MainWindow::buildParameter( const QString& s_ParameterStr )
     }
     else
     {
-        if ( ( sd_Parameter.endsWith( "Geocode" ) == false ) && ( sd_Parameter.endsWith( "eMetadata" ) == false ) )
+        if ( ( sd_Parameter.contains( "GEOCODE" ) == false ) && ( sd_Parameter.endsWith( "eMetadata" ) == false ) )
             s_Parameter.append( tr( "not given" ) );
     }
 
