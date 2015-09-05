@@ -275,6 +275,7 @@ void MainWindow::doCreateOceanDataViewFile()
     }
 
 // **********************************************************************************************
+// Select environment dialog
 
     if ( ( err == _NOERROR_ ) && ( stopProgress != _APPBREAK_ ) )
     {

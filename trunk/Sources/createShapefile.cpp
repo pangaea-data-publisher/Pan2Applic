@@ -683,6 +683,7 @@ void MainWindow::doCreateShapefileData()
     }
 
 // **********************************************************************************************
+// Select environment dialog
 
     if ( ( err == _NOERROR_ ) && ( stopProgress != _APPBREAK_ ) )
     {
