@@ -42,9 +42,6 @@ int MainWindow::startProgram( const QString& s_Program, const QString& s_Filenam
 
         sl_args.append( QDir::toNativeSeparators( s_Filename ) );
 
-        qDebug() << s_Program << ", " << s_ProgramFilePath;
-
-
         if ( process.startDetached( s_ProgramFilePath, sl_args ) == false )
         {
             QString s_Message = "Cannot start the program\n\n    " + QDir::toNativeSeparators( s_Program ) + "\n\n Please start the program manually from your shell.";
