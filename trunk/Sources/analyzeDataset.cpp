@@ -29,33 +29,35 @@ int MainWindow::analyzeDataset( const QString& s_FilenameIn, const int i_CodecIn
 
     int             n                   = 0;
 
-    int             i_DatePos           = -1;
-    int             i_TimePos           = -1;
-    int             i_DateTimePos       = -1;
-    int             i_ElevationPos      = -1;
-    int             i_EventLabelPos     = -1;
-    int             i_CampaignLabelPos  = -1;
-    int             i_AreaNamePos       = -1;
-    int             i_GearNamePos       = -1;
-    int             i_LatitudePos       = -1;
-    int             i_LongitudePos      = -1;
+    int             i_DataDatePos           = -1;
+    int             i_DataTimePos           = -1;
+    int             i_DataDateTimePos       = -1;
+    int             i_DataElevationPos      = -1;
+    int             i_DataEventLabelPos     = -1;
+    int             i_DataCampaignLabelPos  = -1;
+    int             i_DataAreaNamePos       = -1;
+    int             i_DataGearNamePos       = -1;
+    int             i_DataLatitudePos       = -1;
+    int             i_DataLongitudePos      = -1;
 
-    QString         s_Environment       = "xxx";
-    QString         s_EventLabel        = "xxx";
-    QString         s_Latitude          = "xxx";
-    QString         s_Longitude         = "xxx";
-    QString         s_CampaignLabel     = "xxx";
-    QString         s_AreaName          = "xxx";
-    QString         s_GearName          = "xxx";
-    QString         s_Date              = "xxx";
-    QString         s_Time              = "xxx";
-    QString         s_DateTimeStart     = "xxx";
-    QString         s_DateTimeEnd       = "xxx";
-    QString         s_DOI               = "xxx";
-    QString         s_Citation          = "xxx";
-    QString         s_Elevation         = "xxx";
+    QString         s_Environment            = "xxx";
 
-    QString         sd_Parameter        = "";
+    QString         s_EventEventLabel        = "xxx";
+    QString         s_EventLatitude          = "xxx";
+    QString         s_EventLongitude         = "xxx";
+    QString         s_EventCampaignLabel     = "xxx";
+    QString         s_EventAreaName          = "xxx";
+    QString         s_EventGearName          = "xxx";
+    QString         s_EventDateTime          = "xxx";
+    QString         s_EventElevation         = "xxx";
+
+    QString         s_CoverageDateTimeStart  = "xxx";
+    QString         s_CoverageDateTimeEnd    = "xxx";
+
+    QString         s_DOI                    = "xxx";
+    QString         s_Citation               = "xxx";
+
+    QString         sd_Parameter             = "";
 
     QStringList     sld_ParameterList;
     QStringList     sl_Input;
@@ -107,14 +109,14 @@ int MainWindow::analyzeDataset( const QString& s_FilenameIn, const int i_CodecIn
 
             if ( sl_Input.at( i ).contains( "DATE/TIME START: " ) == true )
             {
-                s_DateTimeStart = sl_Input.at( i ).section( "\t", 1, 1 ).section( " * ", 0, 0 );
-                s_DateTimeStart.replace( "DATE/TIME START: ", "" );
+                s_CoverageDateTimeStart = sl_Input.at( i ).section( "\t", 1, 1 ).section( " * ", 0, 0 );
+                s_CoverageDateTimeStart.replace( "DATE/TIME START: ", "" );
 
-                s_DateTimeEnd = sl_Input.at( i ).section( "\t", 1, 1 ).section( " * ", 1, 1 );
-                s_DateTimeEnd.replace( "DATE/TIME END: ", "" );
+                s_CoverageDateTimeEnd = sl_Input.at( i ).section( "\t", 1, 1 ).section( " * ", 1, 1 );
+                s_CoverageDateTimeEnd.replace( "DATE/TIME END: ", "" );
 
-                gs_GEOCODE_min = s_DateTimeStart;
-                gs_GEOCODE_max = s_DateTimeEnd;
+                gs_GEOCODE_min = s_CoverageDateTimeStart;
+                gs_GEOCODE_max = s_CoverageDateTimeEnd;
             }
 
 // **********************************************************************************************
@@ -124,7 +126,7 @@ int MainWindow::analyzeDataset( const QString& s_FilenameIn, const int i_CodecIn
             {
                 b_containsEventBlock = true;
 
-                err = getEventMetadata( sl_Input.at( i ), s_Date, s_Time, s_Elevation, s_EventLabel, s_CampaignLabel, s_AreaName, s_GearName, s_Latitude, s_Longitude, sld_ParameterList );
+                err = getEventMetadata( sl_Input.at( i ), s_EventDateTime, s_EventElevation, s_EventEventLabel, s_EventCampaignLabel, s_EventAreaName, s_EventGearName, s_EventLatitude, s_EventLongitude, sld_ParameterList );
             }
 
 // **********************************************************************************************
@@ -173,7 +175,7 @@ int MainWindow::analyzeDataset( const QString& s_FilenameIn, const int i_CodecIn
 // **********************************************************************************************
 // get metadata from data section
 
-        getDataMetadataPosition( b_containsPANGAEAHeader, sl_Input.at( i ), i_DatePos, i_TimePos, i_DateTimePos, i_ElevationPos, i_EventLabelPos, i_CampaignLabelPos, i_AreaNamePos, i_GearNamePos, i_LatitudePos, i_LongitudePos, sld_ParameterList );
+        getDataMetadataPosition( b_containsPANGAEAHeader, sl_Input.at( i ), i_DataDatePos, i_DataTimePos, i_DataDateTimePos, i_DataElevationPos, i_DataEventLabelPos, i_DataCampaignLabelPos, i_DataAreaNamePos, i_DataGearNamePos, i_DataLatitudePos, i_DataLongitudePos, sld_ParameterList );
     }
 
 // **********************************************************************************************
@@ -188,7 +190,7 @@ int MainWindow::analyzeDataset( const QString& s_FilenameIn, const int i_CodecIn
         for ( int j=0; j<n; ++j )
             i_Environment += getEnvironment( sl_Input.at( i ).section( "\t", j, j ), i_EnvArray );
 
-        i_NumOfParameters = getDataMetadataPosition( b_containsPANGAEAHeader, sl_Input.at( i ), i_DatePos, i_TimePos, i_DateTimePos, i_ElevationPos, i_EventLabelPos, i_CampaignLabelPos, i_AreaNamePos, i_GearNamePos, i_LatitudePos, i_LongitudePos, sld_ParameterList );
+        i_NumOfParameters = getDataMetadataPosition( b_containsPANGAEAHeader, sl_Input.at( i ), i_DataDatePos, i_DataTimePos, i_DataDateTimePos, i_DataElevationPos, i_DataEventLabelPos, i_DataCampaignLabelPos, i_DataAreaNamePos, i_DataGearNamePos, i_DataLatitudePos, i_DataLongitudePos, sld_ParameterList );
     }
 
 // **********************************************************************************************
@@ -241,43 +243,52 @@ int MainWindow::analyzeDataset( const QString& s_FilenameIn, const int i_CodecIn
     if ( b_containsEventBlock == true )
         i_MetaInfo = 1;
 
-    if ( i_LatitudePos > -1 )
+    if ( i_DataLatitudePos > -1 )
         ++i_MetaInfo;
 
-    if ( i_LongitudePos > -1 )
+    if ( i_DataLongitudePos > -1 )
         ++i_MetaInfo;
 
 // **********************************************************************************************
 // build metadata string
 
-    QString s_Metadata = s_FilenameIn;                                      // 0
-    s_Metadata.append( QString( "\t%1" ).arg( i_MetaInfo ) );               // 1
-    s_Metadata.append( QString( "\t%1" ).arg( i ) );                        // 2
-    s_Metadata.append( QString( "\t%1" ).arg( i_Environment ) );            // 3
-    s_Metadata.append( QString( "\t%1" ).arg( s_CampaignLabel ) );          // 4
-    s_Metadata.append( QString( "\t%1" ).arg( s_EventLabel ) );				// 5
-    s_Metadata.append( QString( "\t%1" ).arg( s_GearName ) );				// 6
-    s_Metadata.append( QString( "\t%1" ).arg( s_Date ) );					// 7
-    s_Metadata.append( QString( "\t%1" ).arg( s_Time ) );					// 8
-    s_Metadata.append( QString( "\t%1T%2" ).arg( s_Date ).arg( s_Time ) );	// 9
-    s_Metadata.append( QString( "\t%1" ).arg( s_DateTimeStart ) );			// 10
-    s_Metadata.append( QString( "\t%1" ).arg( s_Latitude ) );           	// 11
-    s_Metadata.append( QString( "\t%1" ).arg( s_Longitude ) );				// 12
-    s_Metadata.append( QString( "\t%1" ).arg( s_Elevation ) );				// 13
-    s_Metadata.append( QString( "\t%1" ).arg( s_AreaName ) );				// 14
-    s_Metadata.append( QString( "\t%1" ).arg( s_DOI ) );					// 15
-    s_Metadata.append( QString( "\t%1" ).arg( s_Citation ) );           	// 16
-    s_Metadata.append( QString( "\t%1" ).arg( i_DatePos ) );                // 17
-    s_Metadata.append( QString( "\t%1" ).arg( i_TimePos ) );                // 18
-    s_Metadata.append( QString( "\t%1" ).arg( i_DateTimePos ) );            // 19
-    s_Metadata.append( QString( "\t%1" ).arg( i_ElevationPos ) );           // 20
-    s_Metadata.append( QString( "\t%1" ).arg( i_EventLabelPos ) );          // 21
-    s_Metadata.append( QString( "\t%1" ).arg( i_CampaignLabelPos ) );       // 22
-    s_Metadata.append( QString( "\t%1" ).arg( i_AreaNamePos ) );            // 23
-    s_Metadata.append( QString( "\t%1" ).arg( i_GearNamePos ) );            // 24
-    s_Metadata.append( QString( "\t%1" ).arg( i_LatitudePos ) );            // 25
-    s_Metadata.append( QString( "\t%1" ).arg( i_LongitudePos ) );           // 26
-    s_Metadata.append( QString( "\t%1" ).arg( i_NumOfDataPoints) );         // 27
+    QString s_Metadata = s_FilenameIn;                                                  // 0
+
+    s_Metadata.append( QString( "\t%1" ).arg( i_MetaInfo ) );                           // 1
+    s_Metadata.append( QString( "\t%1" ).arg( i ) );                                    // 2
+    s_Metadata.append( QString( "\t%1" ).arg( i_Environment ) );                        // 3
+
+    s_Metadata.append( QString( "\t%1" ).arg( s_EventCampaignLabel ) );                 // 4
+    s_Metadata.append( QString( "\t%1" ).arg( s_EventEventLabel ) );                    // 5
+    s_Metadata.append( QString( "\t%1" ).arg( s_EventGearName ) );                      // 6
+
+    s_Metadata.append( QString( "\t%1" ).arg( "xxx" ) );                                // 7
+    s_Metadata.append( QString( "\t%1" ).arg( "xxx" ) );                            	// 8
+    s_Metadata.append( QString( "\t%1" ).arg( s_EventDateTime ) );                      // 9
+
+    s_Metadata.append( QString( "\t%1" ).arg( s_CoverageDateTimeStart ) );              // 10
+//  s_Metadata.append( QString( "\t%1" ).arg( s_CoverageDateTimeEnd ) );                // 11
+
+    s_Metadata.append( QString( "\t%1" ).arg( s_EventLatitude ) );                      // 11
+    s_Metadata.append( QString( "\t%1" ).arg( s_EventLongitude ) );                     // 12
+    s_Metadata.append( QString( "\t%1" ).arg( s_EventElevation ) );                     // 13
+    s_Metadata.append( QString( "\t%1" ).arg( s_EventAreaName ) );                      // 14
+
+    s_Metadata.append( QString( "\t%1" ).arg( s_DOI ) );                                // 15
+    s_Metadata.append( QString( "\t%1" ).arg( s_Citation ) );                           // 16
+
+    s_Metadata.append( QString( "\t%1" ).arg( i_DataDatePos ) );                        // 17
+    s_Metadata.append( QString( "\t%1" ).arg( i_DataTimePos ) );                        // 18
+    s_Metadata.append( QString( "\t%1" ).arg( i_DataDateTimePos ) );                    // 19
+    s_Metadata.append( QString( "\t%1" ).arg( i_DataElevationPos ) );                   // 20
+    s_Metadata.append( QString( "\t%1" ).arg( i_DataEventLabelPos ) );                  // 21
+    s_Metadata.append( QString( "\t%1" ).arg( i_DataCampaignLabelPos ) );               // 22
+    s_Metadata.append( QString( "\t%1" ).arg( i_DataAreaNamePos ) );                    // 23
+    s_Metadata.append( QString( "\t%1" ).arg( i_DataGearNamePos ) );                    // 24
+    s_Metadata.append( QString( "\t%1" ).arg( i_DataLatitudePos ) );                    // 25
+    s_Metadata.append( QString( "\t%1" ).arg( i_DataLongitudePos ) );                   // 26
+
+    s_Metadata.append( QString( "\t%1" ).arg( i_NumOfDataPoints) );                     // 27
 
     sl_MetadataList.append( s_Metadata );
 

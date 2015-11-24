@@ -12,44 +12,46 @@
 // **********************************************************************************************
 // **********************************************************************************************
 
-int MainWindow::getEventMetadata( const QString& s_EventStr, QString& s_Date, QString& s_Time, QString& s_Elevation, QString& s_EventLabel, QString& s_CruiseLabel, QString& s_AreaName, QString& s_Gear, QString& s_Latitude, QString& s_Longitude, QStringList& sl_ParameterList )
+int MainWindow::getEventMetadata( const QString& s_EventStr,
+                                  QString& s_DateTime, QString& s_Elevation,
+                                  QString& s_EventLabel, QString& s_CruiseLabel,
+                                  QString& s_AreaName, QString& s_Gear,
+                                  QString& s_Latitude, QString& s_Longitude,
+                                  QStringList& sl_ParameterList )
 {
     int     n           = 0;
 
     int		i_MetaInfo  = 0;
 
     QString InputStr    = s_EventStr;
-    QString s_DateTime  = "";
 
 // **********************************************************************************************
 
     InputStr.replace( " * ",               "\t" );
+
     InputStr.replace( "Event(s):\t",       "1\t" );
-    InputStr.replace( "LATITUDE: ",        "2\t" );
-    InputStr.replace( "LATITUDE START: ",  "2\t" );
-    InputStr.replace( "LONGITUDE: ",       "3\t" );
-    InputStr.replace( "LONGITUDE START: ", "3\t" );
-    InputStr.replace( "ELEVATION: ",       "4\t" );
-    InputStr.replace( "ELEVATION START: ", "4\t" );
-    InputStr.replace( "DATETIME: ",        "5\t" );
-    InputStr.replace( "DATE/TIME: ",       "5\t" );
-    InputStr.replace( "DATE/TIME START: ", "5\t" );
-    InputStr.replace( "COMMENT: ",         "6\t" );
-    InputStr.replace( "CAMPAIGN: ",        "7\t" );
-    InputStr.replace( "DEVICE: ",          "8\t" );
-    InputStr.replace( "LOCATION: ",        "9\t" );
-    InputStr.replace( "BASIS: ",           "10\t" );
-    InputStr.replace( "RECOVERY: ",        "11\t" );
-    InputStr.replace( "LATITUDE 2: ",      "12\t" );
-    InputStr.replace( "LATITUDE END: ",    "12\t" );
-    InputStr.replace( "LONGITUDE 2: ",     "13\t" );
-    InputStr.replace( "LONGITUDE END: ",   "13\t" );
-    InputStr.replace( "ELEVATION 2: ",     "14\t" );
-    InputStr.replace( "ELEVATION END: ",   "14\t" );
-    InputStr.replace( "DATETIME 2: ",      "15\t" );
-    InputStr.replace( "DATETIME END: ",    "15\t" );
-    InputStr.replace( "DATE/TIME 2: ",     "15\t" );
-    InputStr.replace( "DATE/TIME END: ",   "15\t" );
+
+    InputStr.replace( "DATE/TIME: ",       "2\t" );
+    InputStr.replace( "LATITUDE: ",        "3\t" );
+    InputStr.replace( "LONGITUDE: ",       "4\t" );
+    InputStr.replace( "ELEVATION: ",       "5\t" );
+
+    InputStr.replace( "DATE/TIME START: ", "6\t" );
+    InputStr.replace( "LATITUDE START: ",  "7\t" );
+    InputStr.replace( "LONGITUDE START: ", "8\t" );
+    InputStr.replace( "ELEVATION START: ", "9\t" );
+
+    InputStr.replace( "DATE/TIME END: ",   "10\t" );
+    InputStr.replace( "LATITUDE END: ",    "11\t" );
+    InputStr.replace( "LONGITUDE END: ",   "12\t" );
+    InputStr.replace( "ELEVATION END: ",   "13\t" );
+
+    InputStr.replace( "CAMPAIGN: ",        "14\t" );
+    InputStr.replace( "DEVICE: ",          "15\t" );
+    InputStr.replace( "LOCATION: ",        "16\t" );
+    InputStr.replace( "BASIS: ",           "17\t" );
+    InputStr.replace( "RECOVERY: ",        "18\t" );
+    InputStr.replace( "COMMENT: ",         "16\t" );
 
     n = NumOfSections( InputStr );
 
@@ -65,32 +67,31 @@ int MainWindow::getEventMetadata( const QString& s_EventStr, QString& s_Date, QS
                 sl_ParameterList.append( "3@Event * eMetadata" );
                 break;
             case 2:
+                s_DateTime = InputStr.section( "\t", i+1, i+1 );
+                sl_ParameterList.append( "5@Date/Time * eMetadata" );
+                break;
+            case 3:
                 s_Latitude = InputStr.section( "\t", i+1, i+1 );
                 sl_ParameterList.append( "6@Latitude * eMetadata" );
                 break;
-            case 3:
+            case 4:
                 s_Longitude	= InputStr.section( "\t", i+1, i+1 );
                 sl_ParameterList.append( "7@Longitude * eMetadata" );
                 break;
-            case 4:
+            case 5:
                 s_Elevation	= InputStr.section( "\t", i+1, i+1 );
                 s_Elevation.replace( " m", "" );
                 sl_ParameterList.append( "8@Elevation * eMetadata" );
                 break;
-            case 5:
-                s_DateTime = InputStr.section( "\t", i+1, i+1 );
-                convertDateTime( _FORMAT_ISO, s_DateTime, s_Date, s_Time );
-                sl_ParameterList.append( "5@Date/Time * eMetadata" );
-                break;
-            case 7:
+            case 14:
                 s_CruiseLabel = InputStr.section( "\t", i+1, i+1 );
                 sl_ParameterList.append( "2@Campaign * eMetadata" );
                 break;
-            case 8:
+            case 15:
                 s_Gear = InputStr.section( "\t", i+1, i+1 );
                 sl_ParameterList.append( "4@Device * eMetadata" );
                 break;
-            case 9:
+            case 16:
                 s_AreaName = InputStr.section( "\t", i+1, i+1 );
                 sl_ParameterList.append( "1@Area * eMetadata" );
                 break;
