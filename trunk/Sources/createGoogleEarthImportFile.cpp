@@ -229,16 +229,16 @@ int MainWindow::openKMLFile( QFile& fkml )
     tkml << "<Document>\n";
     tkml << "  <ScreenOverlay>\n";
     tkml << "    <name>Pan2Applic logo</name>\n";
-    tkml << "    <Icon><href>http://www.pangaea.de/PICS/Pan2Applic_logo.png</href></Icon>\n";
+    tkml << "    <Icon><href>https://pangaea.de/PICS/Pan2Applic_logo.png</href></Icon>\n";
     tkml << "    <overlayXY x=\"0\" y=\"1\" xunits=\"fraction\" yunits=\"fraction\"/>\n";
     tkml << "    <screenXY x=\"5\" y=\"5\" xunits=\"pixels\" yunits=\"insetPixels\"/>\n";
     tkml << "    <size x=\"200\" y=\"88\" xunits=\"pixel\" yunits=\"pixel\"/>\n";
     tkml << "  </ScreenOverlay>\n";
-    tkml << "  <Style id=\"red\"><IconStyle><Icon><href>http://www.pangaea.de/PICS/circle-red.png</href></Icon></IconStyle></Style>\n";
-    tkml << "  <Style id=\"blue\"><IconStyle><Icon><href>http://www.pangaea.de/PICS/circle-blue.png</href></Icon></IconStyle></Style>\n";
-    tkml << "  <Style id=\"green\"><IconStyle><Icon><href>http://www.pangaea.de/PICS/circle-green.png</href></Icon></IconStyle></Style>\n";
-    tkml << "  <Style id=\"orange\"><IconStyle><Icon><href>http://www.pangaea.de/PICS/circle-orange.png</href></Icon></IconStyle></Style>\n";
-    tkml << "  <Style id=\"yellow\"><IconStyle><Icon><href>http://www.pangaea.de/PICS/circle-yellow.png</href></Icon></IconStyle></Style>\n";
+    tkml << "  <Style id=\"red\"><IconStyle><Icon><href>https://pangaea.de/PICS/circle-red.png</href></Icon></IconStyle></Style>\n";
+    tkml << "  <Style id=\"blue\"><IconStyle><Icon><href>https://pangaea.de/PICS/circle-blue.png</href></Icon></IconStyle></Style>\n";
+    tkml << "  <Style id=\"green\"><IconStyle><Icon><href>https://pangaea.de/PICS/circle-green.png</href></Icon></IconStyle></Style>\n";
+    tkml << "  <Style id=\"orange\"><IconStyle><Icon><href>https://pangaea.de/PICS/circle-orange.png</href></Icon></IconStyle></Style>\n";
+    tkml << "  <Style id=\"yellow\"><IconStyle><Icon><href>https://pangaea.de/PICS/circle-yellow.png</href></Icon></IconStyle></Style>\n";
 //  tkml << "  <name>Document name</name>\n";
 //  tkml << "  <description>Document description</description>\n";
 
@@ -274,7 +274,7 @@ int MainWindow::openKMLFolder( QFile& fkml, const QString& s_Campaign )
     if ( ( s_Campaign != "xxx" ) && ( s_Campaign != "unknown campaign" ) )
     {
         tkml << "    <name>Campaign: " << s_Campaign.section( " (", 0, 0 ) << "</name>\n";
-        tkml << "    <description><![CDATA[<a href=\"http://www.pangaea.de/search?q=" << s_Campaign.section( " (", 0, 0 ) << "\">search all Datasets</a>]]></description>\n";
+        tkml << "    <description><![CDATA[<a href=\"https://pangaea.de/search?q=" << s_Campaign.section( " (", 0, 0 ) << "\">search all Datasets</a>]]></description>\n";
     }
     else
     {
@@ -447,7 +447,7 @@ int MainWindow::writeKMLEntry( QFile& fkml, const QStringList& sl_MetadataList, 
                 if ( s_DOI.startsWith( "doi:" ) == true )
                     tkml << "http://doi.pangaea.de/" << s_DOI.section( "doi:", 1, 1 ).section( ",", 0, 0 );  // published or DOI registration in progress
                 else
-                    tkml << "http://www.pangaea.de/search?q=dataset" << s_DOI.section( ": ", 1, 1 ).section( ",", 0, 0 ); // unpublished datset
+                    tkml << "https://pangaea.de/search?q=dataset" << s_DOI.section( ": ", 1, 1 ).section( ",", 0, 0 ); // unpublished datset
 
                 if ( s_DOI.section( ", ", 1, 1 ).isEmpty() == true )
                     tkml << "\">" << s_DOI.section( ",", 0, 0 ) << "</a>]]><br />";
@@ -492,7 +492,7 @@ int MainWindow::writeKMLEntry( QFile& fkml, const QStringList& sl_MetadataList, 
                 tkml << "Elevation: unknown";
 
             tkml << "<br /><![CDATA[<a href=\"";
-            tkml << "http://www.pangaea.de/search?q=" << s_EventLabel.section( " (line ", 0, 0 ); // Event
+            tkml << "https://pangaea.de/search?q=" << s_EventLabel.section( " (line ", 0, 0 ); // Event
             tkml << "\">search data</a>]]><br />";
         }
 

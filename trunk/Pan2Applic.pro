@@ -13,8 +13,8 @@ macx {
     # Only Intel binaries are accepted so force this
     CONFIG += x86_64
 
-    # Minimum OS X version for submission is 10.6.6
-    QMAKE_MACOSX_DEPLOYMENT_TARGET = 10.6
+    # Minimum OS X version for submission is 10.7
+    QMAKE_MACOSX_DEPLOYMENT_TARGET = 10.7
 
     # Icon by Rainer Sieger, 2012-07-02
     ICON = ./Resources/icon/Application.icns

@@ -46,7 +46,7 @@ void MainWindow::createActions()
 
     exitAction = new QAction(tr("&Quit"), this);
     exitAction->setShortcut(tr("Ctrl+Q"));
-    connect(exitAction, SIGNAL(triggered()), this, SLOT(close()));
+    connect(exitAction, SIGNAL(triggered()), this, SLOT(exitApplication()));
 
     // Converter menu
     createGoogleEarthImportFileAction = new QAction(tr("&Google Earth..."), this);
@@ -161,18 +161,22 @@ void MainWindow::createMenus()
     fileMenu->addAction( hideWindowAction );
 #endif
 
-    fileMenu->addSeparator();
-    fileMenu->addAction( getFilesAction );
-
 #if defined(Q_OS_LINUX)
     fileMenu->addSeparator();
-    fileMenu->addAction( exitAction );
+    fileMenu->addAction( getFilesAction );
+#endif
+
+#if defined(Q_OS_MAC)
+    ;
 #endif
 
 #if defined(Q_OS_WIN)
     fileMenu->addSeparator();
-    fileMenu->addAction( exitAction );
+    fileMenu->addAction( getFilesAction );
 #endif
+
+    fileMenu->addSeparator();
+    fileMenu->addAction( exitAction );
 
 // **********************************************************************************************
 
