@@ -161,19 +161,10 @@ void MainWindow::createMenus()
     fileMenu->addAction( hideWindowAction );
 #endif
 
-#if defined(Q_OS_LINUX)
+/*
     fileMenu->addSeparator();
     fileMenu->addAction( getFilesAction );
-#endif
-
-#if defined(Q_OS_MAC)
-    ;
-#endif
-
-#if defined(Q_OS_WIN)
-    fileMenu->addSeparator();
-    fileMenu->addAction( getFilesAction );
-#endif
+*/
 
     fileMenu->addSeparator();
     fileMenu->addAction( exitAction );
