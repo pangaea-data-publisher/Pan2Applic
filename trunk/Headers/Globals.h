@@ -15,7 +15,7 @@
     const int   _GZIP_                                   = 2;
 
     const QString _PROGRAMDOI_                           = "doi:10.1594/PANGAEA.288115";
-    const QString _PROGRAMREADME_                        = "http://wiki.pangaea.de/wiki/Pan2Applic";
+    const QString _PROGRAMREADME_                        = "https://wiki.pangaea.de/wiki/Pan2Applic";
 
     const QString _VERSION_                              = "4.10";  // Version number, 2015-12-28
     const QChar   _PSEPARATOR_                           = '|';
