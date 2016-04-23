@@ -445,7 +445,7 @@ int MainWindow::writeKMLEntry( QFile& fkml, const QStringList& sl_MetadataList, 
                 tkml << "<![CDATA[<a href=\"";
 
                 if ( s_DOI.startsWith( "doi:" ) == true )
-                    tkml << "http://doi.pangaea.de/" << s_DOI.section( "doi:", 1, 1 ).section( ",", 0, 0 );  // published or DOI registration in progress
+                    tkml << "https://doi.pangaea.de/" << s_DOI.section( "doi:", 1, 1 ).section( ",", 0, 0 );  // published or DOI registration in progress
                 else
                     tkml << "https://pangaea.de/search?q=dataset" << s_DOI.section( ": ", 1, 1 ).section( ",", 0, 0 ); // unpublished datset
 

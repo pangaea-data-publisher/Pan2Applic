@@ -316,7 +316,7 @@ int MainWindow::writeShapfileDataEntry( DBFHandle hDBF, SHPHandle hSHP, const QS
          case _ISDOI:
            b_hasDOI = true;
            sd_DOI   = sl_Output.at( i );
-           DBFWriteStringAttribute( hDBF, iRecord, i, sd_DOI.replace( "http://doi.pangaea.de/", "doi:" ).toLatin1() );
+           DBFWriteStringAttribute( hDBF, iRecord, i, sd_DOI.replace( "https://doi.pangaea.de/", "doi:" ).toLatin1() );
            break;
 
          default:

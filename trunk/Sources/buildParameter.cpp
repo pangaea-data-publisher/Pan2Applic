@@ -712,7 +712,7 @@ QStringList MainWindow::buildODVOutputStr( const int i_LineNo, const bool b_addL
 
     if ( b_containsDOI == true )
     {
-        s_Output.replace( tr( "http://doi.pangaea.de/" ), tr( "doi:" ) );
+        s_Output.replace( tr( "https://doi.pangaea.de/" ), tr( "doi:" ) );
         s_Output.replace( tr( ", DOI registration in progress" ), tr( "" ) );
         s_Output.replace( tr( "Dataset ID: " ), tr( "doi:10.1594/PANGAEA." ) );
         s_Output.replace( tr( ", unpublished dataset" ), tr( "" ) );
