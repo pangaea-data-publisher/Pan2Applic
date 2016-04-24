@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>800</width>
+    <width>1111</width>
     <height>500</height>
    </rect>
   </property>
@@ -25,7 +25,7 @@
   <property name="sizeGripEnabled">
    <bool>true</bool>
   </property>
-  <layout class="QGridLayout" name="gridLayout_4">
+  <layout class="QGridLayout" name="gridLayout_5">
    <item row="0" column="0">
     <layout class="QGridLayout" name="gridLayout">
      <item row="0" column="0">
@@ -36,7 +36,7 @@
       </widget>
      </item>
      <item row="0" column="1">
-      <widget class="QLabel" name="label">
+      <widget class="QLabel" name="label_1">
        <property name="text">
         <string> - </string>
        </property>
@@ -45,11 +45,25 @@
      <item row="0" column="2">
       <widget class="QLabel" name="Data_label">
        <property name="text">
-        <string>Data table (2:)</string>
+        <string>Data (2:)</string>
        </property>
       </widget>
      </item>
      <item row="0" column="3">
+      <widget class="QLabel" name="label_3">
+       <property name="text">
+        <string> - </string>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="4">
+      <widget class="QLabel" name="Geocode_label">
+       <property name="text">
+        <string>Geocode (3:)</string>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="5">
       <spacer name="horizontalSpacer">
        <property name="orientation">
         <enum>Qt::Horizontal</enum>
@@ -62,14 +76,14 @@
        </property>
       </spacer>
      </item>
-     <item row="0" column="4">
+     <item row="0" column="6">
       <widget class="QCheckBox" name="sortList_checkBox">
        <property name="text">
         <string>sort list</string>
        </property>
       </widget>
      </item>
-     <item row="1" column="0" colspan="5">
+     <item row="1" column="0" colspan="7">
       <widget class="QListWidget" name="lb1">
        <property name="minimumSize">
         <size>
@@ -160,36 +174,43 @@
     </layout>
    </item>
    <item row="1" column="0" colspan="3">
-    <layout class="QHBoxLayout" name="horizontalLayout">
-     <item>
+    <layout class="QGridLayout" name="gridLayout_4">
+     <item row="0" column="0">
       <widget class="QPushButton" name="SelectMetadata_pushButton">
        <property name="text">
         <string>Select metadata (1:)</string>
        </property>
       </widget>
      </item>
-     <item>
+     <item row="0" column="1">
       <widget class="QPushButton" name="SelectData_pushButton">
        <property name="text">
         <string>Select data (2:)</string>
        </property>
       </widget>
      </item>
-     <item>
-      <widget class="QPushButton" name="SelectEventData_pushButton">
+     <item row="0" column="2">
+      <widget class="QPushButton" name="SelectGeocode_pushButton">
        <property name="text">
-        <string>Select event + data</string>
+        <string>Select geocode (3:)</string>
        </property>
       </widget>
      </item>
-     <item>
+     <item row="0" column="3">
+      <widget class="QPushButton" name="SelectEventGeocodeData_pushButton">
+       <property name="text">
+        <string>Select event + geocode + data</string>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="4">
       <widget class="QPushButton" name="DeselectAll_pushButton">
        <property name="text">
         <string>Deselect all</string>
        </property>
       </widget>
      </item>
-     <item>
+     <item row="0" column="5">
       <spacer name="horizontalSpacer_3">
        <property name="orientation">
         <enum>Qt::Horizontal</enum>
@@ -202,7 +223,7 @@
        </property>
       </spacer>
      </item>
-     <item>
+     <item row="0" column="6">
       <widget class="QPushButton" name="OK_pushButton">
        <property name="text">
         <string>&amp;OK</string>
@@ -212,7 +233,7 @@
        </property>
       </widget>
      </item>
-     <item>
+     <item row="0" column="7">
       <widget class="QPushButton" name="Cancel_pushButton">
        <property name="text">
         <string>&amp;Cancel</string>
@@ -228,7 +249,7 @@
   <tabstop>Right2Left_pushButton</tabstop>
   <tabstop>SelectMetadata_pushButton</tabstop>
   <tabstop>SelectData_pushButton</tabstop>
-  <tabstop>SelectEventData_pushButton</tabstop>
+  <tabstop>SelectEventGeocodeData_pushButton</tabstop>
   <tabstop>DeselectAll_pushButton</tabstop>
   <tabstop>lb1</tabstop>
   <tabstop>lb2</tabstop>

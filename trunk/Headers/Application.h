@@ -143,7 +143,7 @@ public:
 
     int         analyzeDataset( const QString& FilenameIn, const int Codec, const bool showShortName, const bool showMethod, const bool showComment, QStringList& MetadataList, QStringList& ParameterList, int EnvArray[] );
 
-    void        downloadDatasets( const QString &IDListFile,  const QString &DownloadDirectory, const int CodecDownload, const int EOL );
+    void        downloadDatasets( const QString &IDListFile, const QString &DownloadDirectory, const bool DownloadData, const bool DownloadCitation, const bool DownloadMetadata, const int CodecDownload, const int EOL, const int Extension );
 
     int         createGoogleEarthImportFile( QStringList& MetadataList, const QString& FilenameOut, const int Codec, const bool displayEventLabel, const bool displayDescription, const int IconSize, const int IconColor, const int TracklineWidth, const int TracklineColor, const int NumOfFiles );
     int         createOceanDataViewFile( QStringList& MetadataList, QStringList& ParameterList, const QString& FilenameOut, const int Codec, const int Env, const int GearTypeOceanDataView, const bool showShortName, const bool showMethod, const bool showComment, const bool usePANGAEAQualityFlags, const bool setGeocode, const bool addLineNo, const float GEOCODE_min, const float GEOCODE_max, const QString& s_GEOCODE_min, const QString& s_GEOCODE_max, const bool setGearID, const int GearID, const int NumOfFiles );
@@ -287,6 +287,7 @@ private slots:
     int doUnformatedTextOptionsDialog();
     int doSetGeocodeRangeFloatDialog();
     int doSetGeocodeRangeDateTimeDialog();
+    int doGetDatasetsDialog();
 
 private:
     QStringList expandCommandline();
@@ -355,7 +356,7 @@ private:
     QAction *saveAction;
     QAction *saveAsAction;
     QAction *hideWindowAction;
-    QAction *getFilesAction;
+    QAction *getDatasetsAction;
     QAction *setEncodingDialogAction;
     QAction *exitAction;
     QAction *aboutAction;

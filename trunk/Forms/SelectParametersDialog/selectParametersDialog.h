@@ -17,7 +17,8 @@ public:
 private slots:
     void selectMetadata();
     void selectData();
-    void selectEventData();
+    void selectGeocode();
+    void selectEventGeocodeData();
     void deselectAll();
     void sortList();
     void slotLeft2Right();

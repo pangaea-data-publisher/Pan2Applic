@@ -40,9 +40,9 @@ void MainWindow::createActions()
     hideWindowAction->setShortcut(tr("Ctrl+W"));
     connect(hideWindowAction, SIGNAL(triggered()), this, SLOT(hideWindow()));
 
-    getFilesAction = new QAction(tr("&Download PANGAEA datasets..."), this);
-    getFilesAction->setShortcut(tr("Ctrl+D"));
-    connect(getFilesAction, SIGNAL(triggered()), this, SLOT(doGetDatasets()));
+    getDatasetsAction = new QAction(tr("&Download PANGAEA datasets..."), this);
+    getDatasetsAction->setShortcut(tr("Ctrl+D"));
+    connect(getDatasetsAction, SIGNAL(triggered()), this, SLOT(doGetDatasets()));
 
     exitAction = new QAction(tr("&Quit"), this);
     exitAction->setShortcut(tr("Ctrl+Q"));
@@ -108,30 +108,6 @@ void MainWindow::createActions()
     showHelpAction = new QAction(getApplicationName( true ) + tr(" &Help"), this);
     showHelpAction->setShortcut(tr("F1"));
     connect(showHelpAction, SIGNAL(triggered()), this, SLOT(displayHelp()));
-
-#if defined(Q_OS_WIN)
-    newWindowAction->setStatusTip(tr("Create a new file"));
-    openFileAction->setStatusTip(tr("Choose an existing file"));
-    openFolderAction->setStatusTip(tr("Choose an existing folder"));
-    getFilesAction->setStatusTip(tr("Download datasets form PANGAEA"));
-    saveAction->setStatusTip(tr("Save the document to disk"));
-    saveAsAction->setStatusTip(tr("Save the document under a new name"));
-    exitAction->setStatusTip(tr("Exit the application"));
-    createGoogleEarthImportFileAction->setStatusTip(tr("create KML file (Google Earth)"));
-    createOceanDataViewFileAction->setStatusTip(tr("create ODV file (Ocean Data View)"));
-    createShapefileMetadataAction->setStatusTip(tr("create shapefile with metadata only"));
-    createShapefileDataAction->setStatusTip(tr("create shapefile"));
-    createUnformatedTextFileAction->setStatusTip(tr("create unformated text file"));
-    createFormatedTextFileAction->setStatusTip(tr("create formated text file"));
-    setGeocodeRangeFlagAction->setStatusTip(tr("show the set geocode range dialog before build"));
-    GoogleEarthOptionsAction->setStatusTip(tr("Google Earth options"));
-    OceanDataViewOptionsAction->setStatusTip(tr("Ocean Data View options"));
-    unformatedTextOptionsAction->setStatusTip(tr("unformated Text options"));
-    formatedTextOptionsAction->setStatusTip(tr("formated Text options"));
-    aboutAction->setStatusTip(tr("Show the application's About box"));
-    aboutQtAction->setStatusTip(tr("Show the Qt library's About box"));
-    showHelpAction->setStatusTip(tr("Show the application's help"));
-#endif
 }
 
 // **********************************************************************************************
@@ -161,10 +137,8 @@ void MainWindow::createMenus()
     fileMenu->addAction( hideWindowAction );
 #endif
 
-/*
     fileMenu->addSeparator();
-    fileMenu->addAction( getFilesAction );
-*/
+    fileMenu->addAction( getDatasetsAction );
 
     fileMenu->addSeparator();
     fileMenu->addAction( exitAction );

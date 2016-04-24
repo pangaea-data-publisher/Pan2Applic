@@ -19,7 +19,8 @@ SelectParametersDialog::SelectParametersDialog( QStringList list, int n, bool m,
     connect(Cancel_pushButton, SIGNAL(clicked()), this, SLOT(reject()));
     connect(SelectMetadata_pushButton, SIGNAL(clicked()), this, SLOT(selectMetadata()));
     connect(SelectData_pushButton, SIGNAL(clicked()), this, SLOT(selectData()));
-    connect(SelectEventData_pushButton, SIGNAL(clicked()), this, SLOT(selectEventData()));
+    connect(SelectGeocode_pushButton, SIGNAL(clicked()), this, SLOT(selectGeocode()));
+    connect(SelectEventGeocodeData_pushButton, SIGNAL(clicked()), this, SLOT(selectEventGeocodeData()));
     connect(DeselectAll_pushButton, SIGNAL(clicked()), this, SLOT(deselectAll()));
     connect(sortList_checkBox, SIGNAL(clicked()), this, SLOT(sortList()));
     connect(Left2Right_pushButton, SIGNAL(clicked()), this, SLOT(slotLeft2Right()));
@@ -157,10 +158,27 @@ void SelectParametersDialog::selectData()
 // *****************************************************************************
 // *****************************************************************************
 
-void SelectParametersDialog::selectEventData()
+void SelectParametersDialog::selectGeocode()
+{
+    for ( int i=0; i<lb1->count(); ++i )
+        if ( lb1->item( i )->text().startsWith( "3:") == true )
+            lb1->setCurrentItem( lb1->item( i ), QItemSelectionModel::Select );
+
+    slotLeft2Right();
+}
+
+// *****************************************************************************
+// *****************************************************************************
+// *****************************************************************************
+
+void SelectParametersDialog::selectEventGeocodeData()
 {
     for ( int i=0; i<lb1->count(); ++i )
         if ( lb1->item( i )->text().startsWith( "1: Event") == true )
+            lb1->setCurrentItem( lb1->item( i ), QItemSelectionModel::Select );
+
+    for ( int i=0; i<lb1->count(); ++i )
+        if ( lb1->item( i )->text().startsWith( "3:") == true )
             lb1->setCurrentItem( lb1->item( i ), QItemSelectionModel::Select );
 
     for ( int i=0; i<lb1->count(); ++i )
@@ -211,21 +229,31 @@ void SelectParametersDialog::sortList()
 
 void SelectParametersDialog::setItemBackground()
 {
+    // SWG by EkaterineN.Tsomaia - http://colrd.com/palette/18603/ - #698A91, #C6CEB6, #9FB1A2
+    // Yellow by Paul Ramcharitar - http://colrd.com/palette/24725/ #FFDD88    #FBCE6E    #EEBB55
     for ( int i=0; i<lb1->count(); ++i )
         if ( lb1->item( i )->text().startsWith( "1:") == true )
-            lb1->item( i )->setBackground( QColor( "#DFF7FF" ) );
+            lb1->item( i )->setBackground( QColor( "#FFDD88" ) );
 
     for ( int i=0; i<lb1->count(); ++i )
         if ( lb1->item( i )->text().startsWith( "2:") == true )
-            lb1->item( i )->setBackground( QColor( "#E0F5E2" ) );
+            lb1->item( i )->setBackground( QColor( "#FBCE6E" ) );
+
+    for ( int i=0; i<lb1->count(); ++i )
+        if ( lb1->item( i )->text().startsWith( "3:") == true )
+            lb1->item( i )->setBackground( QColor( "#EEBB55" ) );
 
     for ( int i=0; i<lb2->count(); ++i )
         if ( lb2->item( i )->text().startsWith( "1:") == true )
-            lb2->item( i )->setBackground( QColor( "#DFF7FF" ) );
+            lb2->item( i )->setBackground( QColor( "#FFDD88" ) );
 
     for ( int i=0; i<lb2->count(); ++i )
         if ( lb2->item( i )->text().startsWith( "2:") == true )
-            lb2->item( i )->setBackground( QColor( "#E0F5E2" ) );
+            lb2->item( i )->setBackground( QColor( "#FBCE6E" ) );
+
+    for ( int i=0; i<lb2->count(); ++i )
+        if ( lb2->item( i )->text().startsWith( "3:") == true )
+            lb2->item( i )->setBackground( QColor( "#EEBB55" ) );
 }
 
 // *****************************************************************************
@@ -242,17 +270,9 @@ void SelectParametersDialog::enableOKButton()
 
     SelectMetadata_pushButton->setEnabled( false );
     SelectData_pushButton->setEnabled( false );
-    SelectEventData_pushButton->setEnabled( false );
+    SelectGeocode_pushButton->setEnabled( false );
+    SelectEventGeocodeData_pushButton->setEnabled( false );
     DeselectAll_pushButton->setEnabled( false );
-
-    for ( int i=0; i<lb1->count(); i++ )
-    {
-        if ( lb1->item( i )->text().startsWith( "1:") == true )
-        {
-            SelectMetadata_pushButton->setEnabled( true );
-            break;
-        }
-    }
 
     for ( int i=0; i<lb1->count(); i++ )
     {
@@ -265,16 +285,33 @@ void SelectParametersDialog::enableOKButton()
 
     for ( int i=0; i<lb1->count(); i++ )
     {
-        if ( lb1->item( i )->text().startsWith( "2:") == true )
+        if ( lb1->item( i )->text().startsWith( "1:") == true )
         {
-            SelectData_pushButton->setEnabled( true );
-
-            if ( b_Event == true )
-                SelectEventData_pushButton->setEnabled( true );
-
+            SelectMetadata_pushButton->setEnabled( true );
             break;
         }
     }
+
+    for ( int i=0; i<lb1->count(); i++ )
+    {
+        if ( lb1->item( i )->text().startsWith( "2:") == true )
+        {
+            SelectData_pushButton->setEnabled( true );
+            break;
+        }
+    }
+
+    for ( int i=0; i<lb1->count(); i++ )
+    {
+        if ( lb1->item( i )->text().startsWith( "3:") == true )
+        {
+            SelectGeocode_pushButton->setEnabled( true );
+            break;
+        }
+    }
+
+    if ( ( SelectMetadata_pushButton->isEnabled() == true ) && ( SelectData_pushButton->isEnabled() == true ) && (SelectGeocode_pushButton->isEnabled() == true ) )
+        SelectEventGeocodeData_pushButton->setEnabled( true );
 
     if ( lb2->count() > 0 )
     {
@@ -308,8 +345,8 @@ void SelectParametersDialog::enableOKButton()
 
     if ( ( SelectData_pushButton->isDefault() == true ) && ( b_CuratorMode == true ) )
     {
-        SelectEventData_pushButton->setDefault( true );
-        SelectEventData_pushButton->setFocus();
+        SelectEventGeocodeData_pushButton->setDefault( true );
+        SelectEventGeocodeData_pushButton->setFocus();
     }
 }
 
@@ -358,7 +395,7 @@ int MainWindow::doSelectParametersDialog( const int i_Env, const QStringList& sl
     if ( gb_CuratorMode == true )
         dialog.setWindowTitle( tr( "Select parameters (curator mode)" ) );
     else
-        dialog.SelectEventData_pushButton->hide();
+        dialog.SelectEventGeocodeData_pushButton->hide();
 
     dialog.sortList_checkBox->setChecked( b_sortParameterList );
 

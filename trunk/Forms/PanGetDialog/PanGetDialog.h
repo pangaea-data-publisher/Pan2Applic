@@ -4,26 +4,18 @@
 #include <QDialog>
 #include <QTextEdit>
 
-#include <Webfile.h>
-
 #include "ui_pangetdialog.h"
-
-//class QIODevice;
-class QProgressDialog;
 
 class PanGetDialog : public QDialog, public Ui::PanGetDialog
 {
     Q_OBJECT
 
 public:
-    PanGetDialog(QWidget *parent = 0);
-
+    PanGetDialog( QWidget *parent = 0 );
     QString s_PrefVersion;
 
 private:
-    QString getHomeDir();
     QString getDocumentDir();
-
     QTextEdit *textViewer;
 
 private slots:

@@ -172,16 +172,16 @@ QString MainWindow::buildParameter( const QString& InputStr, const bool b_showSh
     if ( InputStr.section( _PSEPARATOR_, 5, 5 ) == "Metadata" )
         s_Parameter = "2: ";
 
-    if ( InputStr.section( _PSEPARATOR_, 5, 5 ) == "Geocode" )
-        s_Parameter = "2: ";
-
     if ( InputStr.section( _PSEPARATOR_, 5, 5 ) == "Parameter" )
     {
         i_Type      = 1;
         s_Parameter = "2: ";
     }
 
-    if ( ( b_showShortName == false ) || ( InputStr.section( _PSEPARATOR_, 5, 5 ) == "Geocode" ) )
+    if ( InputStr.section( _PSEPARATOR_, 5, 5 ) == "GEOCODE" )
+        s_Parameter = "3: ";
+
+    if ( ( b_showShortName == false ) || ( InputStr.section( _PSEPARATOR_, 5, 5 ) == "GEOCODE" ) )
         s_Parameter.append( InputStr.section( _PSEPARATOR_, 1, 1 ) ); // Parameter name
     else
         s_Parameter.append( InputStr.section( _PSEPARATOR_, 2, 2 ) ); // Parameter short name
@@ -256,7 +256,7 @@ QString MainWindow::buildParameter( const QString& Item, const QStringList& sl_P
 
     while ( ++i < sl_ParameterList.count() )
     {
-        if ( ( b_showShortName == false ) || ( sl_ParameterList.at( i ).section( _PSEPARATOR_, 5, 5 ) == "Geocode" ) )
+        if ( ( b_showShortName == false ) || ( sl_ParameterList.at( i ).section( _PSEPARATOR_, 5, 5 ) == "GEOCODE" ) )
         {
             if ( sl_ParameterList.at( i ).section( _PSEPARATOR_, 1, 1 ) == sd )
                 s_Parameter = sl_ParameterList.at( i );

@@ -86,6 +86,7 @@ SOURCES = ./Sources/ApplicationInit.cpp \
     ./Sources/createDir.cpp \
     ./Sources/getDOI.cpp \
     ./Sources/getCitation.cpp \
+    ./Sources/getDatasets.cpp \
     ./Sources/getMetadata.cpp \
     ./Sources/startProgram.cpp \
     ./Sources/containsSelectedEnvironments.cpp \
