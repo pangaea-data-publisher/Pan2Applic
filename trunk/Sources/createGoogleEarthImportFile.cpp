@@ -12,7 +12,7 @@
 
 int MainWindow::createGoogleEarthImportFile( QStringList& sl_MetadataList, const QString& s_FilenameOut, int i_CodecInput,
                                              const bool b_displayEventLabel, const bool b_displayDescription, const int i_IconSize,
-                                             const int i_IconColor, const int i_TracklineWidth, const int i_TracklineColor,
+                                             const int i_IconColor, const int i_IconSymbol, const int i_TracklineWidth, const int i_TracklineColor,
                                              const int i_NumOfFiles )
 {
     int             i                       = 1;
@@ -59,7 +59,7 @@ int MainWindow::createGoogleEarthImportFile( QStringList& sl_MetadataList, const
         i_NumOfOpenKMLFolders += openKMLFolder( fkml, s_Campaign );
 
         if ( f_IconSize > 0. )
-            err = writeKMLEntry( fkml, sl_MetadataList, b_displayEventLabel, b_displayDescription, f_IconSize, i_IconColor, URL, 1 );
+            err = writeKMLEntry( fkml, sl_MetadataList, b_displayEventLabel, b_displayDescription, f_IconSize, i_IconColor, i_IconSymbol, URL, 1 );
     }
     else
     {
@@ -71,7 +71,7 @@ int MainWindow::createGoogleEarthImportFile( QStringList& sl_MetadataList, const
         i_NumOfOpenKMLFolders += openKMLFolder( fkml, s_Campaign );
 
         if ( f_IconSize > 0. )
-            err = writeKMLEntry( fkml, sl_DataMetadataList, b_displayEventLabel, b_displayDescription, f_IconSize, i_IconColor, URL, 0 );
+            err = writeKMLEntry( fkml, sl_DataMetadataList, b_displayEventLabel, b_displayDescription, f_IconSize, i_IconColor, i_IconSymbol,  URL, 0 );
 
         i_Start = 0;
 
@@ -94,7 +94,7 @@ int MainWindow::createGoogleEarthImportFile( QStringList& sl_MetadataList, const
             }
 
             if ( f_IconSize > 0. )
-                err = writeKMLEntry( fkml, sl_DataMetadataList, b_displayEventLabel, b_displayDescription, f_IconSize, i_IconColor, URL, j );
+                err = writeKMLEntry( fkml, sl_DataMetadataList, b_displayEventLabel, b_displayDescription, f_IconSize, i_IconColor, i_IconSymbol, URL, j );
         }
 
         if ( i_NumOfOpenKMLFolders == 2 )
@@ -128,7 +128,7 @@ int MainWindow::createGoogleEarthImportFile( QStringList& sl_MetadataList, const
             }
 
             if ( f_IconSize > 0. )
-                err = writeKMLEntry( fkml, sl_MetadataList, b_displayEventLabel, b_displayDescription, f_IconSize, i_IconColor, URL, i );
+                err = writeKMLEntry( fkml, sl_MetadataList, b_displayEventLabel, b_displayDescription, f_IconSize, i_IconColor, i_IconSymbol, URL, i );
         }
         else
         {
@@ -149,7 +149,7 @@ int MainWindow::createGoogleEarthImportFile( QStringList& sl_MetadataList, const
             }
 
             if ( f_IconSize > 0. )
-                err = writeKMLEntry( fkml, sl_DataMetadataList, b_displayEventLabel, b_displayDescription, f_IconSize, i_IconColor, URL, 0 );
+                err = writeKMLEntry( fkml, sl_DataMetadataList, b_displayEventLabel, b_displayDescription, f_IconSize, i_IconColor, i_IconSymbol, URL, 0 );
 
             i_Start = 0;
 
@@ -172,7 +172,7 @@ int MainWindow::createGoogleEarthImportFile( QStringList& sl_MetadataList, const
                 }
 
                 if ( f_IconSize > 0. )
-                    err = writeKMLEntry( fkml, sl_DataMetadataList, b_displayEventLabel, b_displayDescription, f_IconSize, i_IconColor, URL, j );
+                    err = writeKMLEntry( fkml, sl_DataMetadataList, b_displayEventLabel, b_displayDescription, f_IconSize, i_IconColor, i_IconSymbol, URL, j );
             }
 
             if ( i_NumOfOpenKMLFolders == 2 )
@@ -229,16 +229,35 @@ int MainWindow::openKMLFile( QFile& fkml )
     tkml << "<Document>\n";
     tkml << "  <ScreenOverlay>\n";
     tkml << "    <name>Pan2Applic logo</name>\n";
-    tkml << "    <Icon><href>https://pangaea.de/PICS/Pan2Applic_logo.png</href></Icon>\n";
+    tkml << "    <Icon><href>http://epic.awi.de/40953/121/Pan2Applic_logo.png</href></Icon>\n";
     tkml << "    <overlayXY x=\"0\" y=\"1\" xunits=\"fraction\" yunits=\"fraction\"/>\n";
     tkml << "    <screenXY x=\"5\" y=\"5\" xunits=\"pixels\" yunits=\"insetPixels\"/>\n";
     tkml << "    <size x=\"200\" y=\"88\" xunits=\"pixel\" yunits=\"pixel\"/>\n";
     tkml << "  </ScreenOverlay>\n";
-    tkml << "  <Style id=\"red\"><IconStyle><Icon><href>https://pangaea.de/PICS/circle-red.png</href></Icon></IconStyle></Style>\n";
-    tkml << "  <Style id=\"blue\"><IconStyle><Icon><href>https://pangaea.de/PICS/circle-blue.png</href></Icon></IconStyle></Style>\n";
-    tkml << "  <Style id=\"green\"><IconStyle><Icon><href>https://pangaea.de/PICS/circle-green.png</href></Icon></IconStyle></Style>\n";
-    tkml << "  <Style id=\"orange\"><IconStyle><Icon><href>https://pangaea.de/PICS/circle-orange.png</href></Icon></IconStyle></Style>\n";
-    tkml << "  <Style id=\"yellow\"><IconStyle><Icon><href>https://pangaea.de/PICS/circle-yellow.png</href></Icon></IconStyle></Style>\n";
+    tkml << "  <Style id=\"circle-blue\"><IconStyle><Icon><href>http://epic.awi.de/40953/1/circle-blue.png</href></Icon></IconStyle></Style>\n";
+    tkml << "  <Style id=\"circle-green\"><IconStyle><Icon><href>http://epic.awi.de/40953/2/circle-green.png</href></Icon></IconStyle></Style>\n";
+    tkml << "  <Style id=\"circle-orange\"><IconStyle><Icon><href>http://epic.awi.de/40953/3/circle-orange.png</href></Icon></IconStyle></Style>\n";
+    tkml << "  <Style id=\"circle-red\"><IconStyle><Icon><href>http://epic.awi.de/40953/4/circle-red.png</href></Icon></IconStyle></Style>\n";
+    tkml << "  <Style id=\"circle-white\"><IconStyle><Icon><href>http://epic.awi.de/40953/5/circle-white.png</href></Icon></IconStyle></Style>\n";
+    tkml << "  <Style id=\"circle-yellow\"><IconStyle><Icon><href>http://epic.awi.de/40953/6/circle-yellow.png</href></Icon></IconStyle></Style>\n";
+    tkml << "  <Style id=\"square-blue\"><IconStyle><Icon><href>http://epic.awi.de/40953/7/square-blue.png</href></Icon></IconStyle></Style>\n";
+    tkml << "  <Style id=\"square-green\"><IconStyle><Icon><href>http://epic.awi.de/40953/8/square-green.png</href></Icon></IconStyle></Style>\n";
+    tkml << "  <Style id=\"square-orange\"><IconStyle><Icon><href>http://epic.awi.de/40953/9/square-orange.png</href></Icon></IconStyle></Style>\n";
+    tkml << "  <Style id=\"square-red\"><IconStyle><Icon><href>http://epic.awi.de/40953/10/square-red.png</href></Icon></IconStyle></Style>\n";
+    tkml << "  <Style id=\"square-white\"><IconStyle><Icon><href>http://epic.awi.de/40953/11/square-white.png</href></Icon></IconStyle></Style>\n";
+    tkml << "  <Style id=\"square-yellow\"><IconStyle><Icon><href>http://epic.awi.de/40953/12/square-yellow.png</href></Icon></IconStyle></Style>\n";
+    tkml << "  <Style id=\"star-blue\"><IconStyle><Icon><href>http://epic.awi.de/40953/13/star-blue.png</href></Icon></IconStyle></Style>\n";
+    tkml << "  <Style id=\"star-green\"><IconStyle><Icon><href>http://epic.awi.de/40953/14/star-green.png</href></Icon></IconStyle></Style>\n";
+    tkml << "  <Style id=\"star-orange\"><IconStyle><Icon><href>http://epic.awi.de/40953/15/star-orange.png</href></Icon></IconStyle></Style>\n";
+    tkml << "  <Style id=\"star-red\"><IconStyle><Icon><href>http://epic.awi.de/40953/16/star-red.png</href></Icon></IconStyle></Style>\n";
+    tkml << "  <Style id=\"star-white\"><IconStyle><Icon><href>http://epic.awi.de/40953/17/star-white.png</href></Icon></IconStyle></Style>\n";
+    tkml << "  <Style id=\"star-yellow\"><IconStyle><Icon><href>http://epic.awi.de/40953/18/star-yellow.png</href></Icon></IconStyle></Style>\n";
+    tkml << "  <Style id=\"triangle-blue\"><IconStyle><Icon><href>http://epic.awi.de/40953/19/triangle-blue.png</href></Icon></IconStyle></Style>\n";
+    tkml << "  <Style id=\"triangle-green\"><IconStyle><Icon><href>http://epic.awi.de/40953/20/triangle-green.png</href></Icon></IconStyle></Style>\n";
+    tkml << "  <Style id=\"triangle-orange\"><IconStyle><Icon><href>http://epic.awi.de/40953/21/triangle-orange.png</href></Icon></IconStyle></Style>\n";
+    tkml << "  <Style id=\"triangle-red\"><IconStyle><Icon><href>http://epic.awi.de/40953/22/triangle-red.png</href></Icon></IconStyle></Style>\n";
+    tkml << "  <Style id=\"triangle-white\"><IconStyle><Icon><href>http://epic.awi.de/40953/23/triangle-white.png</href></Icon></IconStyle></Style>\n";
+    tkml << "  <Style id=\"triangle-yellow\"><IconStyle><Icon><href>http://epic.awi.de/40953/24/triangle-yellow.png</href></Icon></IconStyle></Style>\n";
 //  tkml << "  <name>Document name</name>\n";
 //  tkml << "  <description>Document description</description>\n";
 
@@ -378,7 +397,7 @@ int MainWindow::writeKMLTrack( QFile& fkml, const QStringList& sl_MetadataList, 
 // **********************************************************************************************
 // **********************************************************************************************
 
-int MainWindow::writeKMLEntry( QFile& fkml, const QStringList& sl_MetadataList, const bool b_displayEventLabel, const bool b_displayDescription, const float f_IconSize, const int i_IconColor, structURL URL[], const int i )
+int MainWindow::writeKMLEntry( QFile& fkml, const QStringList& sl_MetadataList, const bool b_displayEventLabel, const bool b_displayDescription, const float f_IconSize, const int i_IconColor, const int i_IconSymbol, structURL URL[], const int i )
 {
     double d_Latitude      = sl_MetadataList.at( i ).section( "\t", _LATITUDEPOS, _LATITUDEPOS ).toDouble();   // Latitude
     double d_Longitude     = sl_MetadataList.at( i ).section( "\t", _LONGITUDEPOS, _LONGITUDEPOS ).toDouble(); // Longitude
@@ -514,26 +533,119 @@ int MainWindow::writeKMLEntry( QFile& fkml, const QStringList& sl_MetadataList, 
     tkml << "<latitude>" << s_Latitude << "</latitude>";
     tkml << "</View>";
 
-    switch ( i_IconColor )
+    switch ( i_IconSymbol )
     {
-        case _RED:
-            tkml << "<styleUrl>#red</styleUrl>";
+        case _CIRCLE:
+            switch ( i_IconColor )
+            {
+                case _RED:
+                    tkml << "<styleUrl>#circle-red</styleUrl>";
+                    break;
+                case _GREEN:
+                    tkml << "<styleUrl>#circle-green</styleUrl>";
+                    break;
+                case _BLUE:
+                    tkml << "<styleUrl>#circle-blue</styleUrl>";
+                    break;
+                case _ORANGE:
+                    tkml << "<styleUrl>#circle-orange</styleUrl>";
+                    break;
+                case _YELLOW:
+                    tkml << "<styleUrl>#circle-yellow</styleUrl>";
+                    break;
+                case _WHITE:
+                    tkml << "<styleUrl>#circle-white</styleUrl>";
+                    break;
+                default:
+                    tkml << "<styleUrl>#circle-red</styleUrl>";
+                    break;
+            }
             break;
-        case _GREEN:
-            tkml << "<styleUrl>#green</styleUrl>";
+
+        case _STAR:
+            switch ( i_IconColor )
+            {
+                case _RED:
+                    tkml << "<styleUrl>#star-red</styleUrl>";
+                    break;
+                case _GREEN:
+                    tkml << "<styleUrl>#star-green</styleUrl>";
+                    break;
+                case _BLUE:
+                    tkml << "<styleUrl>#star-blue</styleUrl>";
+                    break;
+                case _ORANGE:
+                    tkml << "<styleUrl>#star-orange</styleUrl>";
+                    break;
+                case _YELLOW:
+                    tkml << "<styleUrl>#star-yellow</styleUrl>";
+                    break;
+                case _WHITE:
+                    tkml << "<styleUrl>#star-white</styleUrl>";
+                    break;
+                default:
+                    tkml << "<styleUrl>#star-red</styleUrl>";
+                    break;
+            }
             break;
-        case _BLUE:
-            tkml << "<styleUrl>#blue</styleUrl>";
+
+        case _SQUARE:
+            switch ( i_IconColor )
+            {
+                case _RED:
+                    tkml << "<styleUrl>#square-red</styleUrl>";
+                    break;
+                case _GREEN:
+                    tkml << "<styleUrl>#square-green</styleUrl>";
+                    break;
+                case _BLUE:
+                    tkml << "<styleUrl>#square-blue</styleUrl>";
+                    break;
+                case _ORANGE:
+                    tkml << "<styleUrl>#square-orange</styleUrl>";
+                    break;
+                case _YELLOW:
+                    tkml << "<styleUrl>#square-yellow</styleUrl>";
+                    break;
+                case _WHITE:
+                    tkml << "<styleUrl>#square-white</styleUrl>";
+                    break;
+                default:
+                    tkml << "<styleUrl>#square-red</styleUrl>";
+                    break;
+            }
             break;
-        case _ORANGE:
-            tkml << "<styleUrl>#orange</styleUrl>";
+
+        case _TRIANGLE:
+            switch ( i_IconColor )
+            {
+                case _RED:
+                    tkml << "<styleUrl>#triangle-red</styleUrl>";
+                    break;
+                case _GREEN:
+                    tkml << "<styleUrl>#triangle-green</styleUrl>";
+                    break;
+                case _BLUE:
+                    tkml << "<styleUrl>#triangle-blue</styleUrl>";
+                    break;
+                case _ORANGE:
+                    tkml << "<styleUrl>#triangle-orange</styleUrl>";
+                    break;
+                case _YELLOW:
+                    tkml << "<styleUrl>#triangle-yellow</styleUrl>";
+                    break;
+                case _WHITE:
+                    tkml << "<styleUrl>#triangle-white</styleUrl>";
+                    break;
+                default:
+                    tkml << "<styleUrl>#triangle-red</styleUrl>";
+                    break;
+            }
             break;
-        case _YELLOW:
-            tkml << "<styleUrl>#yellow</styleUrl>";
-            break;
-        default:
-            tkml << "<styleUrl>#red</styleUrl>";
-            break;
+
+            default:
+                tkml << "<styleUrl>#circle-red</styleUrl>";
+                break;
     }
 
     tkml << "<Style><IconStyle>" << QString( "<scale>%1</scale>" ).arg( f_IconSize ) << "</IconStyle></Style>";
@@ -596,7 +708,7 @@ void MainWindow::doCreateGoogleEarthImportFile()
 // **********************************************************************************************
 
     if ( ( err == _NOERROR_ ) && ( stopProgress != _APPBREAK_ ) )
-        err = createGoogleEarthImportFile( sl_MetadataList, gs_FilenameGoogleEarth, gi_CodecInput, gb_displayEventLabel, gb_displayDescription, gi_IconSize, gi_IconColor, gi_TracklineWidth, gi_TracklineColor, sl_MetadataList.count()-1 );
+        err = createGoogleEarthImportFile( sl_MetadataList, gs_FilenameGoogleEarth, gi_CodecInput, gb_displayEventLabel, gb_displayDescription, gi_IconSize, gi_IconColor, gi_IconSymbol, gi_TracklineWidth, gi_TracklineColor, sl_MetadataList.count()-1 );
 
 // **********************************************************************************************
 

@@ -57,6 +57,7 @@ void MainWindow::savePreferences()
     settings.setValue( "DisplayDescription", gb_displayDescription );
     settings.setValue( "IconSize", gi_IconSize );
     settings.setValue( "IconColor", gi_IconColor );
+    settings.setValue( "IconSymbol", gi_IconSymbol );
     settings.setValue( "TracklineWidth", gi_TracklineWidth );
     settings.setValue( "TracklineColor", gi_TracklineColor );
     settings.endGroup();
@@ -190,6 +191,7 @@ void MainWindow::loadPreferences()
     gb_displayDescription         = settings.value( "DisplayDescription", false ).toBool();
     gi_IconSize                   = settings.value( "IconSize", 40 ).toInt();
     gi_IconColor                  = settings.value( "IconColor", _RED ).toInt();
+    gi_IconSymbol                 = settings.value( "IconSymbol", _CIRCLE ).toInt();
     gi_TracklineWidth             = settings.value( "TracklineWidth", 20 ).toInt();
     gi_TracklineColor             = settings.value( "TracklineColor", _ORANGE ).toInt();
     settings.endGroup();

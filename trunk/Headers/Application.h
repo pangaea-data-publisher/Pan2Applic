@@ -116,8 +116,10 @@ public:
     QString     gs_GEOCODE_min;                     //!< Geocode date/time minimum
     QString     gs_GEOCODE_max;                     //!< Geocode date/time maximum
 
-    int         gi_IconSize;                        //!< Groesse der Marker bei KML
     int         gi_IconColor;                       //!< Farbe der Marker bei KML
+    int         gi_IconSize;                        //!< Groesse der Marker bei KML
+    int         gi_IconSymbol;                      //!> Style der Marker bei KML
+
     int         gi_TracklineWidth;                  //!< Breite der Trackline bei KML
     int         gi_TracklineColor;                  //!< Farbe der Trackline bei KML
 
@@ -145,7 +147,7 @@ public:
 
     void        downloadDatasets( const QString &IDListFile, const QString &DownloadDirectory, const bool DownloadData, const bool DownloadCitation, const bool DownloadMetadata, const int CodecDownload, const int EOL, const int Extension );
 
-    int         createGoogleEarthImportFile( QStringList& MetadataList, const QString& FilenameOut, const int Codec, const bool displayEventLabel, const bool displayDescription, const int IconSize, const int IconColor, const int TracklineWidth, const int TracklineColor, const int NumOfFiles );
+    int         createGoogleEarthImportFile( QStringList& MetadataList, const QString& FilenameOut, const int Codec, const bool displayEventLabel, const bool displayDescription, const int IconSize, const int IconColor, const int IconStyle, const int TracklineWidth, const int TracklineColor, const int NumOfFiles );
     int         createOceanDataViewFile( QStringList& MetadataList, QStringList& ParameterList, const QString& FilenameOut, const int Codec, const int Env, const int GearTypeOceanDataView, const bool showShortName, const bool showMethod, const bool showComment, const bool usePANGAEAQualityFlags, const bool setGeocode, const bool addLineNo, const float GEOCODE_min, const float GEOCODE_max, const QString& s_GEOCODE_min, const QString& s_GEOCODE_max, const bool setGearID, const int GearID, const int NumOfFiles );
     int         createShapefileMetadata( QStringList& MetadataList, const QString& FilenameOut, const int Codec, const int NumOfFiles );
     int         createShapefileData( QStringList& MetadataList, QStringList& ParameterList, const structDataFormat DF[], const QString& FilenameOut, const int Codec, const int Env, const bool setGeocode, const float GEOCODE_min, const float GEOCODE_max, const QString& s_GEOCODE_min, const QString& s_GEOCODE_max, const bool setGearID, const int GearID, const int NumOfFiles );
@@ -189,7 +191,7 @@ public:
 
     int         openKMLFile( QFile& fkml );
     int         closeKMLFile( QFile& fkml );
-    int         writeKMLEntry( QFile& fkml, const QStringList& MetadataList, const bool displayEventLabel, const bool displayDescription, const float IconSize, const int IconColor, structURL URL[], const int i );
+    int         writeKMLEntry( QFile& fkml, const QStringList& MetadataList, const bool displayEventLabel, const bool displayDescription, const float IconSize, const int IconColor, const int IconStyle, structURL URL[], const int i );
     int         writeKMLTrack( QFile& fkml, const QStringList& MetadataList, const int TracklineWidth, const int TracklineColor, const int Start, const int End );
     int         openKMLFolder( QFile& fkml, const QString& Campaign );
     int         closeKMLFolder( QFile& fkml, const int n=2 );

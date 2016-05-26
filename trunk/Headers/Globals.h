@@ -17,7 +17,7 @@
     const QString _PROGRAMDOI_                           = "doi:10.1594/PANGAEA.288115";
     const QString _PROGRAMREADME_                        = "https://wiki.pangaea.de/wiki/Pan2Applic";
 
-    const QString _VERSION_                              = "4.11";  // Version number, 2016-04-23
+    const QString _VERSION_                              = "4.12";  // Version number, 2016-05-19
     const QChar   _PSEPARATOR_                           = '|';
 
     const int _MAX_NUM_OF_PARAMETERS                     = 1000;
@@ -123,6 +123,12 @@
     const int _BLUE                                      = 2;
     const int _ORANGE                                    = 3;
     const int _YELLOW                                    = 4;
+    const int _WHITE                                     = 5;
+
+    const int _CIRCLE                                    = 0;
+    const int _SQUARE                                    = 1;
+    const int _STAR                                      = 2;
+    const int _TRIANGLE                                  = 3;
 
     const int _TABSTOP_                                  = 0;
     const int _COMMA_                                    = 1;

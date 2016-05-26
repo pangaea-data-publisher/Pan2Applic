@@ -41,6 +41,7 @@ int MainWindow::doGoogleEarthOptionsDialog()
     dialog.showEventLabel_checkBox->setChecked( gb_displayEventLabel );
     dialog.showDescription_checkBox->setChecked( gb_displayDescription );
     dialog.IconColor_comboBox->setCurrentIndex( gi_IconColor );
+    dialog.IconSymbol_comboBox->setCurrentIndex( gi_IconSymbol );
     dialog.IconSize_spinBox->setValue( gi_IconSize );
     dialog.TracklineColor_comboBox->setCurrentIndex( gi_TracklineColor );
     dialog.TracklineWidth_spinBox->setValue( gi_TracklineWidth );
@@ -76,6 +77,7 @@ int MainWindow::doGoogleEarthOptionsDialog()
         gb_displayEventLabel          = dialog.showEventLabel_checkBox->isChecked();
         gb_displayDescription         = dialog.showDescription_checkBox->isChecked();
         gi_IconColor                  = dialog.IconColor_comboBox->currentIndex();
+        gi_IconSymbol                 = dialog.IconSymbol_comboBox->currentIndex();
         gi_IconSize                   = dialog.IconSize_spinBox->value();
         gi_TracklineColor             = dialog.TracklineColor_comboBox->currentIndex();
         gi_TracklineWidth             = dialog.TracklineWidth_spinBox->value();
