@@ -187,6 +187,7 @@ public:
     int         writeShapfileDataEntry( DBFHandle hDBF, SHPHandle hSHP, const QStringList& Output, const structDataFormat DF[], const int Latitude, const int Longitude, const QString& DOI, const int iRecord );
     int         writeShapfileMetadataEntry( DBFHandle hDBF, SHPHandle hSHP, const QString& Metadata, const int iRecord );
     int         writeShapfileMetadataEntry( DBFHandle hDBF, SHPHandle hSHP, const int Codec, const QString& Metadata, const int iRecord, const int NumOfFiles );
+
     void        setDefaultFormats( const QStringList& ParameterList, structDataFormat DF[] );
 
     int         openKMLFile( QFile& fkml );
@@ -195,6 +196,9 @@ public:
     int         writeKMLTrack( QFile& fkml, const QStringList& MetadataList, const int TracklineWidth, const int TracklineColor, const int Start, const int End );
     int         openKMLFolder( QFile& fkml, const QString& Campaign );
     int         closeKMLFolder( QFile& fkml, const int n=2 );
+
+    QString     setIconSymbol( const int IconSymbol );
+    QString     setIconColor( const int IconColor );
 
     int         containsParameter( const bool containsParameterBlock, const QStringList& ParameterList, const QString& Parameter, const bool showShortName, const bool showMethod, const bool showComment );
 

@@ -397,6 +397,82 @@ int MainWindow::writeKMLTrack( QFile& fkml, const QStringList& sl_MetadataList, 
 // **********************************************************************************************
 // **********************************************************************************************
 
+QString MainWindow::setIconSymbol( const int i_IconSymbol )
+{
+    QString s_IconSymbol    = "cricle";
+
+    switch ( i_IconSymbol )
+    {
+        case _CIRCLE:
+            s_IconSymbol = "circle";
+            break;
+
+        case _STAR:
+            s_IconSymbol = "star";
+            break;
+
+        case _SQUARE:
+            s_IconSymbol = "square";
+            break;
+
+        case _TRIANGLE:
+            s_IconSymbol = "triangle";
+            break;
+
+        default:
+            s_IconSymbol = "circle";
+            break;
+    }
+
+    return( s_IconSymbol );
+}
+
+// **********************************************************************************************
+// **********************************************************************************************
+// **********************************************************************************************
+
+QString MainWindow::setIconColor( const int i_IconColor )
+{
+    QString s_IconColor     = "red";
+
+    switch ( i_IconColor )
+    {
+        case _RED:
+            s_IconColor = "red";
+            break;
+
+        case _GREEN:
+            s_IconColor = "green";
+            break;
+
+        case _BLUE:
+            s_IconColor = "blue";
+            break;
+
+        case _ORANGE:
+            s_IconColor = "orange";
+            break;
+
+        case _YELLOW:
+            s_IconColor = "yellow";
+            break;
+
+        case _WHITE:
+            s_IconColor = "white";
+            break;
+
+        default:
+            s_IconColor = "red";
+            break;
+    }
+
+    return( s_IconColor );
+}
+
+// **********************************************************************************************
+// **********************************************************************************************
+// **********************************************************************************************
+
 int MainWindow::writeKMLEntry( QFile& fkml, const QStringList& sl_MetadataList, const bool b_displayEventLabel, const bool b_displayDescription, const float f_IconSize, const int i_IconColor, const int i_IconSymbol, structURL URL[], const int i )
 {
     double d_Latitude      = sl_MetadataList.at( i ).section( "\t", _LATITUDEPOS, _LATITUDEPOS ).toDouble();   // Latitude
@@ -408,11 +484,12 @@ int MainWindow::writeKMLEntry( QFile& fkml, const QStringList& sl_MetadataList, 
     QString s_GearName      = sl_MetadataList.at( i ).section( "\t", _GEARNAMEPOS, _GEARNAMEPOS );             // Gear name
     QString s_Date          = sl_MetadataList.at( i ).section( "\t", _DATEPOS, _DATEPOS );                     // Date
     QString s_Time          = sl_MetadataList.at( i ).section( "\t", _TIMEPOS, _TIMEPOS );                     // Time
-    QString s_DateTime      = sl_MetadataList.at( i ).section( "\t", _DATETIMEPOS, _DATETIMEPOS );             // Date/Time
-    QString s_DateTimeStart = sl_MetadataList.at( i ).section( "\t", _DATETIMESTARTPOS, _DATETIMESTARTPOS );   // Date/Time start
     QString s_AreaName      = sl_MetadataList.at( i ).section( "\t", _AREANAMEPOS, _AREANAMEPOS );             // Area
     QString s_DOI           = sl_MetadataList.at( i ).section( "\t", _DOIPOS, _DOIPOS );                       // DOI
     QString s_Citation      = sl_MetadataList.at( i ).section( "\t", _CITATIONPOS, _CITATIONPOS );             // Citation
+
+    QString s_IconSymbol    = "cricle";
+    QString s_IconColor     = "red";
 
 // **********************************************************************************************
 
@@ -533,121 +610,8 @@ int MainWindow::writeKMLEntry( QFile& fkml, const QStringList& sl_MetadataList, 
     tkml << "<latitude>" << s_Latitude << "</latitude>";
     tkml << "</View>";
 
-    switch ( i_IconSymbol )
-    {
-        case _CIRCLE:
-            switch ( i_IconColor )
-            {
-                case _RED:
-                    tkml << "<styleUrl>#circle-red</styleUrl>";
-                    break;
-                case _GREEN:
-                    tkml << "<styleUrl>#circle-green</styleUrl>";
-                    break;
-                case _BLUE:
-                    tkml << "<styleUrl>#circle-blue</styleUrl>";
-                    break;
-                case _ORANGE:
-                    tkml << "<styleUrl>#circle-orange</styleUrl>";
-                    break;
-                case _YELLOW:
-                    tkml << "<styleUrl>#circle-yellow</styleUrl>";
-                    break;
-                case _WHITE:
-                    tkml << "<styleUrl>#circle-white</styleUrl>";
-                    break;
-                default:
-                    tkml << "<styleUrl>#circle-red</styleUrl>";
-                    break;
-            }
-            break;
 
-        case _STAR:
-            switch ( i_IconColor )
-            {
-                case _RED:
-                    tkml << "<styleUrl>#star-red</styleUrl>";
-                    break;
-                case _GREEN:
-                    tkml << "<styleUrl>#star-green</styleUrl>";
-                    break;
-                case _BLUE:
-                    tkml << "<styleUrl>#star-blue</styleUrl>";
-                    break;
-                case _ORANGE:
-                    tkml << "<styleUrl>#star-orange</styleUrl>";
-                    break;
-                case _YELLOW:
-                    tkml << "<styleUrl>#star-yellow</styleUrl>";
-                    break;
-                case _WHITE:
-                    tkml << "<styleUrl>#star-white</styleUrl>";
-                    break;
-                default:
-                    tkml << "<styleUrl>#star-red</styleUrl>";
-                    break;
-            }
-            break;
-
-        case _SQUARE:
-            switch ( i_IconColor )
-            {
-                case _RED:
-                    tkml << "<styleUrl>#square-red</styleUrl>";
-                    break;
-                case _GREEN:
-                    tkml << "<styleUrl>#square-green</styleUrl>";
-                    break;
-                case _BLUE:
-                    tkml << "<styleUrl>#square-blue</styleUrl>";
-                    break;
-                case _ORANGE:
-                    tkml << "<styleUrl>#square-orange</styleUrl>";
-                    break;
-                case _YELLOW:
-                    tkml << "<styleUrl>#square-yellow</styleUrl>";
-                    break;
-                case _WHITE:
-                    tkml << "<styleUrl>#square-white</styleUrl>";
-                    break;
-                default:
-                    tkml << "<styleUrl>#square-red</styleUrl>";
-                    break;
-            }
-            break;
-
-        case _TRIANGLE:
-            switch ( i_IconColor )
-            {
-                case _RED:
-                    tkml << "<styleUrl>#triangle-red</styleUrl>";
-                    break;
-                case _GREEN:
-                    tkml << "<styleUrl>#triangle-green</styleUrl>";
-                    break;
-                case _BLUE:
-                    tkml << "<styleUrl>#triangle-blue</styleUrl>";
-                    break;
-                case _ORANGE:
-                    tkml << "<styleUrl>#triangle-orange</styleUrl>";
-                    break;
-                case _YELLOW:
-                    tkml << "<styleUrl>#triangle-yellow</styleUrl>";
-                    break;
-                case _WHITE:
-                    tkml << "<styleUrl>#triangle-white</styleUrl>";
-                    break;
-                default:
-                    tkml << "<styleUrl>#triangle-red</styleUrl>";
-                    break;
-            }
-            break;
-
-            default:
-                tkml << "<styleUrl>#circle-red</styleUrl>";
-                break;
-    }
-
+    tkml << "<styleUrl>#" << setIconSymbol( i_IconSymbol ) << "-" << setIconColor( i_IconColor ) << "</styleUrl>";
     tkml << "<Style><IconStyle>" << QString( "<scale>%1</scale>" ).arg( f_IconSize ) << "</IconStyle></Style>";
     tkml << "<Point><coordinates>" << s_Longitude << "," << s_Latitude << ",0</coordinates></Point>";
     tkml << "</Placemark>\n";
