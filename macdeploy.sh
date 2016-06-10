@@ -2,12 +2,12 @@
 echo
 echo Pan2Applic
 
-echo - macdeployqt 
+echo - macdeployqt
 
 cd ~/Development/GitHub/Pan2Applic
 
 rm -R '../../Distribution/Pan2Applic/Pan2Applic.app'
-cp -R './build-Pan2Applic-Desktop_Qt_5_6_0_clang_64bit-Release/Pan2Applic.app' '../../Distribution/Pan2Applic/Pan2Applic.app'
+cp -R './build-Pan2Applic-Desktop_Qt_5_6_1_clang_64bit-Release/Pan2Applic.app' '../../Distribution/Pan2Applic/Pan2Applic.app'
 cp './trunk/Resources/Info.plist' '../../Distribution/Pan2Applic/Pan2Applic.app/Contents/Info.plist'
 
 /Developer/Qt/5.6/clang_64/bin/macdeployqt '../../Distribution/Pan2Applic/Pan2Applic.app'
