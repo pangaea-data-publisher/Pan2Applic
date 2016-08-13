@@ -10,12 +10,12 @@
 
 /*! @brief Liest Zeilen aus einer Datei, verarbeitet sie und schreibt sie in eine neue Datei. */
 
-int MainWindow::createTextFile( QStringList& sl_MetadataList, QStringList& sl_ParameterList, const QString& s_FilenameOut,
+int MainWindow::createTextFile( QStringList &sl_MetadataList, QStringList &sl_ParameterList, const QString &s_FilenameOut,
                                 const int i_CodecInput, const int i_CodecOutput, const int i_EOL, const int b_OutputFormat,
                                 const int i_Env, const int i_DateTimeFormat, const bool b_showShortName, const bool b_showMethod,
-                                const bool b_showComment, const QString& s_MissingValue, const int i_FieldAlignment,
+                                const bool b_showComment, const QString &s_MissingValue, const int i_FieldAlignment,
                                 const int i_FieldWidth, const int i_FieldDelimiter, const bool b_setGeocode, const float f_GEOCODE_min,
-                                const float f_GEOCODE_max, const QString& s_GEOCODE_min, const QString& s_GEOCODE_max,
+                                const float f_GEOCODE_max, const QString &s_GEOCODE_min, const QString &s_GEOCODE_max,
                                 const bool b_setGearID, const int i_GearID, const int i_NumOfFiles )
 {
     QVector<int>    vi_pos;

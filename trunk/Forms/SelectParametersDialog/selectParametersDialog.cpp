@@ -354,7 +354,7 @@ void SelectParametersDialog::enableOKButton()
 // ***********************************************************************************************************************
 // ***********************************************************************************************************************
 
-int MainWindow::doSelectParametersDialog( const int i_Env, const QStringList& sl_ParameterList, const bool b_showShortName, const bool b_showMethod, const bool b_showComment, const int i_maxNumOfParameters, bool& b_sortParameterList, QStringList& sl_selectedParameters )
+int MainWindow::doSelectParametersDialog( const int i_Env, const QStringList &sl_ParameterList, const bool b_showShortName, const bool b_showMethod, const bool b_showComment, const int i_maxNumOfParameters, bool& b_sortParameterList, QStringList &sl_selectedParameters )
 {
     int         err                             = _ERROR_;
 

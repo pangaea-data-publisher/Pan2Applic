@@ -10,7 +10,7 @@
 
 /*! @brief Liest Zeilen aus einer Datei, verarbeitet sie und schreibt sie in eine neue Datei. */
 
-int MainWindow::createGoogleEarthImportFile( QStringList& sl_MetadataList, const QString& s_FilenameOut, int i_CodecInput,
+int MainWindow::createGoogleEarthImportFile( QStringList &sl_MetadataList, const QString &s_FilenameOut, int i_CodecInput,
                                              const bool b_displayEventLabel, const bool b_displayDescription, const int i_IconSize,
                                              const int i_IconColor, const int i_IconSymbol, const int i_TracklineWidth, const int i_TracklineColor,
                                              const int i_NumOfFiles )
@@ -283,7 +283,7 @@ int MainWindow::closeKMLFile( QFile& fkml )
 // **********************************************************************************************
 // **********************************************************************************************
 
-int MainWindow::openKMLFolder( QFile& fkml, const QString& s_Campaign )
+int MainWindow::openKMLFolder( QFile& fkml, const QString &s_Campaign )
 {
     QTextStream tkml( &fkml );
     tkml.setCodec("UTF-8");
@@ -334,7 +334,7 @@ int MainWindow::closeKMLFolder( QFile& fkml, const int n )
 // **********************************************************************************************
 // **********************************************************************************************
 
-int MainWindow::writeKMLTrack( QFile& fkml, const QStringList& sl_MetadataList, const int i_TracklineWidth, const int i_TracklineColor, const int i_Start, const int i_End )
+int MainWindow::writeKMLTrack( QFile& fkml, const QStringList &sl_MetadataList, const int i_TracklineWidth, const int i_TracklineColor, const int i_Start, const int i_End )
 {
     if ( i_Start+1 < i_End )
     {
@@ -473,7 +473,7 @@ QString MainWindow::setIconColor( const int i_IconColor )
 // **********************************************************************************************
 // **********************************************************************************************
 
-int MainWindow::writeKMLEntry( QFile& fkml, const QStringList& sl_MetadataList, const bool b_displayEventLabel, const bool b_displayDescription, const float f_IconSize, const int i_IconColor, const int i_IconSymbol, structURL URL[], const int i )
+int MainWindow::writeKMLEntry( QFile& fkml, const QStringList &sl_MetadataList, const bool b_displayEventLabel, const bool b_displayDescription, const float f_IconSize, const int i_IconColor, const int i_IconSymbol, structURL URL[], const int i )
 {
     double d_Latitude      = sl_MetadataList.at( i ).section( "\t", _LATITUDEPOS, _LATITUDEPOS ).toDouble();   // Latitude
     double d_Longitude     = sl_MetadataList.at( i ).section( "\t", _LONGITUDEPOS, _LONGITUDEPOS ).toDouble(); // Longitude

@@ -12,7 +12,7 @@
 // **********************************************************************************************
 // **********************************************************************************************
 
-int MainWindow::buildHeader( QStringList& sl_Header, QStringList& sl_ParameterList, const int i_Env, const int b_OutputFormat, const bool b_showShortName, const bool b_showMethod, const bool b_showComment )
+int MainWindow::buildHeader( QStringList &sl_Header, QStringList &sl_ParameterList, const int i_Env, const int b_OutputFormat, const bool b_showShortName, const bool b_showMethod, const bool b_showComment )
 {
     for ( int i=0; i<sl_ParameterList.count(); ++i )
         sl_Header.append( buildHeaderItem( b_OutputFormat, sl_ParameterList.at( i ), b_showShortName, b_showMethod, b_showComment ) );
@@ -35,7 +35,7 @@ int MainWindow::buildHeader( QStringList& sl_Header, QStringList& sl_ParameterLi
 // **********************************************************************************************
 // *********************************************************************************************
 
-QString MainWindow::buildHeaderItem( const int b_OutputFormat, const QString& s_Parameter, const bool b_showShortName, const bool b_showMethod, const bool b_showComment )
+QString MainWindow::buildHeaderItem( const int b_OutputFormat, const QString &s_Parameter, const bool b_showShortName, const bool b_showMethod, const bool b_showComment )
 {
     QString s_HeaderItem    = "";
     QString s_Method        = "";
@@ -115,7 +115,7 @@ QString MainWindow::buildHeaderItem( const int b_OutputFormat, const QString& s_
 // **********************************************************************************************
 // **********************************************************************************************
 
-int MainWindow::buildODVHeader( QStringList& sl_Header, QStringList& sl_ParameterList, QVector<int> &vi_posQV, const int i_Env, const bool b_showShortName, const bool b_showMethod, const bool b_showComment, const bool b_usePANGAEAQualityFlags )
+int MainWindow::buildODVHeader( QStringList &sl_Header, QStringList &sl_ParameterList, QVector<int> &vi_posQV, const int i_Env, const bool b_showShortName, const bool b_showMethod, const bool b_showComment, const bool b_usePANGAEAQualityFlags )
 {
     bool b_containsEventLabel = false;
 
@@ -206,7 +206,7 @@ int MainWindow::buildODVHeader( QStringList& sl_Header, QStringList& sl_Paramete
 // *********************************************************************************************
 // 2009-10-20
 
-QString MainWindow::buildODVHeaderItem( const QString& s_Parameter, const bool b_showShortName, const bool b_showMethod, const bool b_showComment, const bool b_containsEventLabel )
+QString MainWindow::buildODVHeaderItem( const QString &s_Parameter, const bool b_showShortName, const bool b_showMethod, const bool b_showComment, const bool b_containsEventLabel )
 {
     QString s_HeaderItem = buildHeaderItem( _FORMAT_ODV, s_Parameter, b_showShortName, b_showMethod, b_showComment );
 

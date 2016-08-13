@@ -11,7 +11,7 @@
 
 #include "Application.h"
 
-QString MainWindow::createDir( const QString& s_Path, const QString& s_newDirName, const bool b_createDirInside, const bool b_emptyDir )
+QString MainWindow::createDir( const QString &s_Path, const QString &s_newDirName, const bool b_createDirInside, const bool b_emptyDir )
 {
     QString s_newDir		= s_Path;
     QString s_PersonalDir	= getDocumentDir();

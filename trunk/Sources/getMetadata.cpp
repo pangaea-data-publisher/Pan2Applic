@@ -12,12 +12,12 @@
 // **********************************************************************************************
 // **********************************************************************************************
 
-int MainWindow::getEventMetadata( const QString& s_EventStr,
-                                  QString& s_DateTime, QString& s_Elevation,
-                                  QString& s_EventLabel, QString& s_CruiseLabel,
-                                  QString& s_AreaName, QString& s_Gear,
-                                  QString& s_Latitude, QString& s_Longitude,
-                                  QStringList& sl_ParameterList )
+int MainWindow::getEventMetadata( const QString &s_EventStr,
+                                  QString &s_DateTime, QString &s_Elevation,
+                                  QString &s_EventLabel, QString &s_CruiseLabel,
+                                  QString &s_AreaName, QString &s_Gear,
+                                  QString &s_Latitude, QString &s_Longitude,
+                                  QStringList &sl_ParameterList )
 {
     int     n           = 0;
 
@@ -109,7 +109,7 @@ int MainWindow::getEventMetadata( const QString& s_EventStr,
 // **********************************************************************************************
 // **********************************************************************************************
 
-int MainWindow::getDataMetadata( const int i_CodecInput, const int i_OutputFormat, const QString& s_MetadataIn, QStringList& sl_DataMetadataList, structURL URL[], const int i_NumOfFiles )
+int MainWindow::getDataMetadata( const int i_CodecInput, const int i_OutputFormat, const QString &s_MetadataIn, QStringList &sl_DataMetadataList, structURL URL[], const int i_NumOfFiles )
 {
     int             n                   = 0;
 
@@ -215,7 +215,7 @@ int MainWindow::getDataMetadata( const int i_CodecInput, const int i_OutputForma
 // **********************************************************************************************
 // **********************************************************************************************
 
-bool MainWindow::parseData( const int i_line, const QString& InputStr, const QString& s_MetadataIn, const int i_AreaNamePos, const int i_CampaignLabelPos, const int i_EventLabelPos, const int i_GearNamePos, const int i_DatePos, const int i_TimePos, const int i_DateTimePos, const int i_LatitudePos, const int i_LongitudePos, const int i_ElevationPos, structURL URL[], QString& s_MetadataOut )
+bool MainWindow::parseData( const int i_line, const QString &InputStr, const QString &s_MetadataIn, const int i_AreaNamePos, const int i_CampaignLabelPos, const int i_EventLabelPos, const int i_GearNamePos, const int i_DatePos, const int i_TimePos, const int i_DateTimePos, const int i_LatitudePos, const int i_LongitudePos, const int i_ElevationPos, structURL URL[], QString &s_MetadataOut )
 {
     s_MetadataOut = s_MetadataIn.section( "\t", _FILENAMEPOS, _METAINFOPOS ) + QString( "\t%1\t" ).arg( i_line ) + s_MetadataIn.section( "\t", _ENVIRONMENTPOS, _ENVIRONMENTPOS ) + "\t";
 
@@ -370,7 +370,7 @@ bool MainWindow::parseData( const int i_line, const QString& InputStr, const QSt
 // **********************************************************************************************
 // **********************************************************************************************
 
-bool MainWindow::addToMetadataList( const QString& s_Metadata, QString& s_LatLon, QStringList& sl_MetadataList )
+bool MainWindow::addToMetadataList( const QString &s_Metadata, QString &s_LatLon, QStringList &sl_MetadataList )
 {
     if ( s_LatLon != s_Metadata.section( "\t", _LATITUDEPOS, _LATITUDEPOS) + "," + s_Metadata.section( "\t", _LONGITUDEPOS, _LONGITUDEPOS) )
     {
@@ -387,7 +387,7 @@ bool MainWindow::addToMetadataList( const QString& s_Metadata, QString& s_LatLon
 // **********************************************************************************************
 // **********************************************************************************************
 
-int MainWindow::getDataMetadataPosition( const bool b_containsPANGAEAHeader, const QString& InputStr, int& i_DatePos, int& i_TimePos, int& i_DateTimePos, int& i_ElevationPos, int& i_EventLabelPos, int& i_CampaignLabelPos, int& i_AreaNamePos, int& i_GearNamePos, int& i_LatitudePos, int& i_LongitudePos, QStringList& sl_ParameterList )
+int MainWindow::getDataMetadataPosition( const bool b_containsPANGAEAHeader, const QString &InputStr, int& i_DatePos, int& i_TimePos, int& i_DateTimePos, int& i_ElevationPos, int& i_EventLabelPos, int& i_CampaignLabelPos, int& i_AreaNamePos, int& i_GearNamePos, int& i_LatitudePos, int& i_LongitudePos, QStringList &sl_ParameterList )
 {
     int     n                   = 0;
 
@@ -495,7 +495,7 @@ int MainWindow::getDataMetadataPosition( const bool b_containsPANGAEAHeader, con
 // **********************************************************************************************
 // **********************************************************************************************
 
-bool MainWindow::getDataMetadataPosition( const QString& s_MetadataIn, int& i_DatePos, int& i_TimePos, int& i_DateTimePos, int& i_ElevationPos, int& i_EventLabelPos, int& i_CampaignLabelPos, int& i_AreaNamePos, int& i_GearNamePos, int& i_LatitudePos, int& i_LongitudePos )
+bool MainWindow::getDataMetadataPosition( const QString &s_MetadataIn, int& i_DatePos, int& i_TimePos, int& i_DateTimePos, int& i_ElevationPos, int& i_EventLabelPos, int& i_CampaignLabelPos, int& i_AreaNamePos, int& i_GearNamePos, int& i_LatitudePos, int& i_LongitudePos )
 {
     bool b_containsPosition = false;
 

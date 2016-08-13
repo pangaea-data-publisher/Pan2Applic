@@ -12,7 +12,7 @@
 // **********************************************************************************************
 // **********************************************************************************************
 
-QString MainWindow::getDOI( const QString& InputStr )
+QString MainWindow::getDOI( const QString &InputStr )
 {
     QString s_DOI = InputStr;
 

@@ -10,7 +10,7 @@
 
 /*! @brief Test ob Datenzeile ausgegeben werden soll. */
 
-bool MainWindow::writeDataLine( const bool b_setGeocode, const bool b_setGearID, const int i_GeocodePos, const int i_GearIDPos, const QStringList& sl_Output, const int i_Env, const QDateTime dt_GEOCODE_min, const QDateTime dt_GEOCODE_max, const float f_GEOCODE_min, const float f_GEOCODE_max, const int i_GearID )
+bool MainWindow::writeDataLine( const bool b_setGeocode, const bool b_setGearID, const int i_GeocodePos, const int i_GearIDPos, const QStringList &sl_Output, const int i_Env, const QDateTime dt_GEOCODE_min, const QDateTime dt_GEOCODE_max, const float f_GEOCODE_min, const float f_GEOCODE_max, const int i_GearID )
 {
     float  f_GEOCODE        = 0.;
 

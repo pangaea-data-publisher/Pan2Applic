@@ -10,7 +10,7 @@
 
 /*! @brief Setzt das Quality flag, wenn Eintrag mit Qualtiy Zeichen beginnt. */
 
-QString MainWindow::setQualityFlag( const QStringList& sl_Output, const QVector<int> vi_posQV, const QString s_FieldDelimiter )
+QString MainWindow::setQualityFlag( const QStringList &sl_Output, const QVector<int> vi_posQV, const QString s_FieldDelimiter )
 {
     QStringList sl_QV;
 
@@ -54,7 +54,7 @@ QString MainWindow::setQualityFlag( const QStringList& sl_Output, const QVector<
 
 /*! @brief Loescht das Quality flag im Output-String. */
 
-QString MainWindow::removeQualityFlag( const QStringList& sl_Output, const QString s_FieldDelimiter )
+QString MainWindow::removeQualityFlag( const QStringList &sl_Output, const QString s_FieldDelimiter )
 {
     QString s_Output = "@" + s_FieldDelimiter + sl_Output.join( s_FieldDelimiter );
 

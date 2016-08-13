@@ -141,100 +141,100 @@ public:
 
 // ***************************************************************************************************************************
 
-    int         setFilename( const int Mode, const bool CuratorMode, const int NumOfFiles, const QString& FilenameIn, QString& FilenameOut );
+    int         setFilename( const int Mode, const bool CuratorMode, const int NumOfFiles, const QString &FilenameIn, QString &FilenameOut );
 
-    int         analyzeDataset( const QString& FilenameIn, const int Codec, const bool showShortName, const bool showMethod, const bool showComment, QStringList& MetadataList, QStringList& ParameterList, int EnvArray[] );
+    int         analyzeDataset( const QString &FilenameIn, const int Codec, const bool showShortName, const bool showMethod, const bool showComment, QStringList &MetadataList, QStringList &ParameterList, int EnvArray[] );
 
     void        downloadDatasets( const QString &IDListFile, const QString &DownloadDirectory, const bool DownloadData, const bool DownloadCitation, const bool DownloadMetadata, const int CodecDownload, const int EOL, const int Extension );
 
-    int         createGoogleEarthImportFile( QStringList& MetadataList, const QString& FilenameOut, const int Codec, const bool displayEventLabel, const bool displayDescription, const int IconSize, const int IconColor, const int IconStyle, const int TracklineWidth, const int TracklineColor, const int NumOfFiles );
-    int         createOceanDataViewFile( QStringList& MetadataList, QStringList& ParameterList, const QString& FilenameOut, const int Codec, const int Env, const int GearTypeOceanDataView, const bool showShortName, const bool showMethod, const bool showComment, const bool usePANGAEAQualityFlags, const bool setGeocode, const bool addLineNo, const float GEOCODE_min, const float GEOCODE_max, const QString& s_GEOCODE_min, const QString& s_GEOCODE_max, const bool setGearID, const int GearID, const int NumOfFiles );
-    int         createShapefileMetadata( QStringList& MetadataList, const QString& FilenameOut, const int Codec, const int NumOfFiles );
-    int         createShapefileData( QStringList& MetadataList, QStringList& ParameterList, const structDataFormat DF[], const QString& FilenameOut, const int Codec, const int Env, const bool setGeocode, const float GEOCODE_min, const float GEOCODE_max, const QString& s_GEOCODE_min, const QString& s_GEOCODE_max, const bool setGearID, const int GearID, const int NumOfFiles );
-    int         createTextFile( QStringList& MetadataList, QStringList& ParameterList, const QString& FilenameOut, const int CodecInput, const int CodecOutput, const int EOL, const int OutputFormat, const int Env, const int DateTimeFormat, const bool showShortName, const bool showMethod, const bool showComment, const QString& MissingValue, const int FieldAlignment, const int FieldWidth, const int FieldDelimiter, const bool gb_setGeocode, const float f_GEOCODE_min, const float f_GEOCODE_max, const QString& s_GEOCODE_min, const QString& s_GEOCODE_max, const bool setGearID, const int GearID, const int NumOfFiles );
+    int         createGoogleEarthImportFile( QStringList &MetadataList, const QString &FilenameOut, const int Codec, const bool displayEventLabel, const bool displayDescription, const int IconSize, const int IconColor, const int IconStyle, const int TracklineWidth, const int TracklineColor, const int NumOfFiles );
+    int         createOceanDataViewFile( QStringList &MetadataList, QStringList &ParameterList, const QString &FilenameOut, const int Codec, const int Env, const int GearTypeOceanDataView, const bool showShortName, const bool showMethod, const bool showComment, const bool usePANGAEAQualityFlags, const bool setGeocode, const bool addLineNo, const float GEOCODE_min, const float GEOCODE_max, const QString &s_GEOCODE_min, const QString &s_GEOCODE_max, const bool setGearID, const int GearID, const int NumOfFiles );
+    int         createShapefileMetadata( QStringList &MetadataList, const QString &FilenameOut, const int Codec, const int NumOfFiles );
+    int         createShapefileData( QStringList &MetadataList, QStringList &ParameterList, const structDataFormat DF[], const QString &FilenameOut, const int Codec, const int Env, const bool setGeocode, const float GEOCODE_min, const float GEOCODE_max, const QString &s_GEOCODE_min, const QString &s_GEOCODE_max, const bool setGearID, const int GearID, const int NumOfFiles );
+    int         createTextFile( QStringList &MetadataList, QStringList &ParameterList, const QString &FilenameOut, const int CodecInput, const int CodecOutput, const int EOL, const int OutputFormat, const int Env, const int DateTimeFormat, const bool showShortName, const bool showMethod, const bool showComment, const QString &MissingValue, const int FieldAlignment, const int FieldWidth, const int FieldDelimiter, const bool gb_setGeocode, const float f_GEOCODE_min, const float f_GEOCODE_max, const QString &s_GEOCODE_min, const QString &s_GEOCODE_max, const bool setGearID, const int GearID, const int NumOfFiles );
 
-    bool        writeDataLine( const bool setGeocode, const bool setGearID, const int GeocodePos, const int GearIDPos, const QStringList& GEOCODE, const int Env, const QDateTime dt_GEOCODE_min, const QDateTime dt_GEOCODE_max, const float f_GEOCODE_min, const float f_GEOCODE_max, const int GearID );
+    bool        writeDataLine( const bool setGeocode, const bool setGearID, const int GeocodePos, const int GearIDPos, const QStringList &GEOCODE, const int Env, const QDateTime dt_GEOCODE_min, const QDateTime dt_GEOCODE_max, const float f_GEOCODE_min, const float f_GEOCODE_max, const int GearID );
 
-    int         convertDateTime( const int DateTimeFormat, QString& DateTime, QString& Date, QString& Time );
-    QDateTime   convertDateTime( const QString& s_DateTime );
+    int         convertDateTime( const int DateTimeFormat, QString &DateTime, QString &Date, QString &Time );
+    QDateTime   convertDateTime( const QString &s_DateTime );
 
-    QString     setQualityFlag( const QStringList& QutputStr, const QVector<int> posQV, const QString FieldDelimiter );
-    QString     removeQualityFlag( const QStringList& Output, const QString FieldDelimiter );
+    QString     setQualityFlag( const QStringList &QutputStr, const QVector<int> posQV, const QString FieldDelimiter );
+    QString     removeQualityFlag( const QStringList &Output, const QString FieldDelimiter );
 
     double      calculateDistance( const double Latitude1, const double Longitude1, const double Latitude2, const double Longitude2 );
 
     int         getNumOfEnvironments( const int EnvArray[] );
-    int         getNumOfEnvironments( const QStringList& MetadataList );
+    int         getNumOfEnvironments( const QStringList &MetadataList );
     int         getEnvironment( const int EnvArray[] );
-    int         getEnvironment( const QString& Parameter, int EnvArray[] );
+    int         getEnvironment( const QString &Parameter, int EnvArray[] );
     QString     getEnvironmentName( const int Env );
     QString     getEnvironmentShortName( const int Env );
     bool        isGeocode( const QString Parameter );
 
-    int         getGeocodePosition( const QStringList& ParameterList, const int Env );
-    int         getGearIDPosition( const QStringList& ParameterList );
+    int         getGeocodePosition( const QStringList &ParameterList, const int Env );
+    int         getGearIDPosition( const QStringList &ParameterList );
 
-    int         getFirstPos( const QStringList& ParameterList, const QString& Parameter );
-    int         getParameterType( const QString& Parameter );
-    void        getSpecialPos( const QStringList& ParameterList, QVector<int> &SpecialPos );
+    int         getFirstPos( const QStringList &ParameterList, const QString &Parameter );
+    int         getParameterType( const QString &Parameter );
+    void        getSpecialPos( const QStringList &ParameterList, QVector<int> &SpecialPos );
 
     int         setGeocodeRange( const int Env );
     int         setGearIDDialog();
 
-    int         writeProjectionFile( const QString& Filename );
+    int         writeProjectionFile( const QString &Filename );
     int         writeDBFHeader( DBFHandle hDBF );
-    int         writeDBFHeader( DBFHandle hDBF, const QStringList& ParameterList, const structDataFormat DF[] );
-    int         writeShapfileDataEntry( DBFHandle hDBF, SHPHandle hSHP, const QStringList& Output, const structDataFormat DF[], const int Latitude, const int Longitude, const QString& DOI, const int iRecord );
-    int         writeShapfileMetadataEntry( DBFHandle hDBF, SHPHandle hSHP, const QString& Metadata, const int iRecord );
-    int         writeShapfileMetadataEntry( DBFHandle hDBF, SHPHandle hSHP, const int Codec, const QString& Metadata, const int iRecord, const int NumOfFiles );
+    int         writeDBFHeader( DBFHandle hDBF, const QStringList &ParameterList, const structDataFormat DF[] );
+    int         writeShapfileDataEntry( DBFHandle hDBF, SHPHandle hSHP, const QStringList &Output, const structDataFormat DF[], const int Latitude, const int Longitude, const QString &DOI, const int iRecord );
+    int         writeShapfileMetadataEntry( DBFHandle hDBF, SHPHandle hSHP, const QString &Metadata, const int iRecord );
+    int         writeShapfileMetadataEntry( DBFHandle hDBF, SHPHandle hSHP, const int Codec, const QString &Metadata, const int iRecord, const int NumOfFiles );
 
-    void        setDefaultFormats( const QStringList& ParameterList, structDataFormat DF[] );
+    void        setDefaultFormats( const QStringList &ParameterList, structDataFormat DF[] );
 
     int         openKMLFile( QFile& fkml );
     int         closeKMLFile( QFile& fkml );
-    int         writeKMLEntry( QFile& fkml, const QStringList& MetadataList, const bool displayEventLabel, const bool displayDescription, const float IconSize, const int IconColor, const int IconStyle, structURL URL[], const int i );
-    int         writeKMLTrack( QFile& fkml, const QStringList& MetadataList, const int TracklineWidth, const int TracklineColor, const int Start, const int End );
-    int         openKMLFolder( QFile& fkml, const QString& Campaign );
+    int         writeKMLEntry( QFile& fkml, const QStringList &MetadataList, const bool displayEventLabel, const bool displayDescription, const float IconSize, const int IconColor, const int IconStyle, structURL URL[], const int i );
+    int         writeKMLTrack( QFile& fkml, const QStringList &MetadataList, const int TracklineWidth, const int TracklineColor, const int Start, const int End );
+    int         openKMLFolder( QFile& fkml, const QString &Campaign );
     int         closeKMLFolder( QFile& fkml, const int n=2 );
 
     QString     setIconSymbol( const int IconSymbol );
     QString     setIconColor( const int IconColor );
 
-    int         containsParameter( const bool containsParameterBlock, const QStringList& ParameterList, const QString& Parameter, const bool showShortName, const bool showMethod, const bool showComment );
+    int         containsParameter( const bool containsParameterBlock, const QStringList &ParameterList, const QString &Parameter, const bool showShortName, const bool showMethod, const bool showComment );
 
-    int         buildHeader( QStringList& Header, QStringList& ParameterList, const int Env, const int OutputFormat, const bool showShortName, const bool showMethod, const bool showComment );
-    QString     buildHeaderItem( const int OutputFormat, const QString& Parameter, const bool showShortName, const bool showMethod, const bool showComment );
-    int         buildODVHeader( QStringList& Header, QStringList& ParameterList, QVector<int> &posQV, const int Env, const bool showShortName, const bool showMethod, const bool showComment, const bool usePANGAEAQualityFlags );
-    QString     buildODVHeaderItem( const QString& Parameter, const bool showShortName, const bool showMethod, const bool showComment, const bool containsEventLabel );
+    int         buildHeader( QStringList &Header, QStringList &ParameterList, const int Env, const int OutputFormat, const bool showShortName, const bool showMethod, const bool showComment );
+    QString     buildHeaderItem( const int OutputFormat, const QString &Parameter, const bool showShortName, const bool showMethod, const bool showComment );
+    int         buildODVHeader( QStringList &Header, QStringList &ParameterList, QVector<int> &posQV, const int Env, const bool showShortName, const bool showMethod, const bool showComment, const bool usePANGAEAQualityFlags );
+    QString     buildODVHeaderItem( const QString &Parameter, const bool showShortName, const bool showMethod, const bool showComment, const bool containsEventLabel );
 
-    QString     buildParameter( const QString& InputStr, const bool showShortName, const bool showMethod, const bool showComment );
-    QString     buildParameter( const QString& InputStr, const QStringList& ParameterList, const bool showShortName, const bool showMethod, const bool showComment );
-    QString     buildParameter( const QString& InputStr );
-    QStringList buildParameterList( const QString& s_Environment, const QString& s_Header );
+    QString     buildParameter( const QString &InputStr, const bool showShortName, const bool showMethod, const bool showComment );
+    QString     buildParameter( const QString &InputStr, const QStringList &ParameterList, const bool showShortName, const bool showMethod, const bool showComment );
+    QString     buildParameter( const QString &InputStr );
+    QStringList buildParameterList( const QString &s_Environment, const QString &s_Header );
 
-    bool        isMetadataParameter( const QString& Parameter, const QString& ParameterName );
-    bool        isMetadataParameter( const QString& Parameter, const QString& ParameterName, const QString& shortName );
+    bool        isMetadataParameter( const QString &Parameter, const QString &ParameterName );
+    bool        isMetadataParameter( const QString &Parameter, const QString &ParameterName, const QString &shortName );
 
-    QStringList buildODVOutputStr( const int LineNo, const bool addLineNo, const QString& InputStr, const QString& Metadata, const QVector<int> pos, const QVector<int> posQV, const QVector<int> SpecialPos, const bool usePANGAEAQualityFlags, const bool containsDOI, const QString& DeviceType, const QString& FieldDelimiter );
-    QString     buildDateTimeStr( const QString& Metadata, const int pos, const int DateTimeFormat );
-    QString     buildDateTimeStr( const QString& DateTime, const int DateTimeFormat );
+    QStringList buildODVOutputStr( const int LineNo, const bool addLineNo, const QString &InputStr, const QString &Metadata, const QVector<int> pos, const QVector<int> posQV, const QVector<int> SpecialPos, const bool usePANGAEAQualityFlags, const bool containsDOI, const QString &DeviceType, const QString &FieldDelimiter );
+    QString     buildDateTimeStr( const QString &Metadata, const int pos, const int DateTimeFormat );
+    QString     buildDateTimeStr( const QString &DateTime, const int DateTimeFormat );
 
     QString     setDeviceType( const int Type );
-    QString     getDOI( const QString& InputStr );
-    QString     getCitation( const QString& InputStr );
+    QString     getDOI( const QString &InputStr );
+    QString     getCitation( const QString &InputStr );
 
-    int         getEventMetadata( const QString& InputStr, QString& DateTime, QString& Elevation, QString& EventLabel, QString& CampaignLabel, QString& AreaName, QString& Gear, QString& Latitude, QString& Longitude, QStringList& ParameterList );
-    int         getDataMetadata( const int Codec, const int OutputFormat, const QString& MetadataString, QStringList& DataMetadataList, structURL URL[], const int NumOfFiles );
-    int         getDataMetadataPosition( const bool containsPANGAEAHeader, const QString& InputStr, int& DatePos, int& TimePos, int& i_DateTimePos, int& ElevationPos, int& EventLabelPos, int& CampaignLabelPos, int& AreaNamePos, int& GearNamePos, int& LatitudePos, int& LongitudePos, QStringList& ParameterList );
-    bool        getDataMetadataPosition( const QString& MetadataString, int& DatePos, int& TimePos, int& DateTimePos, int& ElevationPos, int& EventLabelPos, int& CampaignLabelPos, int& AreaNamePos, int& GearNamePos, int& LatitudePos, int& LongitudePos );
-    bool        addToMetadataList( const QString& Metadata, QString& LatLon, QStringList& MetadataList );
-    bool        parseData( const int line, const QString& InputStr, const QString& MetadataString, const int AreaNamePos, const int CampaignLabelPos, const int EventLabelPos, const int GearPos, const int DatePos, const int TimePos, const int DateTimePos, const int LatitudePos, const int LongitudePos, const int ElevationPos, structURL URL[], QString& Metadata );
+    int         getEventMetadata( const QString &InputStr, QString &DateTime, QString &Elevation, QString &EventLabel, QString &CampaignLabel, QString &AreaName, QString &Gear, QString &Latitude, QString &Longitude, QStringList &ParameterList );
+    int         getDataMetadata( const int Codec, const int OutputFormat, const QString &MetadataString, QStringList &DataMetadataList, structURL URL[], const int NumOfFiles );
+    int         getDataMetadataPosition( const bool containsPANGAEAHeader, const QString &InputStr, int& DatePos, int& TimePos, int& i_DateTimePos, int& ElevationPos, int& EventLabelPos, int& CampaignLabelPos, int& AreaNamePos, int& GearNamePos, int& LatitudePos, int& LongitudePos, QStringList &ParameterList );
+    bool        getDataMetadataPosition( const QString &MetadataString, int& DatePos, int& TimePos, int& DateTimePos, int& ElevationPos, int& EventLabelPos, int& CampaignLabelPos, int& AreaNamePos, int& GearNamePos, int& LatitudePos, int& LongitudePos );
+    bool        addToMetadataList( const QString &Metadata, QString &LatLon, QStringList &MetadataList );
+    bool        parseData( const int line, const QString &InputStr, const QString &MetadataString, const int AreaNamePos, const int CampaignLabelPos, const int EventLabelPos, const int GearPos, const int DatePos, const int TimePos, const int DateTimePos, const int LatitudePos, const int LongitudePos, const int ElevationPos, structURL URL[], QString &Metadata );
     void        clearURL( structURL URL[] );
 
     void        doCreateTextFile( const int Format, const bool CuratorMode = false );
 
-    int         doSelectParametersDialog( const int Env, const QStringList& ParameterList, const bool showShortName, const bool showMethod, const bool showComment, const int maxNumOfParameters, bool& sortParameterList, QStringList& selectedParameters );
-    int         doSelectEnvironmentDialog( const bool setGeocode, const int EnvArray[], const QStringList& MetadataList );
+    int         doSelectParametersDialog( const int Env, const QStringList &ParameterList, const bool showShortName, const bool showMethod, const bool showComment, const int maxNumOfParameters, bool& sortParameterList, QStringList &selectedParameters );
+    int         doSelectEnvironmentDialog( const bool setGeocode, const int EnvArray[], const QStringList &MetadataList );
 
 /*
     int         doGPStoGpxOptionsDialog( int &StartID, int &EndID, QString &TrackName );
@@ -243,10 +243,10 @@ public:
 
     bool        containsSelectedEnvironment( const int Mode, const int dataEnv, const int selectedEnv );
 
-    QString     createDir( const QString& Path, const QString& newDirName, const bool createDirInside, const bool emptyDir );
+    QString     createDir( const QString &Path, const QString &newDirName, const bool createDirInside, const bool emptyDir );
 
-    int         startProgram( const QString& Program, const QString& Filename );
-    int         startGoogleEarth( const QString& Program, const QString& Filename );
+    int         startProgram( const QString &Program, const QString &Filename );
+    int         startGoogleEarth( const QString &Program, const QString &Filename );
 
 protected:
     void dragEnterEvent( QDragEnterEvent *event );
@@ -260,7 +260,7 @@ signals:
 private slots:
     int  chooseFile();
     int  chooseFiles();
-    int  chooseFolder( const QString& Folder = "" );
+    int  chooseFolder( const QString &Folder = "" );
     int  saveFile();
     int  saveFileAs();
 
@@ -318,7 +318,7 @@ private:
     void appendItem( QStringList &List, const QString &Item, const QString &SS = "", const QString &RS = "" );
     void compressFile( const QString &FilenameIn );
     void clearFilenameList( int &ActionNumber, QStringList &FilenameList );
-    void clearList( QStringList& List );
+    void clearList( QStringList &List );
     void clearMessage();
     void createActions();
     void createMenus();

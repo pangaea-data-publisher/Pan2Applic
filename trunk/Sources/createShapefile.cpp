@@ -16,10 +16,10 @@
 
 /*! @brief Liest Zeilen aus einer Datei, verarbeitet sie und schreibt sie in eine neue Datei. */
 
-int MainWindow::createShapefileData( QStringList& sl_MetadataList, QStringList& sl_ParameterList, const structDataFormat DF[],
-                                     const QString& s_Filename, const int i_CodecInput, const int i_Env, const bool b_setGeocode,
-                                     const float f_GEOCODE_min, const float f_GEOCODE_max, const QString& s_GEOCODE_min,
-                                     const QString& s_GEOCODE_max, const bool b_setGearID, const int i_GearID, const int i_NumOfFiles )
+int MainWindow::createShapefileData( QStringList &sl_MetadataList, QStringList &sl_ParameterList, const structDataFormat DF[],
+                                     const QString &s_Filename, const int i_CodecInput, const int i_Env, const bool b_setGeocode,
+                                     const float f_GEOCODE_min, const float f_GEOCODE_max, const QString &s_GEOCODE_min,
+                                     const QString &s_GEOCODE_max, const bool b_setGearID, const int i_GearID, const int i_NumOfFiles )
 {
     int             iRecord				= 0;
 
@@ -220,7 +220,7 @@ int MainWindow::createShapefileData( QStringList& sl_MetadataList, QStringList& 
 
 /*! @brief Liest Zeilen aus einer Datei, verarbeitet sie und schreibt sie in eine neue Datei. */
 
-int MainWindow::createShapefileMetadata( QStringList& sl_MetadataList, const QString& s_Filename, const int i_Codec, const int i_NumOfFiles )
+int MainWindow::createShapefileMetadata( QStringList &sl_MetadataList, const QString &s_Filename, const int i_Codec, const int i_NumOfFiles )
 {
     int             iRecord				= 0;
 
@@ -272,7 +272,7 @@ int MainWindow::createShapefileMetadata( QStringList& sl_MetadataList, const QSt
 // **********************************************************************************************
 // 2009-11-19
 
-int MainWindow::writeShapfileDataEntry( DBFHandle hDBF, SHPHandle hSHP, const QStringList& sl_Output, const structDataFormat DF[], const int i_Latitude, const int i_Longitude, const QString& s_DOI, const int iRecord )
+int MainWindow::writeShapfileDataEntry( DBFHandle hDBF, SHPHandle hSHP, const QStringList &sl_Output, const structDataFormat DF[], const int i_Latitude, const int i_Longitude, const QString &s_DOI, const int iRecord )
 {
     SHPObject	*psObject;
 
@@ -336,7 +336,7 @@ int MainWindow::writeShapfileDataEntry( DBFHandle hDBF, SHPHandle hSHP, const QS
 // **********************************************************************************************
 // 2009-11-18
 
-int MainWindow::writeShapfileMetadataEntry( DBFHandle hDBF, SHPHandle hSHP, const int i_Codec, const QString& s_Metadata, const int iRecordStart, const int i_NumOfFiles )
+int MainWindow::writeShapfileMetadataEntry( DBFHandle hDBF, SHPHandle hSHP, const int i_Codec, const QString &s_Metadata, const int iRecordStart, const int i_NumOfFiles )
 {
     QStringList     sl_DataMetadataList;
 
@@ -361,7 +361,7 @@ int MainWindow::writeShapfileMetadataEntry( DBFHandle hDBF, SHPHandle hSHP, cons
 // **********************************************************************************************
 // 2009-11-18
 
-int MainWindow::writeShapfileMetadataEntry( DBFHandle hDBF, SHPHandle hSHP, const QString& s_Metadata, const int iRecord )
+int MainWindow::writeShapfileMetadataEntry( DBFHandle hDBF, SHPHandle hSHP, const QString &s_Metadata, const int iRecord )
 {
     SHPObject	*psObject;
 
@@ -422,7 +422,7 @@ int MainWindow::writeDBFHeader( DBFHandle hDBF )
 // **********************************************************************************************
 // 2009-11-18
 
-int MainWindow::writeDBFHeader( DBFHandle hDBF, const QStringList& sl_ParameterList, const structDataFormat DF[] )
+int MainWindow::writeDBFHeader( DBFHandle hDBF, const QStringList &sl_ParameterList, const structDataFormat DF[] )
 {
     QString s_Parameter = "xxx";
 
@@ -472,7 +472,7 @@ int MainWindow::writeDBFHeader( DBFHandle hDBF, const QStringList& sl_ParameterL
 // **********************************************************************************************
 // 2009-11-18
 
-int MainWindow::writeProjectionFile( const QString& s_Filename )
+int MainWindow::writeProjectionFile( const QString &s_Filename )
 {
     QFile fprj( s_Filename );
 
@@ -493,7 +493,7 @@ int MainWindow::writeProjectionFile( const QString& s_Filename )
 // **********************************************************************************************
 // 2009-11-19
 
-void MainWindow::setDefaultFormats( const QStringList& sl_ParameterList, structDataFormat DF[] )
+void MainWindow::setDefaultFormats( const QStringList &sl_ParameterList, structDataFormat DF[] )
 {
     for ( int i=0; i<sl_ParameterList.count(); ++i )
     {

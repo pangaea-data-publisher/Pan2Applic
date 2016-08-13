@@ -13,7 +13,7 @@
 // **********************************************************************************************
 // called by analyzeDataset
 
-bool MainWindow::isMetadataParameter( const QString& s_Parameter, const QString& s_ParameterName )
+bool MainWindow::isMetadataParameter( const QString &s_Parameter, const QString &s_ParameterName )
 {
     if ( s_Parameter.endsWith( "eMetadata") == true )
         return( s_Parameter.endsWith( QString( "%1%2%3%4%5%6%7eMetadata" ).arg( _PSEPARATOR_ ).arg( s_ParameterName ).arg( _PSEPARATOR_ ).arg( s_ParameterName ).arg( _PSEPARATOR_ ).arg( _PSEPARATOR_ ).arg( _PSEPARATOR_ ) ) );
@@ -26,7 +26,7 @@ bool MainWindow::isMetadataParameter( const QString& s_Parameter, const QString&
 // **********************************************************************************************
 // called by analyzeDataset
 
-bool MainWindow::isMetadataParameter( const QString& s_Parameter, const QString& s_ParameterName, const QString& s_shortName )
+bool MainWindow::isMetadataParameter( const QString &s_Parameter, const QString &s_ParameterName, const QString &s_shortName )
 {
     if ( s_Parameter.endsWith( "eMetadata") == true )
         return( s_Parameter.endsWith( QString( "%1%2%3%4%5%6%7eMetadata" ).arg( _PSEPARATOR_ ).arg( s_ParameterName ).arg( _PSEPARATOR_ ).arg( s_shortName ).arg( _PSEPARATOR_ ).arg( _PSEPARATOR_ ).arg( _PSEPARATOR_ ) ) );
@@ -38,7 +38,7 @@ bool MainWindow::isMetadataParameter( const QString& s_Parameter, const QString&
 // **********************************************************************************************
 // **********************************************************************************************
 
-QStringList MainWindow::buildParameterList( const QString& s_Environment, const QString& s_Header )
+QStringList MainWindow::buildParameterList( const QString &s_Environment, const QString &s_Header )
 {
     QString     sd_Parameter;
     QStringList sl_ParameterList;
@@ -62,7 +62,7 @@ QStringList MainWindow::buildParameterList( const QString& s_Environment, const 
 // **********************************************************************************************
 // **********************************************************************************************
 
-QString MainWindow::buildParameter( const QString& s_ParameterStr )
+QString MainWindow::buildParameter( const QString &s_ParameterStr )
 {
     int		i               = 0;
 
@@ -158,7 +158,7 @@ QString MainWindow::buildParameter( const QString& s_ParameterStr )
 // ****************************************************************************************
 // ****************************************************************************************
 
-QString MainWindow::buildParameter( const QString& InputStr, const bool b_showShortName, const bool b_showMethod, const bool b_showComment )
+QString MainWindow::buildParameter( const QString &InputStr, const bool b_showShortName, const bool b_showMethod, const bool b_showComment )
 {
     int     i_Type      = 0;
 
@@ -229,7 +229,7 @@ QString MainWindow::buildParameter( const QString& InputStr, const bool b_showSh
 // ***********************************************************************************************************************
 // ***********************************************************************************************************************
 
-QString MainWindow::buildParameter( const QString& Item, const QStringList& sl_ParameterList, const bool b_showShortName, const bool b_showMethod, const bool b_showComment )
+QString MainWindow::buildParameter( const QString &Item, const QStringList &sl_ParameterList, const bool b_showShortName, const bool b_showMethod, const bool b_showComment )
 {
     int     i               = -1;
 
@@ -294,7 +294,7 @@ QString MainWindow::buildParameter( const QString& Item, const QStringList& sl_P
 // ***********************************************************************************************************************
 // ***********************************************************************************************************************
 
-int MainWindow::getFirstPos( const QStringList& sl_ParameterList, const QString& s_Parameter )
+int MainWindow::getFirstPos( const QStringList &sl_ParameterList, const QString &s_Parameter )
 {
     for ( int i=0; i<sl_ParameterList.count(); ++i )
     {
@@ -315,7 +315,7 @@ int MainWindow::getFirstPos( const QStringList& sl_ParameterList, const QString&
 // ***********************************************************************************************************************
 // ***********************************************************************************************************************
 
-void MainWindow::getSpecialPos( const QStringList& sl_ParameterList, QVector<int> &vi_s_ParameterSpecialPos )
+void MainWindow::getSpecialPos( const QStringList &sl_ParameterList, QVector<int> &vi_s_ParameterSpecialPos )
 {
     for ( int i=0; i<sl_ParameterList.count(); ++i )
     {
@@ -368,7 +368,7 @@ void MainWindow::getSpecialPos( const QStringList& sl_ParameterList, QVector<int
 // ***********************************************************************************************************************
 // ***********************************************************************************************************************
 
-int MainWindow::getGeocodePosition( const QStringList& sl_ParameterList, const int i_Env )
+int MainWindow::getGeocodePosition( const QStringList &sl_ParameterList, const int i_Env )
 {
 // ***********************************************************************************************************************
 // PANGAEA Datasets
@@ -429,7 +429,7 @@ int MainWindow::getGeocodePosition( const QStringList& sl_ParameterList, const i
 // ***********************************************************************************************************************
 // ***********************************************************************************************************************
 
-int MainWindow::getGearIDPosition( const QStringList& sl_ParameterList )
+int MainWindow::getGearIDPosition( const QStringList &sl_ParameterList )
 {
 // ***********************************************************************************************************************
 // PANGAEA Datasets
@@ -573,11 +573,11 @@ QString MainWindow::getEnvironmentShortName( const int i_Env )
 // ***********************************************************************************************************************
 // ***********************************************************************************************************************
 
-QStringList MainWindow::buildODVOutputStr( const int i_LineNo, const bool b_addLineNo, const QString& s_Input, const QString& s_Metadata,
+QStringList MainWindow::buildODVOutputStr( const int i_LineNo, const bool b_addLineNo, const QString &s_Input, const QString &s_Metadata,
                                        const QVector<int> vi_pos, const QVector<int> vi_posQV, const QVector<int> vi_s_ParameterSpecialPos,
                                        const bool b_usePANGAEAQualityFlags,
-                                       const bool b_containsDOI, const QString& s_DeviceType,
-                                       const QString& s_FieldDelimiter )
+                                       const bool b_containsDOI, const QString &s_DeviceType,
+                                       const QString &s_FieldDelimiter )
 {
     QString     s_Cruise = "";
 

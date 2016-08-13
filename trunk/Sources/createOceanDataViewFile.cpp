@@ -10,12 +10,12 @@
 
 /*! @brief Liest Zeilen aus einer Datei, verarbeitet sie und schreibt sie in eine neue Datei. */
 
-int MainWindow::createOceanDataViewFile( QStringList& sl_MetadataList, QStringList& sl_ParameterList, const QString& s_FilenameOut,
+int MainWindow::createOceanDataViewFile( QStringList &sl_MetadataList, QStringList &sl_ParameterList, const QString &s_FilenameOut,
                                          const int i_CodecInput, const int i_Env, const int i_DeviceTypeOceanDataView,
                                          const bool b_showShortName, const bool b_showMethod, const bool b_showComment,
                                          const bool b_usePANGAEAQualityFlags, const bool b_setGeocode, const bool b_addLineNo,
-                                         const float f_GEOCODE_min, const float f_GEOCODE_max, const QString& s_GEOCODE_min,
-                                         const QString& s_GEOCODE_max, const bool b_setGearID, const int i_GearID, const int i_NumOfFiles )
+                                         const float f_GEOCODE_min, const float f_GEOCODE_max, const QString &s_GEOCODE_min,
+                                         const QString &s_GEOCODE_max, const bool b_setGearID, const int i_GearID, const int i_NumOfFiles )
 {
     QVector<int>    vi_pos;
     QVector<int>    vi_posQV;

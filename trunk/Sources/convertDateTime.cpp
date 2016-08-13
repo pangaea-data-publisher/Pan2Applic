@@ -10,7 +10,7 @@
 
 // **********************************************************************************************
 
-QDateTime MainWindow::convertDateTime( const QString& s_DateTimeIn )
+QDateTime MainWindow::convertDateTime( const QString &s_DateTimeIn )
 {
     QString s_DateTimeOut = s_DateTimeIn;
 
@@ -28,7 +28,7 @@ QDateTime MainWindow::convertDateTime( const QString& s_DateTimeIn )
 // **********************************************************************************************
 // **********************************************************************************************
 
-int MainWindow::convertDateTime( const int i_DateFormat, QString& s_DateTime, QString& s_Date, QString& s_Time )
+int MainWindow::convertDateTime( const int i_DateFormat, QString &s_DateTime, QString &s_Date, QString &s_Time )
 {
     int i_day	= 1;
     int i_month	= 1;
@@ -224,7 +224,7 @@ int MainWindow::convertDateTime( const int i_DateFormat, QString& s_DateTime, QS
 // ***********************************************************************************************************************
 // ***********************************************************************************************************************
 
-QString MainWindow::buildDateTimeStr( const QString& s_Data, const int i_pos, const int i_DateTimeFormat )
+QString MainWindow::buildDateTimeStr( const QString &s_Data, const int i_pos, const int i_DateTimeFormat )
 {
     QString s_DateTimeOut = "";
 
@@ -251,7 +251,7 @@ QString MainWindow::buildDateTimeStr( const QString& s_Data, const int i_pos, co
 // ***********************************************************************************************************************
 // ***********************************************************************************************************************
 
-QString MainWindow::buildDateTimeStr( const QString& s_DateTimeIn, const int i_DateTimeFormat )
+QString MainWindow::buildDateTimeStr( const QString &s_DateTimeIn, const int i_DateTimeFormat )
 {
     QString s_DateTimeOut = s_DateTimeIn;
 

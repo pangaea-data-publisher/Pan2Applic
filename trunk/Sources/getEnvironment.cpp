@@ -114,7 +114,7 @@ int MainWindow::getEnvironment( const int i_EnvArray[] )
 // **********************************************************************************************
 // **********************************************************************************************
 
-int MainWindow::getEnvironment( const QString& s_ParameterIn, int i_EnvArray[] )
+int MainWindow::getEnvironment( const QString &s_ParameterIn, int i_EnvArray[] )
 {
     QString s_Parameter = s_ParameterIn;
 
@@ -333,7 +333,7 @@ int MainWindow::getNumOfEnvironments( const int i_EnvArray[] )
 // **********************************************************************************************
 // **********************************************************************************************
 
-int MainWindow::getNumOfEnvironments( const QStringList& sl_MetadataList )
+int MainWindow::getNumOfEnvironments( const QStringList &sl_MetadataList )
 {
     int i_NumOfEnvironments = 0;
 
@@ -351,7 +351,7 @@ int MainWindow::getNumOfEnvironments( const QStringList& sl_MetadataList )
 // **********************************************************************************************
 // 2009-10-11
 
-int MainWindow::getParameterType( const QString& s_Parameter )
+int MainWindow::getParameterType( const QString &s_Parameter )
 {
 //----------------------------------------------------------------------------------------------
 // Event

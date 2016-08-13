@@ -12,7 +12,7 @@
 // **********************************************************************************************
 // **********************************************************************************************
 
-QString MainWindow::getCitation( const QString& InputStr )
+QString MainWindow::getCitation( const QString &InputStr )
 {
     QString s_Citation = InputStr;
 

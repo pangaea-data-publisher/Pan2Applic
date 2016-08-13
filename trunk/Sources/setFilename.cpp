@@ -10,7 +10,7 @@
 
 /*! @brief Setzt den Output Dateinamen. */
 
-int MainWindow::setFilename( const int i_Mode, const bool b_CuratorMode, const int i_NumOfFiles, const QString& s_FilenameIn, QString& s_FilenameOut )
+int MainWindow::setFilename( const int i_Mode, const bool b_CuratorMode, const int i_NumOfFiles, const QString &s_FilenameIn, QString &s_FilenameOut )
 {
     int err = _NOERROR_;
 

@@ -13,7 +13,7 @@
 // **********************************************************************************************
 // 2011-03-11  - Tsunami Hits Japan Coast
 
-int MainWindow::analyzeDataset( const QString& s_FilenameIn, const int i_CodecInput, const bool b_showShortName, const bool b_showMethod, const bool b_showComment, QStringList& sl_MetadataList, QStringList& sl_ParameterList, int i_EnvArray[] )
+int MainWindow::analyzeDataset( const QString &s_FilenameIn, const int i_CodecInput, const bool b_showShortName, const bool b_showMethod, const bool b_showComment, QStringList &sl_MetadataList, QStringList &sl_ParameterList, int i_EnvArray[] )
 {
     int             i                   = 0;
     int             err                 = 0;
@@ -303,7 +303,7 @@ int MainWindow::analyzeDataset( const QString& s_FilenameIn, const int i_CodecIn
 // **********************************************************************************************
 // 2009-10-11
 
-int MainWindow::containsParameter( const bool b_containsParameterBlock, const QStringList& sl_ParameterList, const QString& s_Parameter, const bool b_showShortName, const bool b_showMethod, const bool b_showComment )
+int MainWindow::containsParameter( const bool b_containsParameterBlock, const QStringList &sl_ParameterList, const QString &s_Parameter, const bool b_showShortName, const bool b_showMethod, const bool b_showComment )
 {
     if ( b_containsParameterBlock == true )
     {
