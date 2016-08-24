@@ -63,7 +63,8 @@ HEADERS = ./Headers/Application.h \
     ./Forms/formatedTextOptionsDialog/formatedTextOptionsDialog.h \
     ./Forms/unformatedTextOptionsDialog/unformatedTextOptionsDialog.h \
     ./Forms/SelectParametersDialog/selectParametersDialog.h \
-    ./Forms/SelectEnvironmentDialog/selectEnvironmentDialog.h
+    ./Forms/SelectEnvironmentDialog/selectEnvironmentDialog.h \
+    ./Forms/ExifToolOptionsDialog/ExifToolOptionsDialog.h
 
 SOURCES = ./Sources/ApplicationInit.cpp \
     ./Sources/ApplicationMainWindow.cpp \
@@ -74,8 +75,7 @@ SOURCES = ./Sources/ApplicationInit.cpp \
     ./Sources/createOceanDataViewFile.cpp \
     ./Sources/createShapefile.cpp \
     ./Sources/createTextFile.cpp \
-#   ./Sources/createGpxFile.cpp \
-#   ./Sources/createKmlFile.cpp \
+    ./Sources/extractExif.cpp \
     ./Sources/analyzeDataset.cpp \
     ./Sources/convertDateTime.cpp \
     ./Sources/buildHeader.cpp \
@@ -108,7 +108,8 @@ SOURCES = ./Sources/ApplicationInit.cpp \
     ./Forms/formatedTextOptionsDialog/formatedTextOptionsDialog.cpp \
     ./Forms/unformatedTextOptionsDialog/unformatedTextOptionsDialog.cpp \
     ./Forms/SelectParametersDialog/selectParametersDialog.cpp \
-    ./Forms/SelectEnvironmentDialog/selectEnvironmentDialog.cpp
+    ./Forms/SelectEnvironmentDialog/selectEnvironmentDialog.cpp \
+    ./Forms/ExifToolOptionsDialog/ExifToolOptionsDialog.cpp
 
 FORMS = ./Forms/AboutDialog/aboutdialog.ui \
     ./Forms/PanGetDialog/pangetdialog.ui \
@@ -121,4 +122,5 @@ FORMS = ./Forms/AboutDialog/aboutdialog.ui \
     ./Forms/formatedTextOptionsDialog/formatedtextoptionsdialog.ui \
     ./Forms/unformatedTextOptionsDialog/unformatedtextoptionsdialog.ui \
     ./Forms/SelectParametersDialog/selectparametersdialog.ui \
-    ./Forms/SelectEnvironmentDialog/selectenvironmentdialog.ui
+    ./Forms/SelectEnvironmentDialog/selectenvironmentdialog.ui \
+    ./Forms/ExifToolOptionsDialog/ExifTooloptionsdialog.ui

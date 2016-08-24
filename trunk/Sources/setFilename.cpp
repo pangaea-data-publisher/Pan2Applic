@@ -12,7 +12,7 @@
 
 int MainWindow::setFilename( const int i_Mode, const bool b_CuratorMode, const int i_NumOfFiles, const QString &s_FilenameIn, QString &s_FilenameOut )
 {
-    int err = _NOERROR_;
+    int i_DialogResult = QDialog::Rejected;
 
 // ***********************************************************************************************
 
@@ -66,11 +66,11 @@ int MainWindow::setFilename( const int i_Mode, const bool b_CuratorMode, const i
     switch ( i_Mode )
     {
         case _FORMAT_KMLFILE:
-            err = doGoogleEarthOptionsDialog();
+            i_DialogResult = doGoogleEarthOptionsDialog();
             break;
 
         case _FORMAT_ODV:
-            err = doOceanDataViewOptionsDialog();
+            i_DialogResult = doOceanDataViewOptionsDialog();
             break;
 
         case _FORMAT_SHAPE_METADATA:
@@ -78,24 +78,24 @@ int MainWindow::setFilename( const int i_Mode, const bool b_CuratorMode, const i
             break;
 
         case _FORMAT_SHAPE_DATA:
-            err = doShapeFileOptionsDialog();
+            i_DialogResult = doShapeFileOptionsDialog();
             break;
 
         case _FORMAT_UNFORMATEDTEXTFILE:
             if ( b_CuratorMode == false )
-                err = doUnformatedTextOptionsDialog();
+                i_DialogResult = doUnformatedTextOptionsDialog();
             else
-                err = _NOERROR_;
+                i_DialogResult = QDialog::Accepted;
             break;
 
         case _FORMAT_FORMATEDTEXTFILE:
-            err = doFormatedTextOptionsDialog();
+            i_DialogResult = doFormatedTextOptionsDialog();
             break;
 
         default:
-            err = doUnformatedTextOptionsDialog();
+            i_DialogResult = doUnformatedTextOptionsDialog();
             break;
     }
 
-    return( err );
+    return( i_DialogResult );
 }

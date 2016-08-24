@@ -1,50 +1,50 @@
 // ***********************************************************************************************
 // *                                                                                             *
-// * formatedTextOptionsDialog.cpp - Set the options for the Text mode                           *
+// * ExifToolOptionsDialog.cpp - Set the options for the ExifTool                                *
 // *                                                                                             *
-// * Dr. Rainer Sieger - 2009-08-16                                                              *
+// * Dr. Rainer Sieger - 2016-08-18                                                              *
 // *                                                                                             *
 // ***********************************************************************************************
 
 #include <QtWidgets>
 
 #include "Application.h"
-#include "formatedTextOptionsDialog.h"
+#include "ExifToolOptionsDialog.h"
 
-formatedTextOptionsDialog::formatedTextOptionsDialog( QWidget *parent ) : QDialog( parent )
+ExifToolOptionsDialog::ExifToolOptionsDialog( QWidget *parent ) : QDialog( parent )
 {
     setupUi( this );
 
     connect(OK_pushButton, SIGNAL(clicked()), this, SLOT(accept()));
     connect(Cancel_pushButton, SIGNAL(clicked()), this, SLOT(reject()));
-    connect(BrowseTextFilename_pushButton, SIGNAL(clicked()), this, SLOT(browseFilenameDialog()));
+    connect(BrowseFilenameExifOut_pushButton, SIGNAL(clicked()), this, SLOT(browseFilenameDialog()));
+    connect(UtcOffsetHours_spinBox, SIGNAL(valueChanged(int)), this, SLOT(showUtcOffset()));
+    connect(UtcOffsetMinutes_spinBox, SIGNAL(valueChanged(int)), this, SLOT(showUtcOffset()));
 }
 
 // ***********************************************************************************************************************
 // ***********************************************************************************************************************
 // ***********************************************************************************************************************
 
-int MainWindow::doFormatedTextOptionsDialog()
+int MainWindow::doExifToolOptionsDialog()
 {
     int i_DialogResult = QDialog::Rejected;
 
-    QFileInfo fi( gs_FilenameText );
+    QFileInfo fi( gs_FilenameExifOut );
     QDir di( fi.absolutePath() );
+    QTime time( 0, 0, 0 );
+
+// ***********************************************************************************************************************
+
+    if ( gi_UtcOffset >= 0 )
+        time = time.addSecs( gi_UtcOffset );
+    else
+        time = time.addSecs( -gi_UtcOffset );
 
     if ( di.exists() == false )
-        gs_FilenameText = getDocumentDir() + "/zz_" + fi.baseName() + ".txt";
+        gs_FilenameExifOut = getDocumentDir() + "/" + fi.baseName() + ".txt";
 
-    formatedTextOptionsDialog dialog( this );
-
-    dialog.ShowShortName_checkBox->setChecked( gb_showShortName );
-    dialog.ShowMethod_checkBox->setChecked( gb_showMethod );
-    dialog.ShowComment_checkBox->setChecked( gb_showComment );
-    dialog.setGeocodeRange_checkBox->setChecked( gb_setGeocode );
-    dialog.setGearID_checkBox->setChecked( gb_setGearID );
-
-    dialog.CodecInput_ComboBox->setCurrentIndex( gi_CodecInput );
-    dialog.CodecOutput_ComboBox->setCurrentIndex( gi_CodecOutput );
-    dialog.EOL_ComboBox->setCurrentIndex( gi_EOL );
+    ExifToolOptionsDialog dialog( this );
 
     switch ( gi_DateTimeFormat )
     {
@@ -59,26 +59,20 @@ int MainWindow::doFormatedTextOptionsDialog()
             break;
     }
 
-    switch ( gi_FieldAlignment )
-    {
-        case QTextStream::AlignRight:
-            dialog.alignRight_radioButton->setChecked( true );
-            break;
-        default:
-            dialog.alignLeft_radioButton->setChecked( true );
-            break;
-    }
+    if ( gi_UtcOffset >= 0 )
+        dialog.UtcOffsetHours_spinBox->setValue( time.hour() );
+    else
+        dialog.UtcOffsetHours_spinBox->setValue( -time.hour() );
 
-    dialog.fieldWidth_lineEdit->setText( QString( "%1" ).arg( gi_FieldWidth ) );
-    dialog.missingValue_lineEdit->setText( gs_MissingValue );
+    dialog.UtcOffsetMinutes_spinBox->setValue( time.minute() );
 
-    dialog.TextFilename_lineEdit->setText( QDir::toNativeSeparators( gs_FilenameText ) );
+    dialog.CreateKmlFile_checkBox->setChecked( gb_CreateKmlFile );
+
+    dialog.FilenameExifOut_lineEdit->setText( QDir::toNativeSeparators( gs_FilenameExifOut ) );
 
     dialog.OK_pushButton->setWhatsThis( "Close dialog" );
     dialog.Cancel_pushButton->setWhatsThis( "Cancel dialog" );
-    dialog.BrowseTextFilename_pushButton->setWhatsThis( "Browse for the text file" );
-
-    dialog.missingValue_lineEdit->selectAll();
+    dialog.BrowseFilenameExifOut_pushButton->setWhatsThis( "Browse for the text file" );
 
     dialog.move( posDialog );
     dialog.resize( dialog.sizeHint() );
@@ -89,17 +83,7 @@ int MainWindow::doFormatedTextOptionsDialog()
     switch ( dialog.exec() )
     {
     case QDialog::Accepted:
-        gs_FilenameText  = dialog.TextFilename_lineEdit->text();
-
-        gb_showShortName = dialog.ShowShortName_checkBox->isChecked();
-        gb_showMethod    = dialog.ShowMethod_checkBox->isChecked();
-        gb_showComment   = dialog.ShowComment_checkBox->isChecked();
-        gb_setGeocode    = dialog.setGeocodeRange_checkBox->isChecked();
-        gb_setGearID     = dialog.setGearID_checkBox->isChecked();
-
-        gi_CodecInput    = dialog.CodecInput_ComboBox->currentIndex();
-        gi_CodecOutput   = dialog.CodecOutput_ComboBox->currentIndex();
-        gi_EOL           = dialog.EOL_ComboBox->currentIndex();
+        gs_FilenameExifOut = dialog.FilenameExifOut_lineEdit->text();
 
         if ( dialog.Day_radioButton->isChecked() == true )
             gi_DateTimeFormat = _BUILDDATE;
@@ -110,21 +94,12 @@ int MainWindow::doFormatedTextOptionsDialog()
         if ( dialog.realISO_radioButton->isChecked() == true )
             gi_DateTimeFormat = _BUILDISODATETIME;
 
-        if ( dialog.alignLeft_radioButton->isChecked() == true )
-            gi_FieldAlignment = QTextStream::AlignLeft;
+        gb_CreateKmlFile = dialog.CreateKmlFile_checkBox->isChecked();
 
-        if ( dialog.alignRight_radioButton->isChecked() == true )
-            gi_FieldAlignment = QTextStream::AlignRight;
-
-        gi_FieldWidth = (int) dialog.fieldWidth_lineEdit->text().toInt();
-
-        if ( gi_FieldWidth < 0 )
-            gi_FieldWidth = 1;
-
-        if ( gi_FieldWidth > 100 )
-            gi_FieldWidth = 100;
-
-        gs_MissingValue = dialog.missingValue_lineEdit->text();
+        if ( dialog.UtcOffsetHours_spinBox->value() >= 0 )
+            gi_UtcOffset = dialog.UtcOffsetHours_spinBox->value()*3600 + dialog.UtcOffsetMinutes_spinBox->value()*60;
+        else
+            gi_UtcOffset = dialog.UtcOffsetHours_spinBox->value()*3600 - dialog.UtcOffsetMinutes_spinBox->value()*60;
 
         i_DialogResult = QDialog::Accepted;
         break;
@@ -147,10 +122,41 @@ int MainWindow::doFormatedTextOptionsDialog()
 // ***********************************************************************************************************************
 // ***********************************************************************************************************************
 
-void formatedTextOptionsDialog::browseFilenameDialog()
+void ExifToolOptionsDialog::showUtcOffset()
+{
+    int i_UtcOffset = 0;
+
+    QDateTime dt( QDateTime::currentDateTime().toUTC() );
+
+// ***********************************************************************************************************************
+
+    DateTimeUTC_label->setText( dt.toString( "yyyy-MM-dd hh:mm" ) );
+
+    if ( UtcOffsetHours_spinBox->value() >= 0 )
+        i_UtcOffset = UtcOffsetHours_spinBox->value()*3600 + UtcOffsetMinutes_spinBox->value()*60;
+    else
+        i_UtcOffset = UtcOffsetHours_spinBox->value()*3600 - UtcOffsetMinutes_spinBox->value()*60;
+
+    if ( ( i_UtcOffset >= -43200 ) && ( i_UtcOffset <= 50400 ) )  // UTC-12h to UTC+14h
+    {
+        DateTimeLocal_label->setText( dt.toOffsetFromUtc( i_UtcOffset ).toString( "yyyy-MM-dd hh:mm" ) );
+        OK_pushButton->setEnabled( true );
+    }
+    else
+    {
+        DateTimeLocal_label->setText( "ERROR" );
+        OK_pushButton->setEnabled( false );
+    }
+}
+
+// ***********************************************************************************************************************
+// ***********************************************************************************************************************
+// ***********************************************************************************************************************
+
+void ExifToolOptionsDialog::browseFilenameDialog()
 {
     QString	fn			= "";
-    QString file		= this->TextFilename_lineEdit->text();
+    QString file		= this->FilenameExifOut_lineEdit->text();
     QString fileStart	= getDocumentDir();
 
 // ***********************************************************************************************************************
@@ -178,16 +184,16 @@ void formatedTextOptionsDialog::browseFilenameDialog()
     if ( fn.isEmpty() == true )
         fn = file;
 
-    this->TextFilename_lineEdit->setText( QDir::toNativeSeparators( fn ) );
+    this->FilenameExifOut_lineEdit->setText( QDir::toNativeSeparators( fn ) );
 
-    TextFilename_lineEdit->setFocus();
+    FilenameExifOut_lineEdit->setFocus();
 }
 
 // ***********************************************************************************************************************
 // ***********************************************************************************************************************
 // ***********************************************************************************************************************
 
-QString formatedTextOptionsDialog::getDocumentDir()
+QString ExifToolOptionsDialog::getDocumentDir()
 {
     #if defined(Q_OS_LINUX)
         return( QDir::homePath() );

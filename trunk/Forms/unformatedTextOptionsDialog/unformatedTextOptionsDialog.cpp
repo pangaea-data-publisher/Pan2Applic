@@ -26,7 +26,7 @@ unformatedTextOptionsDialog::unformatedTextOptionsDialog( QWidget *parent ) : QD
 
 int MainWindow::doUnformatedTextOptionsDialog()
 {
-    int err = _ERROR_;
+    int i_DialogResult = QDialog::Rejected;
 
     QFileInfo fi( gs_FilenameText );
     QDir di( fi.absolutePath() );
@@ -128,19 +128,21 @@ int MainWindow::doUnformatedTextOptionsDialog()
         if ( dialog.tabstop_radioButton->isChecked() == true )
             gi_FieldDelimiter = _TABSTOP_;
 
-        err = _NOERROR_;
+        i_DialogResult = QDialog::Accepted;
         break;
 
     case QDialog::Rejected:
+        i_DialogResult = QDialog::Rejected;
         break;
 
     default:
+        i_DialogResult = QDialog::Rejected;
         break;
     }
 
     posDialog = dialog.pos();
 
-    return( err );
+    return( i_DialogResult );
 }
 
 // ***********************************************************************************************************************
@@ -164,15 +166,15 @@ void unformatedTextOptionsDialog::browseFilenameDialog()
         fileStart = file;
 
     #if defined(Q_OS_WIN)
-        fn = QFileDialog::getSaveFileName( this, tr( "Select the output file (*.txt)" ), fileStart, tr( "_TXT_ file (*.txt)" ), 0, QFileDialog::DontUseNativeDialog );
+        fn = QFileDialog::getSaveFileName( this, tr( "Select the output file (*.txt)" ), fileStart, tr( "Text file (*.txt)" ), 0, QFileDialog::DontUseNativeDialog );
     #endif
 
     #if defined(Q_OS_MAC)
-        fn = QFileDialog::getSaveFileName( this, tr( "Select the output file (*.txt)" ), fileStart, tr( "_TXT_ file (*.txt)" ), 0, QFileDialog::DontUseNativeDialog );
+        fn = QFileDialog::getSaveFileName( this, tr( "Select the output file (*.txt)" ), fileStart, tr( "Text file (*.txt)" ), 0, QFileDialog::DontUseNativeDialog );
     #endif
 
     #if defined(Q_OS_LINUX)
-        fn = QFileDialog::getSaveFileName( this, tr( "Select the output file (*.txt)" ), fileStart, tr( "_TXT_ file (*.txt)" ), 0, QFileDialog::DontUseNativeDialog );
+        fn = QFileDialog::getSaveFileName( this, tr( "Select the output file (*.txt)" ), fileStart, tr( "Text file (*.txt)" ), 0, QFileDialog::DontUseNativeDialog );
     #endif
 
     if ( fn.isEmpty() == true )

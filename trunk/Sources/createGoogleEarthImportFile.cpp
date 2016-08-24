@@ -488,9 +488,6 @@ int MainWindow::writeKMLEntry( QFile& fkml, const QStringList &sl_MetadataList, 
     QString s_DOI           = sl_MetadataList.at( i ).section( "\t", _DOIPOS, _DOIPOS );                       // DOI
     QString s_Citation      = sl_MetadataList.at( i ).section( "\t", _CITATIONPOS, _CITATIONPOS );             // Citation
 
-    QString s_IconSymbol    = "cricle";
-    QString s_IconColor     = "red";
-
 // **********************************************************************************************
 
     if ( s_Time == s_Date )
@@ -628,8 +625,9 @@ int MainWindow::writeKMLEntry( QFile& fkml, const QStringList &sl_MetadataList, 
 
 void MainWindow::doCreateGoogleEarthImportFile()
 {
-    int         i_File              = 0;
-    int         err                 = 0;
+    int         err               = _CHOOSEABORTED_;
+
+    int         i_File            = 0;
     int         stopProgress      = 0;
 
     int         i_EnvArray[_MAX_NUM_OF_ENV+1];
@@ -646,11 +644,11 @@ void MainWindow::doCreateGoogleEarthImportFile()
 
     if ( existsFirstFile( gi_ActionNumber, gs_FilenameFormat, gi_Extension, gsl_FilenameList ) == true )
     {
-        err = setFilename( _FORMAT_KMLFILE, gb_CuratorMode, gsl_FilenameList.count(), gsl_FilenameList.at( 0 ), gs_FilenameGoogleEarth );
-
-        if ( err == _NOERROR_ )
+        if ( setFilename( _FORMAT_KMLFILE, gb_CuratorMode, gsl_FilenameList.count(), gsl_FilenameList.at( 0 ), gs_FilenameGoogleEarth ) == QDialog::Accepted )
         {
             initFileProgress( gsl_FilenameList.count(), gsl_FilenameList.at( 0 ), tr( "Creating Google Earth import file..." ) );
+
+            err = _NOERROR_;
 
             while ( ( i_File < gsl_FilenameList.count() ) && ( err == _NOERROR_ ) && ( stopProgress != _APPBREAK_ ) )
             {
@@ -664,10 +662,6 @@ void MainWindow::doCreateGoogleEarthImportFile()
             resetFileProgress( gsl_FilenameList.count() );
         }
     }
-    else
-    {
-        err = _CHOOSEABORTED_;
-    }
 
 // **********************************************************************************************
 
@@ -676,7 +670,7 @@ void MainWindow::doCreateGoogleEarthImportFile()
 
 // **********************************************************************************************
 
-    endTool( err, stopProgress, gi_ActionNumber, gs_FilenameFormat, gi_Extension, gsl_FilenameList, tr( "Done" ), tr( "Converter was canceled" ), false, false );
+    endTool( err, stopProgress, gi_ActionNumber, gs_FilenameFormat, gi_Extension, gsl_FilenameList, tr( "Done" ), tr( "Google Earth converter was canceled" ), false, false );
 
 // **********************************************************************************************
 // start Google Earth

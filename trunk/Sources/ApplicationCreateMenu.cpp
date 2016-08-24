@@ -77,6 +77,10 @@ void MainWindow::createActions()
     createFormatedTextFileAction->setShortcut(tr("Ctrl+X"));
     connect(createFormatedTextFileAction, SIGNAL(triggered()), this, SLOT(doCreateFormatedTextFile()));
 
+    extractExifAction = new QAction(tr("Extract exif record of images..."), this);
+    extractExifAction->setShortcut(tr("Ctrl+E"));
+    connect(extractExifAction, SIGNAL(triggered()), this, SLOT(doExtractExif()));
+
     // Options menu
     setGeocodeRangeFlagAction = new QAction(tr("Set geocode range"), this);
     setGeocodeRangeFlagAction->setCheckable( true );
@@ -162,6 +166,8 @@ void MainWindow::createMenus()
     toolsMenu->addSeparator();
     toolsMenu->addAction( createUnformatedTextFileAction );
     toolsMenu->addAction( createFormatedTextFileAction );
+    toolsMenu->addSeparator();
+    toolsMenu->addAction( extractExifAction );
 
 // **********************************************************************************************
 
@@ -208,5 +214,7 @@ void MainWindow::enableMenuItems( const QStringList &sl_FilenameList )
     {
         for ( int i=0; i<toolsMenuActions.count(); ++i )
             toolsMenuActions.at( i )->setEnabled( false );
+
+        extractExifAction->setEnabled( true );
     }
 }

@@ -27,7 +27,7 @@ OceanDataViewOptionsDialog::OceanDataViewOptionsDialog( QWidget *parent ) : QDia
 
 int MainWindow::doOceanDataViewOptionsDialog()
 {
-    int err = _ERROR_;
+    int i_DialogResult = QDialog::Rejected;
 
     OceanDataViewOptionsDialog dialog( this );
 
@@ -102,19 +102,21 @@ int MainWindow::doOceanDataViewOptionsDialog()
 
         gi_CodecInput                  = dialog.CodecInput_ComboBox->currentIndex();
 
-        err                            = _NOERROR_;
+        i_DialogResult = QDialog::Accepted;
         break;
 
     case QDialog::Rejected:
+        i_DialogResult = QDialog::Rejected;
         break;
 
     default:
+        i_DialogResult = QDialog::Rejected;
         break;
     }
 
     posDialog = dialog.pos();
 
-    return( err );
+    return( i_DialogResult );
 }
 
 // ***********************************************************************************************************************

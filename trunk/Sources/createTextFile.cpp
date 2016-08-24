@@ -348,10 +348,10 @@ void MainWindow::doCreateFormatedTextFile()
 
 void MainWindow::doCreateTextFile( const int i_Format, const bool b_CuratorMode )
 {
-    int         err                 = _NOERROR_;
+    int         err               = _CHOOSEABORTED_;
 
-    int         i_File              = 0;
-    int         i_Env               = 0;
+    int         i_File            = 0;
+    int         i_Env             = 0;
     int         stopProgress      = 0;
 
     int         i_EnvArray[_MAX_NUM_OF_ENV+1];
@@ -367,13 +367,13 @@ void MainWindow::doCreateTextFile( const int i_Format, const bool b_CuratorMode 
 
     if ( existsFirstFile( gi_ActionNumber, gs_FilenameFormat, gi_Extension, gsl_FilenameList ) == true )
     {
-        err = setFilename( i_Format, b_CuratorMode, gsl_FilenameList.count(), gsl_FilenameList.at( 0 ), gs_FilenameText );
-
-        if ( err == _NOERROR_ )
+        if ( setFilename( i_Format, b_CuratorMode, gsl_FilenameList.count(), gsl_FilenameList.at( 0 ), gs_FilenameText ) == QDialog::Accepted )
         {
             sl_MetadataList.append( tr( "File name\tMetaInfo\tHeader lines\tEnvironment\tCampaign\tEvent label\tGear\tDate\tTime\tDate/Time\tDate/Time start\tLatitude\tLongitude\tElevation\tArea\tDOI\tCitation\tDatePos\tTimePos\tDateTimePos\tElevationPos\tEventLabelPos\tCampaignLabelPos\tAreaNamePos\tGearNamePos\tLatitudePos\tLongitudePos" ) );
 
             initFileProgress( gsl_FilenameList.count(), gsl_FilenameList.at( 0 ), tr( "Analyze files..." ) );
+
+            err = _NOERROR_;
 
             while ( ( i_File < gsl_FilenameList.count() ) && ( err == _NOERROR_ ) && ( stopProgress != _APPBREAK_ ) )
             {
@@ -389,10 +389,6 @@ void MainWindow::doCreateTextFile( const int i_Format, const bool b_CuratorMode 
 
             resetFileProgress( gsl_FilenameList.count() );
         }
-    }
-    else
-    {
-        err = _CHOOSEABORTED_;
     }
 
 // **********************************************************************************************

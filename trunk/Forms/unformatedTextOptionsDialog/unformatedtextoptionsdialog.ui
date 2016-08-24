@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>498</width>
-    <height>456</height>
+    <width>668</width>
+    <height>498</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -116,7 +116,7 @@
       <item row="0" column="0">
        <widget class="QRadioButton" name="realISO_radioButton">
         <property name="text">
-         <string>YYYY-MM-DD'T'HH:mm (real ISO)</string>
+         <string>YYYY-MM-DD'T'HH:mm (real ISO 8601)</string>
         </property>
        </widget>
       </item>

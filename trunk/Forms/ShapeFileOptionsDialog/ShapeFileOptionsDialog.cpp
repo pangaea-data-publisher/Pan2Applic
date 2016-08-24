@@ -26,7 +26,7 @@ ShapeFileOptionsDialog::ShapeFileOptionsDialog( QWidget *parent ) : QDialog( par
 
 int MainWindow::doShapeFileOptionsDialog()
 {
-    int err = _ERROR_;
+    int i_DialogResult = QDialog::Rejected;
 
     QFileInfo fi( gs_FilenameShapefile );
     QDir di( fi.absolutePath() );
@@ -90,19 +90,21 @@ int MainWindow::doShapeFileOptionsDialog()
         if ( dialog.ShapeFile_realISO_radioButton->isChecked() == true )
             gi_DateTimeFormat = _BUILDISODATETIME;
 
-        err = _NOERROR_;
+        i_DialogResult = QDialog::Accepted;
         break;
 
     case QDialog::Rejected:
+        i_DialogResult = QDialog::Rejected;
         break;
 
     default:
+        i_DialogResult = QDialog::Rejected;
         break;
     }
 
     posDialog = dialog.pos();
 
-    return( err );
+    return( i_DialogResult );
 }
 
 // ***********************************************************************************************************************

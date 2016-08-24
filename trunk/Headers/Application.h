@@ -94,6 +94,7 @@ public:
     QString     gs_FilenameOceanDataView;        //!< Pfad und Name der Ocean Data View Importdatei.
     QString     gs_FilenameShapefile;            //!< Pfad und Name der Shapefile-Datei.
     QString     gs_FilenameText;                 //!< Pfad und Name der Outputtextdatei.
+    QString     gs_FilenameExifOut;                 //!< Name der Datei fuer Exif Output Datei
 
     bool        gb_CuratorMode;                  //!< Curator Modus schaltet einen Menüeintrag frei.
 
@@ -104,6 +105,8 @@ public:
     bool        gb_displayDescription;
 
     int         gi_DateTimeFormat;                  //!< Date/Time Format.
+    int         gi_UtcOffset;                       //! Offset to UTC
+    bool        gb_CreateKmlFile;                   //! Create KML File
 
     bool        gb_addLineNo;                       //!< fuege Line number an Event label an.
     bool        gb_usePANGAEAQualityFlags;          //!< Wenn true werden die PANGAEA Quality flags ausgegeben.
@@ -236,17 +239,15 @@ public:
     int         doSelectParametersDialog( const int Env, const QStringList &ParameterList, const bool showShortName, const bool showMethod, const bool showComment, const int maxNumOfParameters, bool& sortParameterList, QStringList &selectedParameters );
     int         doSelectEnvironmentDialog( const bool setGeocode, const int EnvArray[], const QStringList &MetadataList );
 
-/*
-    int         doGPStoGpxOptionsDialog( int &StartID, int &EndID, QString &TrackName );
-    int         doGPStoKmlOptionsDialog( int &StartID, int &EndID, int &IconColor, int &IconSize, int &TracklineColor, int &TracklineWidth, QString &TrackName, QString &FilenameGoogleEarthProgram, bool &startGoogleEarth );
-*/
-
     bool        containsSelectedEnvironment( const int Mode, const int dataEnv, const int selectedEnv );
 
     QString     createDir( const QString &Path, const QString &newDirName, const bool createDirInside, const bool emptyDir );
 
     int         startProgram( const QString &Program, const QString &Filename );
     int         startGoogleEarth( const QString &Program, const QString &Filename );
+
+    int         extractExif( const QString &ExifTool, const QStringList &FilenameList, const QString &FilenameOut, const int DateTimeFormat, const int UtcOffset );
+    QString     findExifTool();
 
 protected:
     void dragEnterEvent( QDragEnterEvent *event );
@@ -281,10 +282,7 @@ private slots:
     void doCreateFormatedTextFile();
     void doSetGeocodeRangeFlag();
 
-/*
-    void doCreateGpxFile();
-    void doCreateKmlFile();
-*/
+    void doExtractExif();
 
     int doGoogleEarthOptionsDialog();
     int doOceanDataViewOptionsDialog();
@@ -294,6 +292,7 @@ private slots:
     int doSetGeocodeRangeFloatDialog();
     int doSetGeocodeRangeDateTimeDialog();
     int doGetDatasetsDialog();
+    int doExifToolOptionsDialog();
 
 private:
     QStringList expandCommandline();
@@ -377,6 +376,7 @@ private:
     QAction *createUnformatedTextFileAction;
     QAction *createUnformatedTextFileCuratorModeAction;
     QAction *createFormatedTextFileAction;
+    QAction *extractExifAction;
 
     QAction *ASCIIOptionsAction;
     QAction *GoogleEarthOptionsAction;

@@ -117,6 +117,13 @@ void MainWindow::savePreferences()
     settings.setValue( "DownloadDirectory", gs_DownloadDirectory );
     settings.endGroup();
 
+    // ExifTool
+    settings.beginGroup( "ExifTool" );
+    settings.setValue( "FilenameExifOut", gs_FilenameExifOut );
+    settings.setValue( "UtcOffset", gi_UtcOffset );
+    settings.setValue( "CreateKmlFile", gb_CreateKmlFile );
+    settings.endGroup();
+
     settings.endGroup();
 }
 
@@ -249,6 +256,13 @@ void MainWindow::loadPreferences()
     settings.beginGroup( "PanGet" );
     gs_IDListFile        = settings.value( "IDListFile", ""  ).toString();
     gs_DownloadDirectory = settings.value( "DownloadDirectory", "" ).toString();
+    settings.endGroup();
+
+    // ExifTool
+    settings.beginGroup( "ExifTool" );
+    gs_FilenameExifOut = settings.value( "FilenameExifOut", getDocumentDir() ).toString();
+    gi_UtcOffset       = settings.value( "UtcOffset", 2 ).toInt();
+    gb_CreateKmlFile   = settings.value( "CreateKmlFile", true ).toBool();
     settings.endGroup();
 
     settings.endGroup();

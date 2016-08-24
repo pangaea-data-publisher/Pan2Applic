@@ -563,8 +563,9 @@ void MainWindow::setDefaultFormats( const QStringList &sl_ParameterList, structD
 
 void MainWindow::doCreateShapefileMetadata()
 {
-    int         i_File              = 0;
-    int         err                 = 0;
+    int         err               = _CHOOSEABORTED_;
+
+    int         i_File            = 0;
     int         stopProgress      = 0;
 
     int         i_EnvArray[_MAX_NUM_OF_ENV+1];
@@ -581,11 +582,11 @@ void MainWindow::doCreateShapefileMetadata()
 
     if ( existsFirstFile( gi_ActionNumber, gs_FilenameFormat, gi_Extension, gsl_FilenameList ) == true )
     {
-        err = setFilename( _FORMAT_SHAPE_METADATA, gb_CuratorMode, gsl_FilenameList.count(), gsl_FilenameList.at( 0 ), gs_FilenameShapefile );
-
-        if ( err == _NOERROR_ )
+        if ( setFilename( _FORMAT_SHAPE_METADATA, gb_CuratorMode, gsl_FilenameList.count(), gsl_FilenameList.at( 0 ), gs_FilenameShapefile ) == QDialog::Accepted )
         {
             initFileProgress( gsl_FilenameList.count(), gsl_FilenameList.at( 0 ), tr( "Creating shapefile..." ) );
+
+            err = _NOERROR_;
 
             while ( ( i_File < gsl_FilenameList.count() ) && ( err == _NOERROR_ ) && ( stopProgress != _APPBREAK_ ) )
             {
@@ -598,10 +599,6 @@ void MainWindow::doCreateShapefileMetadata()
 
             resetFileProgress( gsl_FilenameList.count() );
         }
-    }
-    else
-    {
-        err = _CHOOSEABORTED_;
     }
 
 // **********************************************************************************************
@@ -627,10 +624,10 @@ void MainWindow::doCreateShapefileMetadata()
 
 void MainWindow::doCreateShapefileData()
 {
-    int                 err                 = _NOERROR_;
+    int                 err               = _CHOOSEABORTED_;
 
-    int                 i_File              = 0;
-    int                 i_Env               = 0;
+    int                 i_File            = 0;
+    int                 i_Env             = 0;
     int                 stopProgress      = 0;
 
     int                 i_EnvArray[_MAX_NUM_OF_ENV+1];
@@ -659,9 +656,7 @@ void MainWindow::doCreateShapefileData()
 
     if ( existsFirstFile( gi_ActionNumber, gs_FilenameFormat, gi_Extension, gsl_FilenameList ) == true )
     {
-        err = setFilename( _FORMAT_SHAPE_DATA, gb_CuratorMode, gsl_FilenameList.count(), gsl_FilenameList.at( 0 ), gs_FilenameShapefile );
-
-        if ( err == _NOERROR_ )
+        if ( setFilename( _FORMAT_SHAPE_DATA, gb_CuratorMode, gsl_FilenameList.count(), gsl_FilenameList.at( 0 ), gs_FilenameShapefile ) == QDialog::Accepted )
         {
             initFileProgress( gsl_FilenameList.count(), gsl_FilenameList.at( 0 ), tr( "Creating shapefile..." ) );
 
@@ -676,10 +671,6 @@ void MainWindow::doCreateShapefileData()
 
             resetFileProgress( gsl_FilenameList.count() );
         }
-    }
-    else
-    {
-        err = _CHOOSEABORTED_;
     }
 
 // **********************************************************************************************

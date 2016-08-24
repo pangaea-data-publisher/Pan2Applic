@@ -230,8 +230,9 @@ int MainWindow::createOceanDataViewFile( QStringList &sl_MetadataList, QStringLi
 
 void MainWindow::doCreateOceanDataViewFile()
 {
+    int         err                 = _CHOOSEABORTED_;
+
     int         i_File              = 0;
-    int         err                 = _NOERROR_;
     int         stopProgress        = 0;
     int         i_Env               = 0;
     int         i_NumOfRemovedLines = 0;
@@ -249,13 +250,13 @@ void MainWindow::doCreateOceanDataViewFile()
 
     if ( existsFirstFile( gi_ActionNumber, gs_FilenameFormat, gi_Extension, gsl_FilenameList ) == true )
     {
-        err = setFilename( _FORMAT_ODV, gb_CuratorMode, gsl_FilenameList.count(), gsl_FilenameList.at( 0 ), gs_FilenameOceanDataView );
-
-        if ( err == _NOERROR_ )
+        if ( setFilename( _FORMAT_ODV, gb_CuratorMode, gsl_FilenameList.count(), gsl_FilenameList.at( 0 ), gs_FilenameOceanDataView ) == QDialog::Accepted )
         {
             sl_MetadataList.append( tr( "File name\tMetaInfo\tHeader lines\tEnvironment\tCampaign\tEvent label\tGear\tDate\tTime\tDate/Time\tDate/Time start\tLatitude\tLongitude\tElevation\tArea\tDOI\tCitation\tDatePos\tTimePos\tDateTimePos\tElevationPos\tEventLabelPos\tCampaignLabelPos\tAreaNamePos\tGearNamePos\tLatitudePos\tLongitudePos" ) );
 
             initFileProgress( gsl_FilenameList.count(), gsl_FilenameList.at( 0 ), tr( "Analyze files..." ) );
+
+            err = _NOERROR_;
 
             while ( ( i_File < gsl_FilenameList.count() ) && ( err == _NOERROR_ ) && ( stopProgress != _APPBREAK_ ) )
             {
@@ -268,10 +269,6 @@ void MainWindow::doCreateOceanDataViewFile()
 
             resetFileProgress( gsl_FilenameList.count() );
         }
-    }
-    else
-    {
-        err = _CHOOSEABORTED_;
     }
 
 // **********************************************************************************************
