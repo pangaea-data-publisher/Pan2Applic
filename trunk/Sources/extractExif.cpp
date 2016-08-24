@@ -288,9 +288,7 @@ QString MainWindow::findExifTool()
 #endif
 
 #if defined(Q_OS_WIN)
-    QString s_ExifTool = getenv( "ProgramFiles(x86)" ) + "/exiftool/exiftool.exe";
-
-    QFileInfo fi_ExifTool( s_ExifTool );
+    QFileInfo fi_ExifTool( QCoreApplication::applicationDirPath() + "/" + "exiftool.exe" );
 
     if ( fi_ExifTool.exists() == false )
     {

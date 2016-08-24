@@ -47,7 +47,9 @@ RequestExecutionLevel admin
 
 Section "MainSection" SEC01
   SetOutPath "$INSTDIR"
-  File "C:\Users\rsieger\Documents\Development\Distribution\Pan2Applic\Pan2Applic.exe"  
+  File "C:\Users\rsieger\Documents\Development\Distribution\Pan2Applic\Pan2Applic.exe"
+  File "C:\Users\rsieger\Documents\Development\Distribution\Pan2Applic\curl.exe"
+  File "C:\Users\rsieger\Documents\Development\Distribution\Pan2Applic\exiftool.exe"
   File "C:\Users\rsieger\Documents\Development\Distribution\Pan2Applic\Qt5Core.dll"
   File "C:\Users\rsieger\Documents\Development\Distribution\Pan2Applic\Qt5Gui.dll"
   File "C:\Users\rsieger\Documents\Development\Distribution\Pan2Applic\Qt5Network.dll"
@@ -104,6 +106,8 @@ FunctionEnd
 
 Section Uninstall
   Delete "$INSTDIR\Pan2Applic.exe"
+  Delete "$INSTDIR\curl.exe"
+  Delete "$INSTDIR\exiftool.exe"
   Delete "$INSTDIR\Qt5Core.dll"
   Delete "$INSTDIR\Qt5Gui.dll"
   Delete "$INSTDIR\Qt5Network.dll"
