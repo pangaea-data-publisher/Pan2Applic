@@ -30,10 +30,6 @@ macx {
 }
 
 win32 {
-    # OpenSSL
-    LIBS += -LC:/Qt/OpenSSL-Win32/bin -lubsec
-    INCLUDEPATH += C:/Qt/OpenSSL-Win32/include
-
     # Icon
     RC_FILE = ./Resources/Application.rc
 }
@@ -50,7 +46,6 @@ INCLUDEPATH += ./Headers
 
 HEADERS = ./Headers/Application.h \
     ./Headers/Globals.h \
-    ./Headers/Webfile.h \
     ./Headers/shapefil.h \
     ./Forms/AboutDialog/AboutDialog.h \
     ./Forms/PanGetDialog/PanGetDialog.h \
@@ -93,7 +88,6 @@ SOURCES = ./Sources/ApplicationInit.cpp \
     ./Sources/setGeocodeRange.cpp \
     ./Sources/QualityFlag.cpp \
     ./Sources/writeDataLine.cpp \
-    ./Sources/Webfile.cpp \
     ./Sources/dbfopen.c \
     ./Sources/shpopen.c \
     ./Sources/safileio.c \
