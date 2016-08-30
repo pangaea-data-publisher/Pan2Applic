@@ -116,7 +116,7 @@ int MainWindow::extractExif( const QString &s_ExifTool, const QStringList &sl_Fi
                 if ( ( n = readFile( tempFile, sl_Input, _SYSTEM_ ) ) < 1 )
                 {
                     tout << fiIn.fileName() << "\t";
-                    tout << "not exif data found" << endl;
+                    tout << "no exif data found" << endl;
                 }
                 else
                 {
