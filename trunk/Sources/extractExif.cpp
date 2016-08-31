@@ -210,7 +210,7 @@ QString MainWindow::findExifTool()
 
     if ( fi_ExifTool.exists() == false )
     {
-        QMessageBox::information( this, getApplicationName( true ), tr( "You have to install the\nprogram ExifTool (http://www.sno.phy.queensu.ca/~phil/ExifTool/)\nbefore using this function." ) );
+        QMessageBox::information( this, getApplicationName( true ), tr( "You have to install the\nprogram ExifTool (http://www.sno.phy.queensu.ca/~phil/exiftool/)\nbefore using this function." ) );
 
         return( "ExifTool not found" );
     }
@@ -221,7 +221,7 @@ QString MainWindow::findExifTool()
 
     if ( fi_ExifTool.exists() == false )
     {
-        QMessageBox::information( this, getApplicationName( true ), tr( "You have to install the\nprogram ExifTool (http://www.sno.phy.queensu.ca/~phil/ExifTool/)\nbefore using this function." ) );
+        QMessageBox::information( this, getApplicationName( true ), tr( "You have to install the\nprogram ExifTool (http://www.sno.phy.queensu.ca/~phil/exiftool/)\nbefore using this function." ) );
 
         return( "ExifTool not found" );
     }
@@ -232,7 +232,7 @@ QString MainWindow::findExifTool()
 
     if ( fi_ExifTool.exists() == false )
     {
-        QMessageBox::information( this, getApplicationName( true ), tr( "You have to install the\nprogram ExifTool (http://www.sno.phy.queensu.ca/~phil/ExifTool/)\nbefore using this function." ) );
+        QMessageBox::information( this, getApplicationName( true ), tr( "You have to install the\nprogram ExifTool (http://www.sno.phy.queensu.ca/~phil/exiftool/)\nbefore using this function." ) );
 
         return( "ExifTool not found" );
     }
