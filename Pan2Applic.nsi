@@ -57,6 +57,7 @@ Section "MainSection" SEC01
   File "C:\Users\rsieger\Documents\Development\Distribution\Pan2Applic\libgcc_s_dw2-1.dll"
   File "C:\Users\rsieger\Documents\Development\Distribution\Pan2Applic\libstdc++-6.dll"
   File "C:\Users\rsieger\Documents\Development\Distribution\Pan2Applic\libwinpthread-1.dll"
+  File "C:\Users\rsieger\Documents\Development\Distribution\Pan2Applic\curl-ca-bundle.crt"
 
   SetOutPath "$INSTDIR\platforms"
   File "C:\Users\rsieger\Documents\Development\Distribution\Pan2Applic\platforms\qminimal.dll"
@@ -121,6 +122,7 @@ Section Uninstall
   Delete "$INSTDIR\License\gpl-3.0.txt"
   Delete "$INSTDIR\Example\Radiosonden_Polarstern.txt"
   Delete "$INSTDIR\Example\ARK-XXII_1_meteorology.txt"
+  Delete "$INSTDIR\curl-ca-bundle.crt"
 
   Delete "$SMPROGRAMS\PANGAEA\Pan2Applic\Uninstall.lnk"
   Delete "$SMPROGRAMS\PANGAEA\Pan2Applic\Pan2Applic.lnk"
