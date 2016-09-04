@@ -172,7 +172,7 @@ void MainWindow::doExtractExif()
     {
         existsFirstFile( gi_ActionNumber, gs_FilenameFormat, gi_Extension, gsl_FilenameList );
 
-        if ( doExifToolOptionsDialog() == QDialog::Accepted )
+        if ( ( gsl_FilenameList.count() > 0 ) && ( doExifToolOptionsDialog() == QDialog::Accepted ) )
             err = extractExif( s_ExifTool, gsl_FilenameList, gs_FilenameExifOut, gi_DateTimeFormat, gi_UtcOffset );
         else
             err = _CHOOSEABORTED_;
@@ -238,5 +238,5 @@ QString MainWindow::findExifTool()
     }
 #endif
 
-    return( fi_ExifTool.absoluteFilePath() );
+    return( tr( "\"" ) + fi_ExifTool.absoluteFilePath() + tr( "\"" ) );
 }
