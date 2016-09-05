@@ -9,7 +9,7 @@
 #include <QtWidgets>
 
 #include "Application.h"
-#include "ExifToolOptionsDialog.h"
+#include "ExiftoolOptionsDialog.h"
 
 ExifToolOptionsDialog::ExifToolOptionsDialog( QWidget *parent ) : QDialog( parent )
 {

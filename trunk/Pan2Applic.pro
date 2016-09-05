@@ -117,8 +117,4 @@ FORMS = ./Forms/AboutDialog/aboutdialog.ui \
     ./Forms/unformatedTextOptionsDialog/unformatedtextoptionsdialog.ui \
     ./Forms/SelectParametersDialog/selectparametersdialog.ui \
     ./Forms/SelectEnvironmentDialog/selectenvironmentdialog.ui \
-<<<<<<< HEAD
     ./Forms/ExiftoolOptionsDialog/exiftooloptionsdialog.ui
-=======
-    ./Forms/ExifToolOptionsDialog/exiftooloptionsdialog.ui
->>>>>>> origin/master

@@ -3,7 +3,7 @@
 
 #include <QDialog>
 
-#include "ui_ExifTooloptionsdialog.h"
+#include "ui_exiftooloptionsdialog.h"
 
 class ExifToolOptionsDialog : public QDialog, public Ui::ExifToolOptionsDialog
 {
