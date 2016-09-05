@@ -206,7 +206,7 @@ void MainWindow::doExtractExif()
 QString MainWindow::findExifTool()
 {
 #if defined(Q_OS_LINUX)
-    QFileInfo fi_ExifTool( "/usr/local/bin/exiftool" );
+    QFileInfo fi_ExifTool( "/usr/local/bin/Image-ExifTool-10.25/exiftool" );
 
     if ( fi_ExifTool.exists() == false )
     {
