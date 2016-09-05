@@ -59,7 +59,7 @@ HEADERS = ./Headers/Application.h \
     ./Forms/unformatedTextOptionsDialog/unformatedTextOptionsDialog.h \
     ./Forms/SelectParametersDialog/selectParametersDialog.h \
     ./Forms/SelectEnvironmentDialog/selectEnvironmentDialog.h \
-    ./Forms/ExifToolOptionsDialog/ExifToolOptionsDialog.h
+    ./Forms/ExiftoolOptionsDialog/ExiftoolOptionsDialog.h
 
 SOURCES = ./Sources/ApplicationInit.cpp \
     ./Sources/ApplicationMainWindow.cpp \
@@ -103,7 +103,7 @@ SOURCES = ./Sources/ApplicationInit.cpp \
     ./Forms/unformatedTextOptionsDialog/unformatedTextOptionsDialog.cpp \
     ./Forms/SelectParametersDialog/selectParametersDialog.cpp \
     ./Forms/SelectEnvironmentDialog/selectEnvironmentDialog.cpp \
-    ./Forms/ExifToolOptionsDialog/ExifToolOptionsDialog.cpp
+    ./Forms/ExiftoolOptionsDialog/ExiftoolOptionsDialog.cpp
 
 FORMS = ./Forms/AboutDialog/aboutdialog.ui \
     ./Forms/PanGetDialog/pangetdialog.ui \
@@ -117,4 +117,4 @@ FORMS = ./Forms/AboutDialog/aboutdialog.ui \
     ./Forms/unformatedTextOptionsDialog/unformatedtextoptionsdialog.ui \
     ./Forms/SelectParametersDialog/selectparametersdialog.ui \
     ./Forms/SelectEnvironmentDialog/selectenvironmentdialog.ui \
-    ./Forms/ExifToolOptionsDialog/ExifTooloptionsdialog.ui
+    ./Forms/ExiftoolOptionsDialog/exiftooloptionsdialog.ui
