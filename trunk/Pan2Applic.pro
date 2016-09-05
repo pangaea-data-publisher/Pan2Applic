@@ -117,4 +117,4 @@ FORMS = ./Forms/AboutDialog/aboutdialog.ui \
     ./Forms/unformatedTextOptionsDialog/unformatedtextoptionsdialog.ui \
     ./Forms/SelectParametersDialog/selectparametersdialog.ui \
     ./Forms/SelectEnvironmentDialog/selectenvironmentdialog.ui \
-    ./Forms/ExifToolOptionsDialog/ExifTooloptionsdialog.ui
+    ./Forms/ExifToolOptionsDialog/exiftooloptionsdialog.ui
