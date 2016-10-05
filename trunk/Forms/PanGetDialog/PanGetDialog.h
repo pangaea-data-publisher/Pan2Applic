@@ -23,6 +23,7 @@ private slots:
     void browseIDListFileDialog();
     void browseDownloadDirectoryDialog();
     void displayHelp();
+    void clear();
 
 protected:
     void dragEnterEvent( QDragEnterEvent *event );

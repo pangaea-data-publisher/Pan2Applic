@@ -4,6 +4,7 @@
 
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QMainWindow>
+#include <QtXml/QtXml>
 
 #include <QTextEdit>
 #include <QTextCodec>
@@ -49,6 +50,7 @@ class QTextEdit;
 class QStringListModel;
 class QListView;
 class QTableWidget;
+class QXml;
 
 class MainWindow : public QMainWindow
 {
@@ -107,8 +109,8 @@ public:
     bool        gb_displayDescription;
 
     int         gi_DateTimeFormat;                  //!< Date/Time Format.
-    int         gi_UtcOffset;                       //! Offset to UTC
-    bool        gb_CreateKmlFile;                   //! Create KML File
+    int         gi_UtcOffset;                       //!< Offset to UTC
+    bool        gb_CreateKmlFile;                   //!< Create KML File
 
     bool        gb_addLineNo;                       //!< fuege Line number an Event label an.
     bool        gb_usePANGAEAQualityFlags;          //!< Wenn true werden die PANGAEA Quality flags ausgegeben.
@@ -123,7 +125,7 @@ public:
 
     int         gi_IconColor;                       //!< Farbe der Marker bei KML
     int         gi_IconSize;                        //!< Groesse der Marker bei KML
-    int         gi_IconSymbol;                      //!> Style der Marker bei KML
+    int         gi_IconSymbol;                      //!< Style der Marker bei KML
 
     int         gi_TracklineWidth;                  //!< Breite der Trackline bei KML
     int         gi_TracklineColor;                  //!< Farbe der Trackline bei KML
@@ -141,8 +143,13 @@ public:
     bool        gb_showMethod;                      //!< Im Parameter-Auswahldialog wird die Method mit angezeigt.
     bool        gb_showComment;                     //!< Im Parameter-Auswahldialog wird der Parameter-Comment mit angezeigt.
 
+    // PanGet
+    QString     gs_Query;                           //!< PanGet, PANGAEA Query URL
     QString     gs_IDListFile;                      //!< PanGet, Name der Datei, die die ID-Liste enthaelt
     QString     gs_DownloadDirectory;               //!< PanGet, Download-Verzeichnis
+    bool        gb_DownloadData;                    //!< PanGet, hole Dataset als Text
+    bool        gb_DownloadCitation;                //!< PanGet, hole Citation als Text
+    bool        gb_DownloadMetadata;                //!< PanGet, hole nur die Metadaten als XML
 
 // ***************************************************************************************************************************
 
@@ -150,7 +157,8 @@ public:
 
     int         analyzeDataset( const QString &FilenameIn, const int Codec, const bool showShortName, const bool showMethod, const bool showComment, QStringList &MetadataList, QStringList &ParameterList, int EnvArray[] );
 
-    void        getDatasets( const QString &IDListFile, const QString &DownloadDirectory, const bool DownloadData, const bool DownloadCitation, const bool DownloadMetadata, const int CodecDownload, const int EOL, const int Extension );
+    void        getDatasets( const QString &Query, const QString &IDListFile, const QString &DownloadDirectory, const bool DownloadData, const bool DownloadCitation, const bool DownloadMetadata, const int CodecDownload, const int EOL, const int Extension );
+    int         checkFile( const QString &Filename, const bool isbinary );
 
     int         createGoogleEarthImportFile( QStringList &MetadataList, const QString &FilenameOut, const int Codec, const bool displayEventLabel, const bool displayDescription, const int IconSize, const int IconColor, const int IconStyle, const int TracklineWidth, const int TracklineColor, const int NumOfFiles );
     int         createOceanDataViewFile( QStringList &MetadataList, QStringList &ParameterList, const QString &FilenameOut, const int Codec, const int Env, const int GearTypeOceanDataView, const bool showShortName, const bool showMethod, const bool showComment, const bool usePANGAEAQualityFlags, const bool setGeocode, const bool addLineNo, const float GEOCODE_min, const float GEOCODE_max, const QString &s_GEOCODE_min, const QString &s_GEOCODE_max, const bool setGearID, const int GearID, const int NumOfFiles );

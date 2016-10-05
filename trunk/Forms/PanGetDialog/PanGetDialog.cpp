@@ -20,13 +20,18 @@ PanGetDialog::PanGetDialog( QWidget *parent ) : QDialog( parent )
 
     setupUi( this );
 
-    connect( BuildScriptButton, SIGNAL( clicked() ), this, SLOT( accept() ) );
-    connect( QuitButton, SIGNAL( clicked() ), this, SLOT( reject() ) );
-    connect( HelpButton, SIGNAL( clicked() ), this, SLOT( displayHelp() ) );
-    connect( browseIDListFileButton, SIGNAL( clicked() ), this, SLOT( browseIDListFileDialog() ) );
-    connect( browseDownloadDirectoryButton, SIGNAL( clicked() ), this, SLOT( browseDownloadDirectoryDialog() ) );
+    connect( GetDatasets_pushButton, SIGNAL( clicked() ), this, SLOT( accept() ) );
+    connect( Cancel_pushButton, SIGNAL( clicked() ), this, SLOT( reject() ) );
+    connect( Help_pushButton, SIGNAL( clicked() ), this, SLOT( displayHelp() ) );
+    connect( browseIDListFile_pushButton, SIGNAL( clicked() ), this, SLOT( browseIDListFileDialog() ) );
+    connect( browseDownloadDirectory_pushButton, SIGNAL( clicked() ), this, SLOT( browseDownloadDirectoryDialog() ) );
+    connect( QueryLineEdit, SIGNAL( textChanged( QString ) ), this, SLOT( enableBuildButton() ) );
     connect( IDListFileLineEdit, SIGNAL( textChanged( QString ) ), this, SLOT( enableBuildButton() ) );
     connect( DownloadDirectoryLineEdit, SIGNAL( textChanged( QString ) ), this, SLOT( enableBuildButton() ) );
+    connect( Clear_pushButton, SIGNAL( clicked() ), this, SLOT( clear() ) );
+    connect( DownloadData_checkBox, SIGNAL( toggled( bool ) ), this, SLOT( enableBuildButton() ) );
+    connect( DownloadCitation_checkBox, SIGNAL( toggled( bool ) ), this, SLOT( enableBuildButton() ) );
+    connect( DownloadMetadata_checkBox, SIGNAL( toggled( bool ) ), this, SLOT( enableBuildButton() ) );
 
 // **********************************************************************************************
 
@@ -35,7 +40,7 @@ PanGetDialog::PanGetDialog( QWidget *parent ) : QDialog( parent )
 
     enableBuildButton();
 
-    BuildScriptButton->setFocus();
+    GetDatasets_pushButton->setFocus();
 }
 
 // **********************************************************************************************
@@ -67,7 +72,10 @@ void PanGetDialog::enableBuildButton()
 
     QFileInfo fi( IDListFileLineEdit->text() );
 
-    if ( ( fi.isFile() == false ) || ( fi.exists() == false ) )
+    if ( ( ( fi.isFile() == false ) || ( fi.exists() == false ) ) && ( QueryLineEdit->text().toLower().startsWith( "https://pangaea.de/?q" ) == false ) )
+        b_OK = false;
+
+    if ( ( DownloadData_checkBox->isChecked() == false ) && ( DownloadCitation_checkBox->isChecked() == false ) && ( DownloadMetadata_checkBox->isChecked() == false ) )
         b_OK = false;
 
     QFileInfo di( DownloadDirectoryLineEdit->text() );
@@ -77,13 +85,13 @@ void PanGetDialog::enableBuildButton()
 
     if ( b_OK == true )
     {
-        BuildScriptButton->setEnabled( true );
-        BuildScriptButton->setDefault( true );
+        GetDatasets_pushButton->setEnabled( true );
+        GetDatasets_pushButton->setDefault( true );
     }
     else
     {
-        BuildScriptButton->setEnabled( false );
-        QuitButton->setDefault( true );
+        GetDatasets_pushButton->setEnabled( false );
+        Cancel_pushButton->setDefault( true );
     }
 }
 
@@ -173,6 +181,19 @@ void PanGetDialog::browseDownloadDirectoryDialog()
 // **********************************************************************************************
 // **********************************************************************************************
 
+void PanGetDialog::clear()
+{
+    QueryLineEdit->clear();
+    IDListFileLineEdit->clear();
+    DownloadDirectoryLineEdit->clear();
+
+    enableBuildButton();
+}
+
+// **********************************************************************************************
+// **********************************************************************************************
+// **********************************************************************************************
+
 void PanGetDialog::dragEnterEvent( QDragEnterEvent *event )
 {
     if ( event->mimeData()->hasFormat( "text/uri-list" ) )
@@ -199,7 +220,7 @@ void PanGetDialog::dropEvent( QDropEvent *event )
 
     if ( fi.isFile() == true )
     {
-        if ( ( fi.suffix().toLower() == "txt" ) || ( fi.suffix().toLower() == "csv" ) || ( fi.suffix().toLower() == "html" )  || ( fi.suffix().toLower() == "htm" ) )
+        if ( ( fi.suffix().toLower() == "txt" ) || ( fi.suffix().toLower() == "csv" ) )
             IDListFileLineEdit->setText( QDir::toNativeSeparators( s_fileName ) );
     }
     else
