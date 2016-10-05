@@ -181,7 +181,7 @@ void MainWindow::getDatasets( const QString &s_Query, const QString &s_IDListFil
 // **********************************************************************************************
 // Download
 
-    initFileProgress( i_totalNumOfDownloads, "", tr( "Downloading datasets..." ) );
+    initFileProgress( i_totalNumOfDownloads, "", tr( "Downloading data sets..." ) );
 
     i = 0;
 
