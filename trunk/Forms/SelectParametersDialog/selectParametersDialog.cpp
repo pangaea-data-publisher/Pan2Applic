@@ -262,10 +262,6 @@ void SelectParametersDialog::setItemBackground()
 
 void SelectParametersDialog::enableOKButton()
 {
-    bool    b_Event = false;
-
-// *****************************************************************************
-
     setItemBackground();
 
     SelectMetadata_pushButton->setEnabled( false );
@@ -273,15 +269,6 @@ void SelectParametersDialog::enableOKButton()
     SelectGeocode_pushButton->setEnabled( false );
     SelectEventGeocodeData_pushButton->setEnabled( false );
     DeselectAll_pushButton->setEnabled( false );
-
-    for ( int i=0; i<lb1->count(); i++ )
-    {
-        if ( lb1->item( i )->text().startsWith( "1: Event") == true )
-        {
-            b_Event = true;
-            break;
-        }
-    }
 
     for ( int i=0; i<lb1->count(); i++ )
     {
