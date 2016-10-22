@@ -246,64 +246,101 @@ int MainWindow::doGetDatasetsDialog()
 
     PanGetDialog dialog( this );
 
+    // **********************************************************************************************
+    // set Codec
+
+        dialog.CodecDownload_ComboBox->setCurrentIndex( gi_CodecDownload );
+
+    // **********************************************************************************************
+    // set PANGAEA Query
+
+        if ( gs_Query.toLower().startsWith( "https://pangaea.de/?q" ) == true )
+            dialog.QueryLineEdit->setText( gs_Query );
+
+    // **********************************************************************************************
+    // set ID File
+
+        if ( gs_IDListFile.isEmpty() == false )
+        {
+            QFileInfo fi( gs_IDListFile );
+
+            if ( ( fi.isFile() == true ) && ( fi.exists() == true ) )
+                dialog.IDListFileLineEdit->setText( QDir::toNativeSeparators( gs_IDListFile ) );
+        }
+
+    // **********************************************************************************************
+    // set Download directory
+
+        if ( gs_DownloadDirectory.isEmpty() == false )
+        {
+            QFileInfo di( gs_DownloadDirectory );
+
+            if ( ( di.isDir() == true ) && ( di.exists() == true ) )
+            {
+                if ( gs_DownloadDirectory.endsWith( QDir::toNativeSeparators( "/" ) ) == true )
+                    gs_DownloadDirectory = gs_DownloadDirectory.remove( gs_DownloadDirectory.length()-1, 1 );
+
+                dialog.DownloadDirectoryLineEdit->setText( QDir::toNativeSeparators( gs_DownloadDirectory ) );
+            }
+        }
+
+    // **********************************************************************************************
+
+        switch ( gi_Extension )
+        {
+        case _CSV_:
+            dialog.CSV_radioButton->setChecked( true );
+            break;
+        default:
+            dialog.TXT_radioButton->setChecked( true );
+            break;
+        }
+
+    // **********************************************************************************************
+
+        dialog.DownloadData_checkBox->setChecked( gb_DownloadData );
+        dialog.DownloadCitation_checkBox->setChecked( gb_DownloadCitation );
+        dialog.DownloadMetadata_checkBox->setChecked( gb_DownloadMetadata );
+
+    // **********************************************************************************************
+
+        dialog.setWindowTitle( getApplicationName( true ) + tr( " - download PANGAEA datasets" ) );
+        dialog.setSizeGripEnabled( true );
+
+        dialog.move( posDialog );
+        dialog.resize( dialog.sizeHint() );
+        dialog.show();
+
 // **********************************************************************************************
 
-    QFileInfo fi( gs_IDListFile );
+        switch ( dialog.exec() )
+        {
+        case QDialog::Accepted:
+            gi_CodecDownload     = dialog.CodecDownload_ComboBox->currentIndex();
+            gs_Query             = dialog.QueryLineEdit->text();
+            gs_IDListFile        = dialog.IDListFileLineEdit->text();
+            gs_DownloadDirectory = dialog.DownloadDirectoryLineEdit->text();
 
-    if ( ( fi.isFile() == true ) && ( fi.exists() == true ) && ( ( fi.suffix().toLower() == "txt" ) || ( fi.suffix().toLower() == "csv" ) || ( fi.suffix().toLower() == "html" )  || ( fi.suffix().toLower() == "htm" ) ) )
-        dialog.IDListFileLineEdit->setText( QDir::toNativeSeparators( gs_IDListFile ) );
-    else
-        dialog.IDListFileLineEdit->clear();
+            gi_Extension         = _TXT_;
 
-// **********************************************************************************************
+            if ( dialog.CSV_radioButton->isChecked() )
+                gi_Extension = _CSV_;
 
-    QFileInfo di( gs_DownloadDirectory );
+            gb_DownloadData     = dialog.DownloadData_checkBox->isChecked();
+            gb_DownloadCitation = dialog.DownloadCitation_checkBox->isChecked();
+            gb_DownloadMetadata = dialog.DownloadMetadata_checkBox->isChecked();
 
-    if ( ( di.isDir() == true ) && ( di.exists() == true ) )
-    {
-        if ( gs_DownloadDirectory.endsWith( QDir::toNativeSeparators( "/" ) ) == true )
-            gs_DownloadDirectory = gs_DownloadDirectory.remove( gs_DownloadDirectory.length()-1, 1 );
+            i_DialogResult      = QDialog::Accepted;
+            break;
 
-        dialog.DownloadDirectoryLineEdit->setText( QDir::toNativeSeparators( gs_DownloadDirectory ) );
+        case QDialog::Rejected:
+            break;
+
+        default:
+            break;
+        }
+
+        posDialog = dialog.pos();
+
+        return( i_DialogResult );
     }
-    else
-    {
-        dialog.DownloadDirectoryLineEdit->clear();
-    }
-
-// **********************************************************************************************
-
-    dialog.CodecDownload_ComboBox->setCurrentIndex( gi_CodecDownload );
-
-// **********************************************************************************************
-
-    dialog.setWindowTitle( getApplicationName( true ) + tr( " - download PANGAEA datasets" ) );
-    dialog.setSizeGripEnabled ( true );
-
-    dialog.move( posDialog );
-    dialog.resize( dialog.sizeHint() );
-    dialog.show();
-
-// **********************************************************************************************
-
-    switch ( dialog.exec() )
-    {
-    case QDialog::Accepted:
-        gi_CodecDownload     = dialog.CodecDownload_ComboBox->currentIndex();
-        gs_IDListFile        = dialog.IDListFileLineEdit->text();
-        gs_DownloadDirectory = dialog.DownloadDirectoryLineEdit->text();
-
-        i_DialogResult      = QDialog::Accepted;
-        break;
-
-    case QDialog::Rejected:
-        break;
-
-    default:
-        break;
-    }
-
-    posDialog = dialog.pos();
-
-    return( i_DialogResult );
-}
