@@ -98,7 +98,7 @@ public:
     QString     gs_FilenameOceanDataView;        //!< Pfad und Name der Ocean Data View Importdatei.
     QString     gs_FilenameShapefile;            //!< Pfad und Name der Shapefile-Datei.
     QString     gs_FilenameText;                 //!< Pfad und Name der Outputtextdatei.
-    QString     gs_FilenameExifOut;                 //!< Name der Datei fuer Exif Output Datei
+    QString     gs_FilenameExifOut;              //!< Name der Datei fuer Exif Output Datei.
 
     bool        gb_CuratorMode;                  //!< Curator Modus schaltet einen Menüeintrag frei.
 
