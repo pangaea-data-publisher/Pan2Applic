@@ -103,7 +103,7 @@ int MainWindow::extractExif( const QString &s_ExifTool, const QStringList &sl_Fi
         QTextStream tout( &fout );
 
         tout << "Event label" << "\t" << "Date/Time (UTC)" << "\t" << "Date/Time (local)" << "\t";
-        tout << "Latitude" << "\t" << "Longitude" << "\t" << "File name" << endl;
+        tout << "Latitude" << "\t" << "Longitude" << "\t" << "Altitude [m]" << "\t" << "File name" << endl;
 
         for ( int i=0; i<sl_FilenameList.count(); i++ )
         {
@@ -126,6 +126,7 @@ int MainWindow::extractExif( const QString &s_ExifTool, const QStringList &sl_Fi
                     QString s_DateTime   = s_Date + "T" + s_Time;
                     double  d_Latitude   = sl_Input.at( 0 ).section( "\t", 2, 2 ).toDouble();
                     double  d_Longitude  = sl_Input.at( 0 ).section( "\t", 3, 3 ).toDouble();
+                    double  d_Altitude   = sl_Input.at( 0 ).section( "\t", 4, 4 ).toDouble();
 
                     QDateTime dtUtc   = QDateTime::fromString( s_DateTime, "yyyy-MM-ddThh:mm:ss" );
                     QDateTime dtLocal = QDateTime::fromString( s_DateTime, "yyyy-MM-ddThh:mm:ss" ).addSecs( i_UtcOffset );
@@ -135,6 +136,7 @@ int MainWindow::extractExif( const QString &s_ExifTool, const QStringList &sl_Fi
                     tout << dtLocal.toString( s_DateTimeFormat ) << "\t";
                     tout << QString( "%1" ).arg( d_Latitude, 0, 'f', 6 ) << "\t";
                     tout << QString( "%1" ).arg( d_Longitude, 0, 'f', 6 ) << "\t";
+                    tout << QString( "%1" ).arg( d_Altitude, 0, 'f', 1 ) << "\t";
                     tout << sl_FilenameList.at( i ) << endl;
                 }
 

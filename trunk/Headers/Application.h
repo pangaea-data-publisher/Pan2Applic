@@ -100,13 +100,13 @@ public:
     QString     gs_FilenameText;                 //!< Pfad und Name der Outputtextdatei.
     QString     gs_FilenameExifOut;              //!< Name der Datei fuer Exif Output Datei.
 
-    bool        gb_CuratorMode;                  //!< Curator Modus schaltet einen Menüeintrag frei.
+    bool        gb_CuratorMode;                     //!< Curator Modus schaltet einen Menüeintrag frei.
 
-    bool        gb_startGoogleEarth;             //!< true wenn Google Earth automatisch gestart werden soll.
-    bool        gb_startOceanDataView;           //!< true wenn ODV automatisch gestart werden soll.
+    bool        gb_startGoogleEarth;                //!< true wenn Google Earth automatisch gestart werden soll.
+    bool        gb_startOceanDataView;              //!< true wenn ODV automatisch gestart werden soll.
 
-    bool        gb_displayEventLabel;
-    bool        gb_displayDescription;
+    bool        gb_displayEventLabel;               //!< true wenn Event label angzeigt werden soll
+    bool        gb_displayDescription;              //!< true wenn Description angezeigt werden soll
 
     int         gi_DateTimeFormat;                  //!< Date/Time Format.
     int         gi_UtcOffset;                       //!< Offset to UTC
