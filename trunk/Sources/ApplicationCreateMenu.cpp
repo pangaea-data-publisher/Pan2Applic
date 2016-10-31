@@ -77,7 +77,7 @@ void MainWindow::createActions()
     createFormatedTextFileAction->setShortcut(tr("Ctrl+X"));
     connect(createFormatedTextFileAction, SIGNAL(triggered()), this, SLOT(doCreateFormatedTextFile()));
 
-    extractExifAction = new QAction(tr("Extract exif record of images..."), this);
+    extractExifAction = new QAction(tr("Extract exif record from images..."), this);
     extractExifAction->setShortcut(tr("Ctrl+E"));
     connect(extractExifAction, SIGNAL(triggered()), this, SLOT(doExtractExif()));
 
