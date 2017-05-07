@@ -293,7 +293,7 @@ int MainWindow::openKMLFolder( QFile& fkml, const QString &s_Campaign )
     if ( ( s_Campaign != "xxx" ) && ( s_Campaign != "unknown campaign" ) )
     {
         tkml << "    <name>Campaign: " << s_Campaign.section( " (", 0, 0 ) << "</name>\n";
-        tkml << "    <description><![CDATA[<a href=\"https://pangaea.de/search?q=" << s_Campaign.section( " (", 0, 0 ) << "\">search all Datasets</a>]]></description>\n";
+        tkml << "    <description><![CDATA[<a href=\"https://pangaea.de/search?q=" << s_Campaign.section( " (", 0, 0 ) << "\">all datasets related to campaign " << s_Campaign.section( " (", 0, 0 ) << "</a>]]></description>\n";
     }
     else
     {
@@ -487,6 +487,8 @@ int MainWindow::writeKMLEntry( QFile& fkml, const QStringList &sl_MetadataList, 
     QString s_AreaName      = sl_MetadataList.at( i ).section( "\t", _AREANAMEPOS, _AREANAMEPOS );             // Area
     QString s_DOI           = sl_MetadataList.at( i ).section( "\t", _DOIPOS, _DOIPOS );                       // DOI
     QString s_Citation      = sl_MetadataList.at( i ).section( "\t", _CITATIONPOS, _CITATIONPOS );             // Citation
+    QString s_URL           = "";
+    QString s_TitleURL      = "";
 
 // **********************************************************************************************
 
@@ -583,10 +585,6 @@ int MainWindow::writeKMLEntry( QFile& fkml, const QStringList &sl_MetadataList, 
                 tkml << "Elevation: " << s_Elevation << " m";
             else
                 tkml << "Elevation: unknown";
-
-            tkml << "<br /><![CDATA[<a href=\"";
-            tkml << "https://pangaea.de/search?q=" << s_EventLabel.section( " (line ", 0, 0 ); // Event
-            tkml << "\">search data</a>]]><br />";
         }
 
         for ( int j=1; j<=_MAX_NUM_OF_URLS; ++j )
@@ -595,8 +593,30 @@ int MainWindow::writeKMLEntry( QFile& fkml, const QStringList &sl_MetadataList, 
             if ( URL[j].position >= 0 )
             {
                 if ( sl_MetadataList.at( i ).section( "\t", _CITATIONPOS+j, _CITATIONPOS+j ).isEmpty() == false )
-                    tkml << "<![CDATA[<a href=\"" << sl_MetadataList.at( i ).section( "\t", _CITATIONPOS+j, _CITATIONPOS+j ) << "\">" << URL[j].TitleURL << "</a>]]><br />";
+                {
+                    s_TitleURL = URL[j].TitleURL;
+                    s_URL      = sl_MetadataList.at( i ).section( "\t", _CITATIONPOS+j, _CITATIONPOS+j );
+
+                    s_URL.replace( "doi:", "https://doi.pangaea.de/" );
+                    s_URL.replace( "hdl:", "https://doi.pangaea.de/" );
+
+                    if ( ( s_TitleURL.startsWith( "url", Qt::CaseInsensitive ) ) || ( s_TitleURL.startsWith( "uri", Qt::CaseInsensitive ) ) )
+                        s_TitleURL = s_TitleURL.mid( 4 );
+
+                    if ( s_TitleURL.endsWith( "of core", Qt::CaseInsensitive ) == true )
+                        s_TitleURL.append( " " +  s_EventLabel.section( " (line ", 0, 0 ) );
+
+                    tkml << "<br /><![CDATA[<a href=\"" << s_URL << "\">" << s_TitleURL << "</a>]]>";
+                }
             }
+        }
+
+        if ( ( s_Citation.isEmpty() == false ) && ( s_Citation == "xxx" ) )
+        {
+            tkml << "<br /><![CDATA[<a href=\"";
+            tkml << "https://pangaea.de/search?q=" << s_EventLabel.section( " (line ", 0, 0 ); // Event
+//          tkml << "\">all data related to</a>]]>";
+            tkml << "\">all data related to core " << s_EventLabel.section( " (line ", 0, 0 ) << "</a>]]>";
         }
 
         tkml << "</description>";
