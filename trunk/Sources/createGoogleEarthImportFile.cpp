@@ -219,14 +219,19 @@ void MainWindow::clearURL( structURL URL[] )
 // **********************************************************************************************
 // **********************************************************************************************
 
-int MainWindow::openKMLFile( QFile& fkml )
+int MainWindow::openKMLFile( QFile &fkml )
 {
+    QFileInfo   fi( fkml );
     QTextStream tkml( &fkml );
+
+// **********************************************************************************************
+
     tkml.setCodec("UTF-8");
 
     tkml << "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" << endl;
     tkml << "<kml xmlns=\"http://earth.google.com/kml/2.1\">" << endl;
     tkml << "<Document>" << endl;
+    tkml << "  <name>" << fi.baseName() << "</name>" << endl;
     tkml << "  <ScreenOverlay>" << endl;
     tkml << "    <name>Pan2Applic logo</name>" << endl;
     tkml << "    <Icon><href>http://epic.awi.de/40953/121/Pan2Applic_logo.png</href></Icon>" << endl;
@@ -589,7 +594,6 @@ int MainWindow::writeKMLEntry( QFile& fkml, const QStringList &sl_MetadataList, 
 
         for ( int j=1; j<=_MAX_NUM_OF_URLS; ++j )
         {
-
             if ( URL[j].position >= 0 )
             {
                 if ( sl_MetadataList.at( i ).section( "\t", _CITATIONPOS+j, _CITATIONPOS+j ).isEmpty() == false )
@@ -603,20 +607,14 @@ int MainWindow::writeKMLEntry( QFile& fkml, const QStringList &sl_MetadataList, 
                     if ( ( s_TitleURL.startsWith( "url", Qt::CaseInsensitive ) ) || ( s_TitleURL.startsWith( "uri", Qt::CaseInsensitive ) ) )
                         s_TitleURL = s_TitleURL.mid( 4 );
 
-                    if ( s_TitleURL.endsWith( "of core", Qt::CaseInsensitive ) == true )
-                        s_TitleURL.append( " " +  s_EventLabel.section( " (line ", 0, 0 ) );
+                    if ( s_TitleURL.startsWith( "persistent identifier", Qt::CaseInsensitive ) == true )
+                        s_TitleURL = s_TitleURL.mid( 22 );
+
+                    s_TitleURL.replace( "$E", s_EventLabel );
 
                     tkml << "<br /><![CDATA[<a href=\"" << s_URL << "\">" << s_TitleURL << "</a>]]>";
                 }
             }
-        }
-
-        if ( ( s_Citation.isEmpty() == false ) && ( s_Citation == "xxx" ) )
-        {
-            tkml << "<br /><![CDATA[<a href=\"";
-            tkml << "https://pangaea.de/search?q=" << s_EventLabel.section( " (line ", 0, 0 ); // Event
-//          tkml << "\">all data related to</a>]]>";
-            tkml << "\">all data related to core " << s_EventLabel.section( " (line ", 0, 0 ) << "</a>]]>";
         }
 
         tkml << "</description>";

@@ -240,7 +240,7 @@ public:
     int         getDataMetadata( const int Codec, const int OutputFormat, const QString &MetadataString, QStringList &DataMetadataList, structURL URL[], const int NumOfFiles );
     int         getDataMetadataPosition( const bool containsPANGAEAHeader, const QString &InputStr, int& DatePos, int& TimePos, int& i_DateTimePos, int& ElevationPos, int& EventLabelPos, int& CampaignLabelPos, int& AreaNamePos, int& GearNamePos, int& LatitudePos, int& LongitudePos, QStringList &ParameterList );
     bool        getDataMetadataPosition( const QString &MetadataString, int& DatePos, int& TimePos, int& DateTimePos, int& ElevationPos, int& EventLabelPos, int& CampaignLabelPos, int& AreaNamePos, int& GearNamePos, int& LatitudePos, int& LongitudePos );
-    bool        addToMetadataList( const QString &Metadata, QString &LatLon, QStringList &MetadataList );
+    bool        addToMetadataList( const QString &Metadata, QString &EventLabel, QString &LatLon, QStringList &MetadataList );
     bool        parseData( const int line, const QString &InputStr, const QString &MetadataString, const int AreaNamePos, const int CampaignLabelPos, const int EventLabelPos, const int GearPos, const int DatePos, const int TimePos, const int DateTimePos, const int LatitudePos, const int LongitudePos, const int ElevationPos, structURL URL[], QString &Metadata );
     void        clearURL( structURL URL[] );
 

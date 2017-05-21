@@ -131,6 +131,8 @@ int MainWindow::getDataMetadata( const int i_CodecInput, const int i_OutputForma
     QStringList     sl_Input;
 
     QString         s_Metadata          = "";
+    QString         s_EventLabel        = "";
+    QString         s_Header            = "";
     QString         s_LatLon            = "";
 
     bool            b_containsPosition  = false;
@@ -173,12 +175,18 @@ int MainWindow::getDataMetadata( const int i_CodecInput, const int i_OutputForma
 
     for ( int i=0; i<NumOfSections( sl_Input.at( i_line ) ); ++i )
     {
-        if ( ( sl_Input.at( i_line ).section( "\t", i, i ).startsWith( "url", Qt::CaseInsensitive ) == true ) || ( sl_Input.at( i_line ).section( "\t", i, i ).startsWith( "uri", Qt::CaseInsensitive ) == true ) )
+        s_Header = sl_Input.at( i_line ).section( "\t", i, i );
+
+        if ( ( s_Header.startsWith( "url", Qt::CaseInsensitive ) == true ) || ( s_Header.startsWith( "uri", Qt::CaseInsensitive ) == true ) || ( s_Header.startsWith( "persistent identifier", Qt::CaseInsensitive ) == true ) )
         {
             if ( ++j <= _MAX_NUM_OF_URLS )
             {
                 URL[j].position = i;
-                URL[j].TitleURL = sl_Input.at( i_line ).section( "\t", i, i ).section( "@", 0, 0 );
+
+                if ( s_Header.contains( "@" ) == true )
+                    URL[j].TitleURL = s_Header.section( "@", 1, 1 );
+                else
+                    URL[j].TitleURL = s_Header;
             }
         }
     }
@@ -189,7 +197,7 @@ int MainWindow::getDataMetadata( const int i_CodecInput, const int i_OutputForma
 
     ++i_line;
     parseData( i_line, sl_Input.at( i_line ), s_MetadataIn, i_AreaNamePos, i_CampaignLabelPos, i_EventLabelPos, i_GearNamePos, i_DatePos, i_TimePos, i_DateTimePos, i_LatitudePos, i_LongitudePos, i_ElevationPos, URL, s_Metadata );
-    addToMetadataList( s_Metadata, s_LatLon, sl_DataMetadataList );
+    addToMetadataList( s_Metadata, s_EventLabel, s_LatLon, sl_DataMetadataList );
 
     stopProgress = incProgress( i_NumOfFiles, i_line );
 
@@ -198,7 +206,7 @@ int MainWindow::getDataMetadata( const int i_CodecInput, const int i_OutputForma
         while ( ( ++i_line < n ) && ( stopProgress != _APPBREAK_ ) )
         {
             parseData( i_line, sl_Input.at( i_line ), s_MetadataIn, i_AreaNamePos, i_CampaignLabelPos, i_EventLabelPos, i_GearNamePos, i_DatePos, i_TimePos, i_DateTimePos, i_LatitudePos, i_LongitudePos, i_ElevationPos, URL, s_Metadata );
-            addToMetadataList( s_Metadata, s_LatLon, sl_DataMetadataList );
+            addToMetadataList( s_Metadata, s_EventLabel, s_LatLon, sl_DataMetadataList );
 
             stopProgress = incProgress( i_NumOfFiles, i_line );
         }
@@ -370,12 +378,17 @@ bool MainWindow::parseData( const int i_line, const QString &InputStr, const QSt
 // **********************************************************************************************
 // **********************************************************************************************
 
-bool MainWindow::addToMetadataList( const QString &s_Metadata, QString &s_LatLon, QStringList &sl_MetadataList )
+bool MainWindow::addToMetadataList( const QString &s_Metadata, QString &s_EventLabel, QString &s_LatLon, QStringList &sl_MetadataList )
 {
-    if ( s_LatLon != s_Metadata.section( "\t", _LATITUDEPOS, _LATITUDEPOS) + "," + s_Metadata.section( "\t", _LONGITUDEPOS, _LONGITUDEPOS) )
+    QString s_LatLongNew    = s_Metadata.section( "\t", _LATITUDEPOS, _LATITUDEPOS ) + "," + s_Metadata.section( "\t", _LONGITUDEPOS, _LONGITUDEPOS );
+    QString s_EventLabelNew = s_Metadata.section( "\t", _EVENTLABELPOS, _EVENTLABELPOS );
+
+    if ( ( s_EventLabel != s_EventLabelNew ) || ( s_LatLon != s_LatLongNew ) )
     {
         sl_MetadataList.append( s_Metadata );
-        s_LatLon = s_Metadata.section( "\t", _LATITUDEPOS, _LATITUDEPOS) + "," + s_Metadata.section( "\t", _LONGITUDEPOS, _LONGITUDEPOS);
+
+        s_EventLabel = s_EventLabelNew;
+        s_LatLon     = s_LatLongNew;
 
         return( true );
     }
