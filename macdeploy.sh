@@ -7,10 +7,10 @@ echo - macdeployqt
 cd ~/Development/GitHub/Pan2Applic
 
 rm -R '../../Distribution/Pan2Applic/Pan2Applic.app'
-cp -R './build-Pan2Applic-Desktop_Qt_5_9_0_clang_64bit-Release/Pan2Applic.app' '../../Distribution/Pan2Applic/Pan2Applic.app'
+cp -R './build-Pan2Applic-Desktop_Qt_5_9_1_clang_64bit-Release/Pan2Applic.app' '../../Distribution/Pan2Applic/Pan2Applic.app'
 cp './trunk/Resources/Info.plist' '../../Distribution/Pan2Applic/Pan2Applic.app/Contents/Info.plist'
 
-/Developer/Qt/5.9/clang_64/bin/macdeployqt '../../Distribution/Pan2Applic/Pan2Applic.app'
+/Developer/Qt/5.9.1/clang_64/bin/macdeployqt '../../Distribution/Pan2Applic/Pan2Applic.app'
 
 echo - code signing
 
@@ -18,6 +18,7 @@ codesign --force --verify --sign 'Developer ID Application: Alfred-Wegener-Insti
 codesign --force --verify --sign 'Developer ID Application: Alfred-Wegener-Institut fur Polar- und Meeresforschung (AWI)' '../../Distribution/Pan2Applic/Pan2Applic.app/Contents/Frameworks/QtGui.framework'
 codesign --force --verify --sign 'Developer ID Application: Alfred-Wegener-Institut fur Polar- und Meeresforschung (AWI)' '../../Distribution/Pan2Applic/Pan2Applic.app/Contents/Frameworks/QtNetwork.framework'
 codesign --force --verify --sign 'Developer ID Application: Alfred-Wegener-Institut fur Polar- und Meeresforschung (AWI)' '../../Distribution/Pan2Applic/Pan2Applic.app/Contents/Frameworks/QtPrintSupport.framework'
+codesign --force --verify --sign 'Developer ID Application: Alfred-Wegener-Institut fur Polar- und Meeresforschung (AWI)' '../../Distribution/Pan2Applic/Pan2Applic.app/Contents/Frameworks/QtSvg.framework'
 codesign --force --verify --sign 'Developer ID Application: Alfred-Wegener-Institut fur Polar- und Meeresforschung (AWI)' '../../Distribution/Pan2Applic/Pan2Applic.app/Contents/Frameworks/QtWidgets.framework'
 
 codesign --force --verify --sign 'Developer ID Application: Alfred-Wegener-Institut fur Polar- und Meeresforschung (AWI)' '../../Distribution/Pan2Applic/Pan2Applic.app/Contents/PlugIns/bearer/libqcorewlanbearer.dylib'
@@ -33,6 +34,7 @@ codesign --force --verify --sign 'Developer ID Application: Alfred-Wegener-Insti
 codesign --force --verify --sign 'Developer ID Application: Alfred-Wegener-Institut fur Polar- und Meeresforschung (AWI)' '../../Distribution/Pan2Applic/Pan2Applic.app/Contents/PlugIns/imageformats/libqwebp.dylib'
 codesign --force --verify --sign 'Developer ID Application: Alfred-Wegener-Institut fur Polar- und Meeresforschung (AWI)' '../../Distribution/Pan2Applic/Pan2Applic.app/Contents/PlugIns/platforms/libqcocoa.dylib'
 codesign --force --verify --sign 'Developer ID Application: Alfred-Wegener-Institut fur Polar- und Meeresforschung (AWI)' '../../Distribution/Pan2Applic/Pan2Applic.app/Contents/PlugIns/printsupport/libcocoaprintersupport.dylib'
+codesign --force --verify --sign 'Developer ID Application: Alfred-Wegener-Institut fur Polar- und Meeresforschung (AWI)' '../../Distribution/Pan2Applic/Pan2Applic.app/Contents/PlugIns/iconengines/libqsvgicon.dylib'
 
 codesign --force --verify --sign 'Developer ID Application: Alfred-Wegener-Institut fur Polar- und Meeresforschung (AWI)' '../../Distribution/Pan2Applic/Pan2Applic.app'
 
