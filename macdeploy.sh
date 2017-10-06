@@ -7,10 +7,10 @@ echo - macdeployqt
 cd ~/Development/GitHub/Pan2Applic
 
 rm -R '../../Distribution/Pan2Applic/Pan2Applic.app'
-cp -R './build-Pan2Applic-Desktop_Qt_5_9_1_clang_64bit-Release/Pan2Applic.app' '../../Distribution/Pan2Applic/Pan2Applic.app'
+cp -R './build-Pan2Applic-Desktop_Qt_5_9_2_clang_64bit-Release/Pan2Applic.app' '../../Distribution/Pan2Applic/Pan2Applic.app'
 cp './trunk/Resources/Info.plist' '../../Distribution/Pan2Applic/Pan2Applic.app/Contents/Info.plist'
 
-/Developer/Qt/5.9.1/clang_64/bin/macdeployqt '../../Distribution/Pan2Applic/Pan2Applic.app'
+/Developer/Qt/5.9.2/clang_64/bin/macdeployqt '../../Distribution/Pan2Applic/Pan2Applic.app'
 
 echo - code signing
 
